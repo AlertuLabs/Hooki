@@ -12,7 +12,7 @@
         <RepositoryUrl>https://github.com/adamthewilliam/Hooki.git</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>webhooks, microsoftTeams, slack, discord, json, payload</PackageTags>
-        <PackageReadmeFile>readme.md</PackageReadmeFile>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageIconUrl>https://res.cloudinary.com/deknqhm9k/image/upload/v1727720887/penguin-hook-01_npc5hm.png</PackageIconUrl>
     </PropertyGroup>
 
