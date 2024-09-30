@@ -27,8 +27,6 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 8.0.x
-        cache: true
-        GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
         
     - name: Restore dependencies
       run: dotnet restore
@@ -50,8 +48,6 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 8.0.x
-        cache: true
-        GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
 
     - name: Set version from tag
       run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
