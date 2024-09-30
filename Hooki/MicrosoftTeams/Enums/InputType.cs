@@ -13,4 +13,4 @@ public enum InputType
     
     [JsonPropertyName("MultichoiceInput")]
     MultiChoiceInput
-}1
+}
