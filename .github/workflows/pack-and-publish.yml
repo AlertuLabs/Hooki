@@ -12,6 +12,7 @@ on:
 env:
     DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
     DOTNET_NOLOGO: true
+    SOLUTION_DIR: src/Hooki
 
 defaults:
     run:
@@ -29,13 +30,13 @@ jobs:
         dotnet-version: 8.0.x
         
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore ${{ env.SOLUTION_DIR }}
 
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build ${{ env.SOLUTION_DIR }} --configuration Release --no-restore
 
     - name: Test
-      run: dotnet test --no-restore
+      run: dotnet test ${{ env.SOLUTION_DIR }} --no-restore
 
   pack-and-publish:
     needs: build-and-test
@@ -53,7 +54,7 @@ jobs:
       run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
 
     - name: Pack
-      run: dotnet pack --configuration Release --no-build -p:PackageVersion=$VERSION --output ./nupkgs
+      run: dotnet pack ${{ env.SOLUTION_DIR }} --configuration Release --no-build -p:PackageVersion=$VERSION --output ./nupkgs
 
     - name: Publish to NuGet
       run: dotnet nuget push "./nupkgs/*.nupkg" --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
