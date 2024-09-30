@@ -69,10 +69,14 @@
 <!-- Features -->
 ### :dart: Features
 
-- Strongly typed POCOs for various platforms e.g. Discord, Microsoft Teams and Slack.
-- Compile time checks for missing properties
-- Type safety
-- Not re-inventing the wheel
+- Strongly typed POCOs for various platforms including:
+  - Discord Webhook API
+  - Slack Block Kit SDK
+  - Microsoft Teams Message Card
+  - Discord Execute Webhook
+- Compile-time checks for missing properties
+- Type safety ensuring correct payload structure
+- Leveraging existing platform SDKs and standards
 
 <!-- Why use Hooki? -->
 ### :hook: Why use Hooki?
