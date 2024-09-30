@@ -115,7 +115,7 @@ public class DiscordWebhookService
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly ILogger<DiscordWebhookService> _logger;
 
-    public DiscordNotificationService(IHttpClientFactory httpClientFactory, ILogger<DiscordWebhookService> logger)
+    public DiscordWebhookService(IHttpClientFactory httpClientFactory, ILogger<DiscordWebhookService> logger)
     {
         _httpClientFactory = httpClientFactory;
         _logger = logger;
