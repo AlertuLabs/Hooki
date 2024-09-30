@@ -73,7 +73,6 @@
   - Discord Webhook API
   - Slack Block Kit SDK
   - Microsoft Teams Message Card
-  - Discord Execute Webhook
 - Compile-time checks for missing properties
 - Type safety ensuring correct payload structure
 - Leveraging existing platform SDKs and standards
