@@ -57,4 +57,4 @@ jobs:
       run: dotnet pack ${{ env.SOLUTION_DIR }} --configuration Release --no-build -p:PackageVersion=${{env.VERSION}} --output ./nupkgs
 
     - name: Publish to NuGet
-      run: dotnet nuget push "./nupkgs/*.nupkg" --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
+      run: dotnet nuget push "./nupkgs/Hooki.*" --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
