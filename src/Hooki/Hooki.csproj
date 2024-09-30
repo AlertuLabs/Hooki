@@ -4,6 +4,14 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <PackageId>Hooki</PackageId>
+        <Authors>Adam Ferguson</Authors>
+        <Description>Hooki is a powerful .NET library designed to simplify the creation of webhook payloads for popular platforms like Discord, Slack, and Microsoft Teams. It provides a set of strongly-typed C# POCO classes that serve as building blocks, allowing developers to easily construct and serialize webhook payloads into JSON format</Description>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageProjectUrl>https://github.com/adamthewilliam/Hooki</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/adamthewilliam/Hooki.git</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>webhooks, microsoftTeams, slack, discord, json, payload</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>
