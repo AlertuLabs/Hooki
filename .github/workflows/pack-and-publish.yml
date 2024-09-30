@@ -50,11 +50,14 @@ jobs:
     - name: Build
       run: dotnet build ${{ env.SOLUTION_DIR }} --configuration Release --no-restore
 
-   ## - name: Set version from tag
-   ##   run: echo "VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+    - name: Set version and trim 'v' prefix
+      run: |
+        $version = "${{ github.ref_name }}" -replace '^v', ''
+        echo "VERSION=$version" >> $env:GITHUB_ENV
+        echo "Set VERSION to $version"
 
     - name: Pack
-      run: dotnet pack ${{ env.SOLUTION_DIR }} --configuration Release --no-build -p:PackageVersion=${{github.ref_name}} --output ./nupkgs
+      run: dotnet pack ${{ env.SOLUTION_DIR }} --configuration Release --no-build -p:PackageVersion=${{env.VERSION}} --output ./nupkgs
 
     - name: Publish to NuGet
       run: dotnet nuget push "./nupkgs/*.nupkg" --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
