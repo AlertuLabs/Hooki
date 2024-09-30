@@ -4,10 +4,7 @@ on:
         branches: ["main"]
         tags: ["v*.*.*"] # Publish semver tags as releases.
     pull_request:
-        branches: ["main"]        
-    release:
-        types:
-        - published # Run the workflow when a new GitHub release is published
+        branches: ["main"]
 
 env:
     SOLUTION_DIR: src/Hooki
