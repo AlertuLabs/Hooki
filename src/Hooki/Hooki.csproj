@@ -9,9 +9,6 @@
     <ItemGroup>
       <Folder Include="Discord\JsonConverters\" />
       <Folder Include="MicrosoftTeams\JsonConverters\" />
-      <Folder Include="Slack\Enums\" />
-      <Folder Include="Slack\JsonConverters\" />
-      <Folder Include="Slack\Models\" />
     </ItemGroup>
 
 </Project>
