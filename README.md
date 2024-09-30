@@ -75,7 +75,7 @@
 - Not re-inventing the wheel
 
 <!-- Why use Hooki? -->
-### :key: Why use Hooki?
+### :hook: Why use Hooki?
 
 Hooki is a powerful .NET library designed to simplify the creation of webhook payloads for popular platforms like Discord, Slack, and Microsoft Teams. It provides a set of strongly-typed C# POCO classes that serve as building blocks, allowing developers to easily construct and serialize webhook payloads into JSON format.
 
