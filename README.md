@@ -216,7 +216,6 @@ Contributions are always welcome!
 
 See `contributing.md` for ways to get started.
 
-
 <!-- Code of Conduct -->
 ### :scroll: Code of Conduct
 
