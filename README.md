@@ -122,7 +122,6 @@ public class DiscordWebhookService
 
     private DiscordWebhookPayload CreateDiscordPayload()
     {
-        // Implementation from the previous example
         return new DiscordWebhookPayload
         {
             Username = "Alertu Webhook",
