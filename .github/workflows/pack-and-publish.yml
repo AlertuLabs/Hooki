@@ -50,10 +50,10 @@ jobs:
     - name: Build
       run: dotnet build ${{ env.SOLUTION_DIR }} --configuration Release --no-restore
 
-    - name: Set version and trim 'v' prefix
+    - name: Set version and trim leading 'v'
       run: |
-        $version = "${{ github.ref_name }}" -replace '^v', ''
-        echo "VERSION=$version" >> $env:GITHUB_ENV
+        version=$(echo ${{ github.ref_name }} | sed 's/^v//')
+        echo "VERSION=$version" >> $GITHUB_ENV
         echo "Set VERSION to $version"
 
     - name: Pack
