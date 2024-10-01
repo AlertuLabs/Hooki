@@ -215,7 +215,7 @@ public class ExampleController
 
 Contributions are always welcome!
 
-See `contributing.md` for ways to get started.
+Please read [Contributing](https://github.com/adamthewilliam/Hooki/.github/CONTRIBUTING.md) for ways to get started.
 
 <!-- Code of Conduct -->
 ### :scroll: Code of Conduct
