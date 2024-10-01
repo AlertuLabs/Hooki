@@ -1,6 +1,6 @@
 <div align="center">
 
-  <img src="./src/Hooki/hooki-icon.png" alt="logo" width="100" height="auto" />
+  <img src="./assets/hooki-icon.png" alt="logo" width="100" height="auto" />
   <h1>Hooki</h1>
   
   <p>
