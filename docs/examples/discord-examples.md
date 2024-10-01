@@ -1,6 +1,6 @@
 # Discord Examples
 
-![plot](../screenshots/discord-screenshot-example.png)
+![plot](../screenshots/discord-example-screenshot.png)
 
 ```csharp
 return new DiscordWebhookPayload

@@ -1,6 +1,6 @@
 # Discord Examples
 
-![plot](../screenshots/microsoft-teams-screenshot-example.png)
+![plot](../screenshots/microsoft-teams-example-screenshot.png)
 
 ```csharp
 return new MessageCard
