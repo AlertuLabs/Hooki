@@ -14,7 +14,7 @@ return new MessageCard
             ActivityTitle = "**Azure Metric Alert triggered**",
             ActivitySubtitle = "**Severity - Critical | Status - Open**",
             ActivityText = "This is a test summary for the Azure Metric Alert",
-            ActivityImage = "https://res.cloudinary.com/deknqhm9k/image/upload/v1727617327/Social2_bvec22.png",
+            ActivityImage = "https://example-url/image.png",
             Facts = new List<Fact>
             {
                 new Fact { Name = "Organization Name:", Value = "Test Organization" },

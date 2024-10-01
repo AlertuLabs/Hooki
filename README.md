@@ -125,7 +125,7 @@ public class DiscordWebhookService
         return new DiscordWebhookPayload
         {
             Username = "Alertu Webhook",
-            AvatarUrl = "https://res.cloudinary.com/deknqhm9k/image/upload/v1727617327/Social2_bvec22.png",
+            AvatarUrl = "https://example-url/image.png",
             Embeds = new List<Embed>
             {
                 new Embed
@@ -134,7 +134,7 @@ public class DiscordWebhookService
                     {
                         Name = "Alertu",
                         Url = "https://alertu.io",
-                        IconUrl = "https://res.cloudinary.com/deknqhm9k/image/upload/v1727617327/Social2_bvec22.png"
+                        IconUrl = "https://example-url/image.png"
                     },
                     Title = $"Azure Metric Alert triggered",
                     Description = $"[**View in Alertu**](https://alertu.io) | [**View in Azure**](https://portal.azure.com)",
