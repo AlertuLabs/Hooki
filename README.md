@@ -220,7 +220,7 @@ See `contributing.md` for ways to get started.
 <!-- Code of Conduct -->
 ### :scroll: Code of Conduct
 
-Please read the [Code of Conduct](https://github.com/adamthewilliam/Hooki/blob/main/CODE_OF_CONDUCT.md)
+Please read the [Code of Conduct](https://github.com/adamthewilliam/Hooki/.github/CODE_OF_CONDUCT.md)
 
 <!-- License -->
 ## :warning: License
@@ -232,7 +232,7 @@ Distributed under MIT License. See LICENSE.txt for more information.
 
 Adam Ferguson - [@adamthewilliam](https://twitter.com/adamthewilliam)
 
-Project Link: [https://github.com/adamthewilliam/Hooki](https://github.com/Louis3797/awesome-readme-template)
+Project Link: [https://github.com/adamthewilliam/Hooki]
 
 <!-- Acknowledgments -->
 ## :gem: Acknowledgements
