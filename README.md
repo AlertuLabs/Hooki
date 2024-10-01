@@ -69,7 +69,7 @@
 <!-- Features -->
 ### :dart: Features
 
-- Strongly typed POCOs for various platforms including:
+- Strongly typed POCOs for the following platforms:
   - Discord Webhook API
   - Slack Block Kit SDK
   - Microsoft Teams Message Card
