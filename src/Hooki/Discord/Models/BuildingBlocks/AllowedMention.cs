@@ -11,11 +11,17 @@ public class AllowedMention
     [JsonPropertyName("parse")]
     public List<AllowedMentionTypes>? Parse { get; set; }
 
+    /// <summary>
+    /// Array of role ids to mention
+    /// </summary>
     [JsonPropertyName("roles")]
     public List<string>? Roles { get; set; }
 
+    /// <summary>
+    /// Array of user ids to mention
+    /// </summary>
     [JsonPropertyName("users")]
-    public List<AllowedMentionTypes>? Users { get; set; }
+    public List<string>? Users { get; set; }
 
     [JsonPropertyName("replied_user")]
     public bool? RepliedUser { get; set; }

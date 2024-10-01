@@ -20,4 +20,8 @@
         <None Include="..\..\README.md" Pack="true" PackagePath="\"/>
         <None Include="..\..\assets\hooki-icon.png" Pack="true" PackagePath="\"/>
     </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Macross.Json.Extensions" Version="3.0.0" />
+    </ItemGroup>
 </Project>
