@@ -202,8 +202,9 @@ public class ExampleController
 
 * [x] POCOs
 * [ ] Implement Unit Tests
-* [ ] Introduce FluentValiation using the JSON schema to provide error handling and support
-* [ ] Resolve the issue of using the object type in numerous places due to not having a nice union type solution
+* [ ] Introduce Validation to provide a better developer experience (Apps are not returning errors for 400 requests)
+* [ ] Resolve the issue of using the object type in numerous places due to not having a clean union type solution
+* [ ] Provide builders utilising fluent api to reduce boilerplate code when creating webhook payloads
 
 <!-- Contributing -->
 ## :wave: Contributing
