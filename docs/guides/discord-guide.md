@@ -236,4 +236,8 @@ For more details on Discord's webhook structure and limitations, refer to the [o
 
 ## Links
 
-https://birdie0.github.io/discord-webhooks-guide/discord_webhook.html
+1. [Good example of a Discord webhook](https://birdie0.github.io/discord-webhooks-guide/discord_webhook.html)
+
+2. [Discord webhook payload documentation](https://discord.com/developers/docs/resources/webhook#execute-webhook)
+
+3. [Discord embed object documentation](https://discord.com/developers/docs/resources/message#embed-object)
