@@ -1,3 +1,4 @@
+using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Hooki.Slack.Enums;
@@ -7,7 +8,7 @@ namespace Hooki.Slack.JsonConverters;
 
 public class BlockBaseConverter : JsonConverter<BlockBase>
 {
-    public override BlockBase? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    public override BlockBase Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         throw new NotImplementedException("Deserialization is not implemented for this converter.");
     }
@@ -28,7 +29,12 @@ public class BlockBaseConverter : JsonConverter<BlockBase>
             
             if (propertyValue == null) continue;
             
-            writer.WritePropertyName(options.PropertyNamingPolicy?.ConvertName(property.Name) ?? property.Name);
+            var propertyName = property.GetCustomAttribute<JsonPropertyNameAttribute>()?.Name 
+                               ?? options.PropertyNamingPolicy?.ConvertName(property.Name) 
+                               ?? property.Name;
+            
+                
+            writer.WritePropertyName(propertyName);
             JsonSerializer.Serialize(writer, propertyValue, property.PropertyType, options);
         }
 
