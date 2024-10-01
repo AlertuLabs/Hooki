@@ -5,8 +5,7 @@ namespace Hooki.Discord.Models.BuildingBlocks;
 public class Embed
 {
     [JsonPropertyName("title")] public string? Title { get; set; }
-
-    [JsonPropertyName("type")] public string Type { get; set; } = "rich";
+    [JsonPropertyName("type")] public static string Type  => "rich";
 
     [JsonPropertyName("description")] public string? Description { get; set; }
 
@@ -38,6 +37,9 @@ public class EmbedFooter
 {
     [JsonPropertyName("text")] public string Text { get; set; } = default!;
 
+    /// <summary>
+    /// Only supports http, https and attachments
+    /// </summary>
     [JsonPropertyName("icon_url")] public string? IconUrl { get; set; }
 
     [JsonPropertyName("proxy_icon_url")] public string? ProxyIconUrl { get; set; }
@@ -45,6 +47,9 @@ public class EmbedFooter
 
 public class EmbedImage
 {
+    /// <summary>
+    /// Only supports http, https and attachments
+    /// </summary>
     [JsonPropertyName("url")] public string Url { get; set; } = default!;
 
     [JsonPropertyName("proxy_url")] public string? ProxyUrl { get; set; }
@@ -56,6 +61,9 @@ public class EmbedImage
 
 public class EmbedThumbnail
 {
+    /// <summary>
+    /// Only supports http, https and attachments
+    /// </summary>
     [JsonPropertyName("url")] public string Url { get; set; } = default!;
 
     [JsonPropertyName("proxy_url")] public string? ProxyUrl { get; set; }
@@ -87,8 +95,14 @@ public class EmbedAuthor
 {
     [JsonPropertyName("name")] public string Name { get; set; } = default!;
 
+    /// <summary>
+    /// Only supports http and https
+    /// </summary>
     [JsonPropertyName("url")] public string? Url { get; set; }
 
+    /// <summary>
+    /// Only supports http, https and attachments
+    /// </summary>
     [JsonPropertyName("icon_url")] public string? IconUrl { get; set; }
 
     [JsonPropertyName("proxy_icon_url")] public string? ProxyIconUrl { get; set; }
@@ -101,23 +115,4 @@ public class EmbedField
     [JsonPropertyName("value")] public string Value { get; set; } = default!;
 
     [JsonPropertyName("inline")] public bool? Inline { get; set; }
-}
-
-public class PollResultEmbed : Embed
-{
-    [JsonPropertyName("poll_question_text")] public string? PollQuestionText { get; set; }
-
-    [JsonPropertyName("victor_answer_votes")] public int VictorAnswerVotes { get; set; }
-
-    [JsonPropertyName("total_votes")] public int TotalVotes { get; set; }
-
-    [JsonPropertyName("victor_answer_id")] public string? VictorAnswerId { get; set; }
-
-    [JsonPropertyName("victor_answer_text")] public string? VictorAnswerText { get; set; }
-
-    [JsonPropertyName("victor_answer_emoji_id")] public string? VictorAnswerEmojiId { get; set; }
-
-    [JsonPropertyName("victor_answer_emoji_name")] public string? VictorAnswerEmojiName { get; set; }
-
-    [JsonPropertyName("victor_answer_emoji_animated")] public bool? VictorAnswerEmojiAnimated { get; set; }
 }

@@ -9,7 +9,7 @@ namespace Hooki.Discord.Models.BuildingBlocks;
 public class AllowedMention
 {
     [JsonPropertyName("parse")]
-    public List<string>? Parse { get; set; }
+    public List<AllowedMentionTypes>? Parse { get; set; }
 
     [JsonPropertyName("roles")]
     public List<string>? Roles { get; set; }
