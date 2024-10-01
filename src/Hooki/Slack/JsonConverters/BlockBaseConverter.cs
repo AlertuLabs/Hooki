@@ -25,17 +25,17 @@ public class BlockBaseConverter : JsonConverter<BlockBase>
             if (property.Name == nameof(BlockBase.Type)) continue;
 
             var propertyValue = property.GetValue(value);
-            if (propertyValue != null)
-            {
-                writer.WritePropertyName(options.PropertyNamingPolicy?.ConvertName(property.Name) ?? property.Name);
-                JsonSerializer.Serialize(writer, propertyValue, property.PropertyType, options);
-            }
+            
+            if (propertyValue == null) continue;
+            
+            writer.WritePropertyName(options.PropertyNamingPolicy?.ConvertName(property.Name) ?? property.Name);
+            JsonSerializer.Serialize(writer, propertyValue, property.PropertyType, options);
         }
 
         writer.WriteEndObject();
     }
     
-    private string GetBlockTypeJsonValue(BlockType blockType)
+    private static string GetBlockTypeJsonValue(BlockType blockType)
     {
         return blockType switch
         {

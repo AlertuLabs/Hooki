@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
 using Hooki.MicrosoftTeams.Enums;
 
-namespace Alertu.ThirdPartyAlertNotificationProcessor.Pocos.MicrosoftTeams.Actions;
+namespace Hooki.MicrosoftTeams.Models.Actions;
 
 public class InvokeAddInCommandAction : ActionBase
 {

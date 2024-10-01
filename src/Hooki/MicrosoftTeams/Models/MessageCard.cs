@@ -1,8 +1,8 @@
 using System.Text.Json.Serialization;
-using Alertu.ThirdPartyAlertNotificationProcessor.Pocos.MicrosoftTeams.Actions;
-using Alertu.ThirdPartyAlertNotificationProcessor.Pocos.MicrosoftTeams.BuildingBlocks;
+using Hooki.MicrosoftTeams.Models.Actions;
+using Hooki.MicrosoftTeams.Models.BuildingBlocks;
 
-namespace Alertu.ThirdPartyAlertNotificationProcessor.Pocos.MicrosoftTeams;
+namespace Hooki.MicrosoftTeams.Models;
 
 /// <summary>
 /// Refer to Microsoft Team's documentation for more details: https://learn.microsoft.com/en-us/outlook/actionable-messages/message-card-reference#design-guidelines

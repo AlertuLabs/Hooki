@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
 using Hooki.MicrosoftTeams.Enums;
 
-namespace Alertu.ThirdPartyAlertNotificationProcessor.Pocos.MicrosoftTeams.Actions;
+namespace Hooki.MicrosoftTeams.Models.Actions;
 
 [JsonDerivedType(typeof(OpenUriAction), typeDiscriminator: nameof(ActionType.OpenUri))]
 [JsonDerivedType(typeof(HttpPostAction), typeDiscriminator: nameof(ActionType.HttpPost))]

@@ -37,5 +37,4 @@ public class MultiSelectMenuElement : BlockElementBase
     
     // Public channel list properties
     [JsonPropertyName("initial_channels")] public string[]? InitialChannels { get; set; }
-    
 }

@@ -1,8 +1,8 @@
 using System.Text.Json.Serialization;
-using Alertu.ThirdPartyAlertNotificationProcessor.Pocos.MicrosoftTeams.BuildingBlocks;
 using Hooki.MicrosoftTeams.Enums;
+using Hooki.MicrosoftTeams.Models.BuildingBlocks;
 
-namespace Alertu.ThirdPartyAlertNotificationProcessor.Pocos.MicrosoftTeams.Actions;
+namespace Hooki.MicrosoftTeams.Models.Actions;
 
 public class HttpPostAction : ActionBase
 {

@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace Alertu.ThirdPartyAlertNotificationProcessor.Pocos.MicrosoftTeams.BuildingBlocks;
+namespace Hooki.MicrosoftTeams.Models.BuildingBlocks;
 
 public class Header
 {

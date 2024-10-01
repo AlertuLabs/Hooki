@@ -10,12 +10,10 @@ public class FileInputElement : BlockElementBase
 {
     public override BlockElementType Type => BlockElementType.FileInput;
 
-    [JsonPropertyName("filetypes")]
-    public List<string>? FileTypes { get; set; }
+    [JsonPropertyName("filetypes")] public List<string>? FileTypes { get; set; }
 
     /// <summary>
     /// Supported file types: https://api.slack.com/types/file#types
     /// </summary>
-    [JsonPropertyName("max_files")]
-    public int? MaxFiles { get; set; }
+    [JsonPropertyName("max_files")] public int? MaxFiles { get; set; }
 }

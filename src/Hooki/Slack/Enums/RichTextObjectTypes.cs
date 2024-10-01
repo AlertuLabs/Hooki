@@ -1,18 +1,21 @@
 using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 
-namespace Hooki.Discord.Enums;
+namespace Hooki.Slack.Enums;
 
 //ToDo: Refactor this in .NET 9 with new attribute: https://github.com/dotnet/runtime/blob/main/src/libraries/System.Text.Json/src/System/Text/Json/Serialization/JsonStringEnumMemberNameAttribute.cs
 [JsonConverter(typeof(JsonStringEnumConverter))]
-public enum AllowedMentionTypes
+public enum RichTextObjectTypes
 {
-    [EnumMember(Value = "roles")]
-    Roles,
+    [EnumMember(Value = "rich_text_section")]
+    RichTextSection,
     
-    [EnumMember(Value = "users")]
-    Users,
+    [EnumMember(Value = "rich_text_list")]
+    RichTextList,
     
-    [EnumMember(Value = "everyone")]
-    Everyone
+    [EnumMember(Value = "rich_text_preformatted")]
+    RichTextPreformatted,
+    
+    [EnumMember(Value = "rich_text_quote")]
+    RichTextQuote
 }

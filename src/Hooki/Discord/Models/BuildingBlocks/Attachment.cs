@@ -55,8 +55,3 @@ public class Attachment
     [JsonPropertyName("flags")]
     public int? Flags { get; set; }
 }
-
-public static class AttachmentFlags
-{
-    public const int IS_REMIX = 1 << 2;
-}

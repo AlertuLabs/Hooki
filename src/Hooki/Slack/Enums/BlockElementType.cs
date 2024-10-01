@@ -1,58 +1,60 @@
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 
 namespace Hooki.Slack.Enums;
 
+//ToDo: Refactor this in .NET 9 with new attribute: https://github.com/dotnet/runtime/blob/main/src/libraries/System.Text.Json/src/System/Text/Json/Serialization/JsonStringEnumMemberNameAttribute.cs
 [JsonConverter(typeof(JsonStringEnumConverter))]
 public enum BlockElementType
 {
-    [JsonPropertyName("button")]
+    [EnumMember(Value = "button")]
     Button,
 
-    [JsonPropertyName("checkboxes")]
+    [EnumMember(Value = "checkboxes")]
     Checkboxes,
 
-    [JsonPropertyName("datepicker")]
+    [EnumMember(Value = "datepicker")]
     DatePicker,
 
-    [JsonPropertyName("datetimepicker")]
+    [EnumMember(Value = "datetimepicker")]
     DatetimePicker,
 
-    [JsonPropertyName("email_text_input")]
+    [EnumMember(Value = "email_text_input")]
     EmailInput,
 
-    [JsonPropertyName("file_input")]
+    [EnumMember(Value = "file_input")]
     FileInput,
 
-    [JsonPropertyName("image")]
+    [EnumMember(Value = "image")]
     Image,
 
-    [JsonPropertyName("multi_static_select")]
+    [EnumMember(Value = "multi_static_select")]
     MultiSelectMenu,
 
-    [JsonPropertyName("number_input")]
+    [EnumMember(Value = "number_input")]
     NumberInput,
 
-    [JsonPropertyName("overflow")]
+    [EnumMember(Value = "overflow")]
     OverflowMenu,
 
-    [JsonPropertyName("plain_text_input")]
+    [EnumMember(Value = "plain_text_input")]
     PlainTextInput,
 
-    [JsonPropertyName("radio_buttons")]
+    [EnumMember(Value = "radio_buttons")]
     RadioButtonGroup,
 
-    [JsonPropertyName("rich_text_input")]
+    [EnumMember(Value = "rich_text_input")]
     RichTextInput,
 
-    [JsonPropertyName("static_select")]
+    [EnumMember(Value = "static_select")]
     SelectMenu,
 
-    [JsonPropertyName("timepicker")]
+    [EnumMember(Value = "timepicker")]
     TimePicker,
 
-    [JsonPropertyName("url_text_input")]
+    [EnumMember(Value = "url_text_input")]
     UrlInput,
 
-    [JsonPropertyName("workflow_button")]
+    [EnumMember(Value = "workflow_button")]
     WorkflowButton
 }

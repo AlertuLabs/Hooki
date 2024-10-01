@@ -17,6 +17,5 @@ public class CheckboxElement : BlockElementBase
 
     [JsonPropertyName("confirm")] public ConfirmationDialogObject? Confirm { get; set; }
 
-    [JsonPropertyName("focus_on_load")]
-    public bool? FocusOnLoad { get; set; }
+    [JsonPropertyName("focus_on_load")] public bool? FocusOnLoad { get; set; }
 }

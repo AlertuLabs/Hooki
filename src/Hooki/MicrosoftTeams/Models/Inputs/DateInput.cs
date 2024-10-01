@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
 using Hooki.MicrosoftTeams.Enums;
 
-namespace Alertu.ThirdPartyAlertNotificationProcessor.Pocos.MicrosoftTeams.Inputs;
+namespace Hooki.MicrosoftTeams.Models.Inputs;
 
 public class DateInput : InputBase
 {

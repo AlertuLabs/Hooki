@@ -1,8 +1,8 @@
 using System.Text.Json.Serialization;
-using Alertu.ThirdPartyAlertNotificationProcessor.Pocos.MicrosoftTeams.Inputs;
 using Hooki.MicrosoftTeams.Enums;
+using Hooki.MicrosoftTeams.Models.Inputs;
 
-namespace Alertu.ThirdPartyAlertNotificationProcessor.Pocos.MicrosoftTeams.Actions;
+namespace Hooki.MicrosoftTeams.Models.Actions;
 
 public class ActionCardAction : ActionBase
 {

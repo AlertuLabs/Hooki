@@ -1,37 +1,39 @@
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 
 namespace Hooki.Slack.Enums;
 
+//ToDo: Refactor this in .NET 9 with new attribute: https://github.com/dotnet/runtime/blob/main/src/libraries/System.Text.Json/src/System/Text/Json/Serialization/JsonStringEnumMemberNameAttribute.cs
 [JsonConverter(typeof(JsonStringEnumConverter))]
 public enum BlockType
 {
-    [JsonPropertyName("actions")]
+    [EnumMember(Value = "actions")]
     ActionBlock,
     
-    [JsonPropertyName("context")]
+    [EnumMember(Value = "context")]
     ContextBlock,
     
-    [JsonPropertyName("divider")]
+    [EnumMember(Value = "divider")]
     DividerBlock,
     
-    [JsonPropertyName("file")]
+    [EnumMember(Value = "file")]
     FileBlock,
     
-    [JsonPropertyName("header")]
+    [EnumMember(Value = "header")]
     HeaderBlock,
     
-    [JsonPropertyName("image")]
+    [EnumMember(Value = "image")]
     ImageBlock,
     
-    [JsonPropertyName("input")]
+    [EnumMember(Value = "input")]
     InputBlock,
     
-    [JsonPropertyName("rich_text")]
+    [EnumMember(Value = "rich_text")]
     RichTextBlock,
     
-    [JsonPropertyName("section")]
+    [EnumMember(Value = "section")]
     SectionBlock,
     
-    [JsonPropertyName("video")]
+    [EnumMember(Value = "video")]
     VideoBlock
 }

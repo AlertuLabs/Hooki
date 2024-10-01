@@ -14,18 +14,14 @@ public class DatePickerElement : BlockElementBase
     /// <summary>
     /// Format YYYY-MM-DD
     /// </summary>
-    [JsonPropertyName("initial_date")]
-    public string? InitialDate { get; set; }
+    [JsonPropertyName("initial_date")] public string? InitialDate { get; set; }
+    
+    [JsonPropertyName("confirm")] public ConfirmationDialogObject? Confirm { get; set; }
 
-    [JsonPropertyName("confirm")]
-    public ConfirmationDialogObject? Confirm { get; set; }
-
-    [JsonPropertyName("focus_on_load")]
-    public bool? FocusOnLoad { get; set; }
+    [JsonPropertyName("focus_on_load")] public bool? FocusOnLoad { get; set; }
 
     /// <summary>
     /// When provided, the TextObject type should be "PlainText"
     /// </summary>
-    [JsonPropertyName("placeholder")]
-    public TextObject? Placeholder { get; set; }
+    [JsonPropertyName("placeholder")] public TextObject? Placeholder { get; set; }
 }

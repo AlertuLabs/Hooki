@@ -14,21 +14,6 @@ public class RichTextBlock : BlockBase
     public required object[] Elements { get; set; }
 }
 
-public enum RichTextObjectTypes
-{
-    [JsonPropertyName("rich_text_section")]
-    RichTextSection,
-    
-    [JsonPropertyName("rich_text_list")]
-    RichTextList,
-    
-    [JsonPropertyName("rich_text_preformatted")]
-    RichTextPreformatted,
-    
-    [JsonPropertyName("rich_text_quote")]
-    RichTextQuote
-}
-
 /// <summary>
 /// Refer to Slack's documentation for more details: https://api.slack.com/reference/block-kit/blocks#rich_text_section
 /// </summary>

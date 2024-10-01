@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
-using Alertu.ThirdPartyAlertNotificationProcessor.Pocos.MicrosoftTeams.Inputs;
+using Hooki.MicrosoftTeams.Models.Inputs;
 
-namespace Alertu.ThirdPartyAlertNotificationProcessor.Pocos.MicrosoftTeams.BuildingBlocks;
+namespace Hooki.MicrosoftTeams.Models.BuildingBlocks;
 
 public class Action
 {

@@ -1,19 +1,21 @@
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 
 namespace Hooki.MicrosoftTeams.Enums;
 
+//ToDo: Refactor this in .NET 9 with new attribute: https://github.com/dotnet/runtime/blob/main/src/libraries/System.Text.Json/src/System/Text/Json/Serialization/JsonStringEnumMemberNameAttribute.cs
 [JsonConverter(typeof(JsonStringEnumConverter))]
 public enum ActionType
 {
-    [JsonPropertyName("OpenUri")]
+    [EnumMember(Value = "OpenUri")]
     OpenUri,
 
-    [JsonPropertyName("HttpPOST")]
+    [EnumMember(Value = "HttpPOST")]
     HttpPost,
 
-    [JsonPropertyName("ActionCard")]
+    [EnumMember(Value = "ActionCard")]
     ActionCard,
 
-    [JsonPropertyName("InvokeAddInCommand")]
+    [EnumMember(Value = "InvokeAddInCommand")]
     InvokeAddInCommand
 }

@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace Alertu.ThirdPartyAlertNotificationProcessor.Pocos.MicrosoftTeams.Inputs;
+namespace Hooki.MicrosoftTeams.Models.Inputs;
 
 public class Choice
 {
