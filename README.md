@@ -233,8 +233,6 @@ Distributed under MIT License. See LICENSE.txt for more information.
 
 Adam Ferguson - [@adamthewilliam](https://twitter.com/adamthewilliam)
 
-Project Link: [https://github.com/adamthewilliam/Hooki]
-
 <!-- Acknowledgments -->
 ## 💎 Acknowledgements
 
