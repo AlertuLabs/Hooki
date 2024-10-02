@@ -60,14 +60,14 @@
   
 
 <!-- About the Project -->
-## :star2: About the Project
+## 🌟 About the Project
 
 <!-- <div align="center"> 
   <img src="https://placehold.co/600x400?text=Your+Screenshot+here" alt="screenshot" />
 </div> -->
 
 <!-- Features -->
-### :dart: Features
+### 🎯 Features
 
 - Strongly typed POCOs for the following platforms:
   - Discord Webhook API
@@ -78,7 +78,7 @@
 - Leveraging existing platform SDKs and standards
 
 <!-- Why use Hooki? -->
-### :hook: Why use Hooki?
+### 🪝 Why use Hooki?
 
 Hooki is a powerful .NET library designed to simplify the creation of webhook payloads for popular platforms like Discord, Slack, and Microsoft Teams. It provides a set of strongly-typed C# POCO classes that serve as building blocks, allowing developers to easily construct and serialize webhook payloads into JSON format.
 
@@ -90,15 +90,15 @@ Hooki is a powerful .NET library designed to simplify the creation of webhook pa
 - **Flexibility:** Easily extensible for custom webhook requirements while maintaining type safety.
 
 <!-- Getting Started -->
-## 	:toolbox: Getting Started
+##  🧰 Getting Started
 
 <!-- Prerequisites -->
-### :bangbang: Prerequisites
+### ‼️ Prerequisites
 
 The only requirement is compatibility with .net 8.0.x
 
 <!-- Usage -->
-## :eyes: Usage
+## 👀 Usage
 
 ```csharp
 using System;
@@ -198,7 +198,7 @@ public class ExampleController
 ```
 
 <!-- Roadmap -->
-## :compass: Roadmap
+## 🧭 Roadmap
 
 * [x] POCOs
 * [ ] Implement Unit Tests
@@ -208,7 +208,7 @@ public class ExampleController
 * [ ] Support other languages?
 
 <!-- Contributing -->
-## :wave: Contributing
+## 👋 Contributing
 
 <a href="https://github.com/adamthewilliam/Hooki/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=adamthewilliam/Hooki" />
@@ -219,23 +219,23 @@ Contributions are always welcome!
 Please read [Contributing](https://github.com/adamthewilliam/Hooki/.github/CONTRIBUTING.md) for ways to get started.
 
 <!-- Code of Conduct -->
-### :scroll: Code of Conduct
+### 📜 Code of Conduct
 
 Please read the [Code of Conduct](https://github.com/adamthewilliam/Hooki/.github/CODE_OF_CONDUCT.md)
 
 <!-- License -->
-## :warning: License
+## ⚠️ License
 
 Distributed under MIT License. See LICENSE.txt for more information.
 
 <!-- Contact -->
-## :handshake: Contact
+## 🤝 Contact
 
 Adam Ferguson - [@adamthewilliam](https://twitter.com/adamthewilliam)
 
 Project Link: [https://github.com/adamthewilliam/Hooki]
 
 <!-- Acknowledgments -->
-## :gem: Acknowledgements
+## 💎 Acknowledgements
 
  - [Readme Template](https://github.com/Louis3797/awesome-readme-template)
