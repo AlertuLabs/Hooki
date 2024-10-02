@@ -30,9 +30,9 @@
 </p>
    
 <h4>
-    <a href="https://github.com/AlertuLabs/Hooki/docs/examples">View Examples</a>
+    <a href="https://github.com/AlertuLabs/Hooki/tree/main/docs/examples">View Examples</a>
   <span> · </span>
-    <a href="https://github.com/AlertuLabs/Hooki/docs">Documentation</a>
+    <a href="https://github.com/AlertuLabs/Hooki/tree/main/docs">Documentation</a>
   <span> · </span>
     <a href="https://github.com/AlertuLabs/Hooki/issues/">Report Bug</a>
   <span> · </span>
