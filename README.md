@@ -9,34 +9,34 @@
   
 <!-- Badges -->
 <p>
-  <a href="https://github.com/adamthewilliam/Hooki/graphs/contributors">
-    <img src="https://img.shields.io/github/contributors/adamthewilliam/Hooki" alt="contributors" />
+  <a href="https://github.com/AlertuLabs/Hooki/graphs/contributors">
+    <img src="https://img.shields.io/github/contributors/AlertuLabs/Hooki" alt="contributors" />
   </a>
   <a href="">
-    <img src="https://img.shields.io/github/last-commit/adamthewilliam/Hooki" alt="last update" />
+    <img src="https://img.shields.io/github/last-commit/AlertuLabs/Hooki" alt="last update" />
   </a>
-  <a href="https://github.com/adamthewilliam/Hooki/network/members">
-    <img src="https://img.shields.io/github/forks/adamthewilliam/Hooki" alt="forks" />
+  <a href="https://github.com/AlertuLabs/Hooki/network/members">
+    <img src="https://img.shields.io/github/forks/AlertuLabs/Hooki" alt="forks" />
   </a>
-  <a href="https://github.com/adamthewilliam/Hooki/stargazers">
-    <img src="https://img.shields.io/github/stars/adamthewilliam/Hooki" alt="stars" />
+  <a href="https://github.com/AlertuLabs/Hooki/stargazers">
+    <img src="https://img.shields.io/github/stars/AlertuLabs/Hooki" alt="stars" />
   </a>
-  <a href="https://github.com/adamthewilliam/Hooki/issues/">
-    <img src="https://img.shields.io/github/issues/adamthewilliam/Hooki" alt="open issues" />
+  <a href="https://github.com/AlertuLabs/Hooki/issues/">
+    <img src="https://img.shields.io/github/issues/AlertuLabs/Hooki" alt="open issues" />
   </a>
-  <a href="https://github.com/adamthewilliam/Hooki/blob/master/LICENSE">
-    <img src="https://img.shields.io/github/license/adamthewilliam/Hooki.svg" alt="license" />
+  <a href="https://github.com/AlertuLabs/Hooki/blob/master/LICENSE">
+    <img src="https://img.shields.io/github/license/AlertuLabs/Hooki.svg" alt="license" />
   </a>
 </p>
    
 <h4>
-    <a href="https://github.com/adamthewilliam/Hooki/docs/examples">View Examples</a>
+    <a href="https://github.com/AlertuLabs/Hooki/docs/examples">View Examples</a>
   <span> · </span>
-    <a href="https://github.com/adamthewilliam/Hooki/docs/overview">Documentation</a>
+    <a href="https://github.com/AlertuLabs/Hooki/docs">Documentation</a>
   <span> · </span>
-    <a href="https://github.com/adamthewilliam/Hooki/issues/">Report Bug</a>
+    <a href="https://github.com/AlertuLabs/Hooki/issues/">Report Bug</a>
   <span> · </span>
-    <a href="https://github.com/adamthewilliam/Hooki/issues/">Request Feature</a>
+    <a href="https://github.com/AlertuLabs/Hooki/issues/">Request Feature</a>
   </h4>
 </div>
 
@@ -210,18 +210,18 @@ public class ExampleController
 <!-- Contributing -->
 ## 👋 Contributing
 
-<a href="https://github.com/adamthewilliam/Hooki/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=adamthewilliam/Hooki" />
+<a href="https://github.com/AlertuLabs/Hooki/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=AlertuLabs/Hooki" />
 </a>
 
 Contributions are always welcome!
 
-Please read [Contributing](https://github.com/adamthewilliam/Hooki/.github/CONTRIBUTING.md) for ways to get started.
+Please read [Contributing](https://github.com/AlertuLabs/Hooki/.github/CONTRIBUTING.md) for ways to get started.
 
 <!-- Code of Conduct -->
 ### 📜 Code of Conduct
 
-Please read the [Code of Conduct](https://github.com/adamthewilliam/Hooki/.github/CODE_OF_CONDUCT.md)
+Please read the [Code of Conduct](https://github.com/AlertuLabs/Hooki/.github/CODE_OF_CONDUCT.md)
 
 <!-- License -->
 ## ⚠️ License
