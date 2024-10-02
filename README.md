@@ -4,7 +4,7 @@
   <h1>Hooki</h1>
   
   <p>
-    An awesome library for help with implementing incoming webhooks for various applications! 
+    An awesome library created by <a href="https://alertu.io">Alertu</a> to help with implementing incoming webhooks for various applications! 
   </p>
   
 <!-- Badges -->
@@ -43,7 +43,7 @@
 <br />
 
 <!-- Table of Contents -->
-# :notebook_with_decorative_cover: Table of Contents
+# 📔 Table of Contents
 
 - [About Hooki](#star2-about-the-project)
   * [Features](#dart-features)
