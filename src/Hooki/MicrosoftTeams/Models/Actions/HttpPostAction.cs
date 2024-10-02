@@ -14,5 +14,6 @@ public class HttpPostAction : ActionBase
 
     [JsonPropertyName("body")] public string? Body { get; set; }
 
+    //ToDo: Create an enum for content type
     [JsonPropertyName("bodyContentType")] public string? BodyContentType { get; set; }
 }

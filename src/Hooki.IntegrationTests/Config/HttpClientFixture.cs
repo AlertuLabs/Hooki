@@ -14,7 +14,6 @@ public class HttpClientFixture : IDisposable
             .SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile("appsettings.json")
             .AddEnvironmentVariables()
-            .AddUserSecrets<HttpClientFixture>()
             .Build();
     }
 

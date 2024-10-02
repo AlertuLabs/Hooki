@@ -19,7 +19,7 @@ public abstract class IntegrationTestBase : IClassFixture<HttpClientFixture>
 
     private string GetWebhookUrl(PlatformTypes platform)
     {
-        return _configuration[$"WebhookUrls:{nameof(platform)}"]
+        return _configuration[$"WebhookUrls:{platform}"]
                ?? throw new InvalidOperationException($"Webhook URL for {platform} not found.");
     }
     
@@ -33,7 +33,7 @@ public abstract class IntegrationTestBase : IClassFixture<HttpClientFixture>
             WriteIndented = true
         };
         
-        var json = JsonSerializer.Serialize(payload, payload.GetType(), options);
+        var json = JsonSerializer.Serialize(payload, options);
         var content = new StringContent(json, Encoding.UTF8, "application/json");
         return await _httpClient.PostAsync(url, content);
     }
