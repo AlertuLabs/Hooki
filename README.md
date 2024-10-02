@@ -216,12 +216,12 @@ public class ExampleController
 
 Contributions are always welcome!
 
-Please read [Contributing](https://github.com/AlertuLabs/Hooki/.github/CONTRIBUTING.md) for ways to get started.
+Please read [Contributing](https://github.com/AlertuLabs/Hooki/blob/main/.github/CONTRIBUTING.md) for ways to get started.
 
 <!-- Code of Conduct -->
 ### 📜 Code of Conduct
 
-Please read the [Code of Conduct](https://github.com/AlertuLabs/Hooki/.github/CODE_OF_CONDUCT.md)
+Please read the [Code of Conduct](https://github.com/AlertuLabs/Hooki/blob/main/.github/CODE_OF_CONDUCT.md)
 
 <!-- License -->
 ## ⚠️ License
