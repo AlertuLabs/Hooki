@@ -9,24 +9,30 @@
   
 <!-- Badges -->
 <p>
-  <a href="https://github.com/AlertuLabs/Hooki/graphs/contributors">
-    <img src="https://img.shields.io/github/contributors/AlertuLabs/Hooki" alt="contributors" />
-  </a>
-  <a href="">
-    <img src="https://img.shields.io/github/last-commit/AlertuLabs/Hooki" alt="last update" />
-  </a>
-  <a href="https://github.com/AlertuLabs/Hooki/network/members">
-    <img src="https://img.shields.io/github/forks/AlertuLabs/Hooki" alt="forks" />
-  </a>
-  <a href="https://github.com/AlertuLabs/Hooki/stargazers">
-    <img src="https://img.shields.io/github/stars/AlertuLabs/Hooki" alt="stars" />
-  </a>
-  <a href="https://github.com/AlertuLabs/Hooki/issues/">
-    <img src="https://img.shields.io/github/issues/AlertuLabs/Hooki" alt="open issues" />
-  </a>
-  <a href="https://github.com/AlertuLabs/Hooki/blob/master/LICENSE">
-    <img src="https://img.shields.io/github/license/AlertuLabs/Hooki.svg" alt="license" />
-  </a>
+    <a href="">
+      <img src="https://img.shields.io/nuget/:variant/:Hooki" alt="latest version" />
+    </a>
+    <a href="">
+      <img src="https://img.shields.io/nuget/dt/:Hooki" alt="nuget downloads" />
+    </a>
+    <a href="https://github.com/AlertuLabs/Hooki/graphs/contributors">
+      <img src="https://img.shields.io/github/contributors/AlertuLabs/Hooki" alt="contributors" />
+    </a>
+    <a href="">
+      <img src="https://img.shields.io/github/last-commit/AlertuLabs/Hooki" alt="last update" />
+    </a>
+    <a href="https://github.com/AlertuLabs/Hooki/network/members">
+      <img src="https://img.shields.io/github/forks/AlertuLabs/Hooki" alt="forks" />
+    </a>
+    <a href="https://github.com/AlertuLabs/Hooki/stargazers">
+      <img src="https://img.shields.io/github/stars/AlertuLabs/Hooki" alt="stars" />
+    </a>
+    <a href="https://github.com/AlertuLabs/Hooki/issues/">
+      <img src="https://img.shields.io/github/issues/AlertuLabs/Hooki" alt="open issues" />
+    </a>
+    <a href="https://github.com/AlertuLabs/Hooki/blob/master/LICENSE">
+      <img src="https://img.shields.io/github/license/AlertuLabs/Hooki.svg" alt="license" />
+    </a>
 </p>
    
 <h4>
