@@ -39,6 +39,6 @@ public class MicrosoftTeamsTests : IntegrationTestBase
         var response = await SendWebhookPayloadAsync(PlatformTypes.MicrosoftTeams, messageCard);
 
         // Assert
-        Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
 }
