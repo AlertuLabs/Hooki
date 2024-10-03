@@ -9,11 +9,11 @@
   
 <!-- Badges -->
 <p>
-    <a href="">
-      <img src="https://img.shields.io/nuget/:variant/:Hooki" alt="latest version" />
+    <a href="https://www.nuget.org/packages/Hooki/">
+      <img src="https://img.shields.io/nuget/dt/Hooki.svg" alt="nuget downloads" />
     </a>
-    <a href="">
-      <img src="https://img.shields.io/nuget/dt/:Hooki" alt="nuget downloads" />
+    <a href="https://www.nuget.org/packages/Hooki/">
+      <img src="https://img.shields.io/nuget/v/Hooki.svg" alt="latest version" />
     </a>
     <a href="https://github.com/AlertuLabs/Hooki/graphs/contributors">
       <img src="https://img.shields.io/github/contributors/AlertuLabs/Hooki" alt="contributors" />
