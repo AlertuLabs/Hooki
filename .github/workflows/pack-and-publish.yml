@@ -28,12 +28,12 @@ jobs:
 
     - name: Test
       env:
-        DOTNET_ENVIRONMENT: ${{ secrets.DOTNET_ENVIRONMENT }}
+        DOTNET_ENVIRONMENT: ${{ vars.DOTNET_ENVIRONMENT }}
         TEST_DISCORD_WEBHOOK_URL: ${{ secrets.TEST_DISCORD_WEBHOOK_URL }}
         TEST_MICROSOFT_TEAMS_WEBHOOK_URL: ${{ secrets.TEST_MICROSOFT_TEAMS_WEBHOOK_URL }}
         TEST_SLACK_WEBHOOK_URL: ${{ secrets.TEST_SLACK_WEBHOOK_URL }}
         TEST_PIPEDREAM_URL: ${{ secrets.TEST_PIPEDREAM_URL }}
-        TEST_IMAGE_FILE_NAME: ${{ secrets.TEST_IMAGE_FILE_NAME }}
+        TEST_IMAGE_FILE_NAME: ${{ vars.TEST_IMAGE_FILE_NAME }}
         TEST_IMAGE_CLOUD_URL: ${{ secrets.TEST_IMAGE_CLOUD_URL }}
       run: dotnet test ${{ env.SOLUTION_DIR }} --no-restore
 
