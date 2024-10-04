@@ -4,11 +4,17 @@ namespace Hooki.Discord.Models.BuildingBlocks;
 
 public class Attachment
 {
+    /// <summary>
+    /// Id is a snowflake. Please refer to discord documentation: https://discord.com/developers/docs/reference#snowflakes
+    /// </summary>
     [JsonPropertyName("id")]
     public required string Id { get; set; }
 
+    /// <summary>
+    /// Must be ASCII alphanumeric with underscores, dashes, or dots
+    /// </summary>
     [JsonPropertyName("filename")]
-    public string? FileName { get; set; }
+    public required string FileName { get; set; }
 
     [JsonPropertyName("title")]
     public string? Title { get; set; }
@@ -54,4 +60,11 @@ public class Attachment
 
     [JsonPropertyName("flags")]
     public int? Flags { get; set; }
+    
+    /// <summary>
+    /// The content of the file to be uploaded. This property is ignored during JSON serialization
+    /// and should only be used when preparing the multipart form the HTTP POST request
+    /// </summary>
+    [JsonIgnore]
+    public byte[]? Content { get; set; }
 }

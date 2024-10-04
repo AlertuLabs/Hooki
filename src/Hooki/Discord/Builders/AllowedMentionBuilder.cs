@@ -5,34 +5,46 @@ namespace Hooki.Discord.Builders;
 
 public class AllowedMentionBuilder
 {
-    private readonly AllowedMention _allowedMention = new();
+    private List<AllowedMentionTypes>? _parse;
+    private List<string>? _roles;
+    private List<string>? _users;
+    private bool? _repliedUser;
 
     public AllowedMentionBuilder AddParse(AllowedMentionTypes type)
     {
-        _allowedMention.Parse ??= [];
-        _allowedMention.Parse.Add(type);
+        _parse ??= [];
+        _parse.Add(type);
         return this;
     }
 
     public AllowedMentionBuilder AddRole(string roleId)
     {
-        _allowedMention.Roles ??= [];
-        _allowedMention.Roles.Add(roleId);
+        _roles ??= [];
+        _roles.Add(roleId);
         return this;
     }
 
     public AllowedMentionBuilder AddUser(string userId)
     {
-        _allowedMention.Users ??= [];
-        _allowedMention.Users.Add(userId);
+        _users ??= [];
+        _users.Add(userId);
         return this;
     }
 
     public AllowedMentionBuilder WithRepliedUser(bool repliedUser)
     {
-        _allowedMention.RepliedUser = repliedUser;
+        _repliedUser = repliedUser;
         return this;
     }
 
-    public AllowedMention Build() => _allowedMention;
+    public AllowedMention Build()
+    {
+        return new AllowedMention
+        {
+            Parse = _parse,
+            Roles = _roles,
+            Users = _users,
+            RepliedUser = _repliedUser
+        };
+    }
 }

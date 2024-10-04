@@ -27,6 +27,9 @@ public class MessageCard
 
     [JsonPropertyName("title")] public string Title { get; set; } = default!;
 
+    /// <summary>
+    /// Required when a summary has not been provided
+    /// </summary>
     [JsonPropertyName("text")] public string Text { get; set; } = default!;
 
     [JsonPropertyName("sections")] public List<Section>? Sections { get; set; }

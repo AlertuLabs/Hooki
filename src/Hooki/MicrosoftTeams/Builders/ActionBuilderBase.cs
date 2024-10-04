@@ -46,7 +46,7 @@ public abstract class ActionBuilderBase<TBuilder> where TBuilder : ActionBuilder
         string name, 
         string addInId, 
         string desktopCommandId,
-        object initializationContext)
+        object? initializationContext)
     {
         PotentialActions.Add(new InvokeAddInCommandAction
         {

@@ -31,6 +31,7 @@
       <None Update="appsettings.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
+        <EmbeddedResource Include="..\..\assets\hooki-icon.png"/>
     </ItemGroup>
 
 </Project>

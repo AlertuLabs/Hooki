@@ -2,15 +2,14 @@ using Hooki.MicrosoftTeams.Extensions;
 using IntegrationTests.Config;
 using IntegrationTests.Enums;
 using System.Net;
+using Hooki.MicrosoftTeams.Models.BuildingBlocks;
 
 namespace IntegrationTests;
 
-public class MicrosoftTeamsTests : IntegrationTestBase
+public class MicrosoftTeamsTests(HttpClientFixture fixture) : IntegrationTestBase(fixture)
 {
-    public MicrosoftTeamsTests(HttpClientFixture fixture) : base(fixture) { }
-
     [Fact]
-    public async Task When_Sending_A_Valid_MicrosoftTeams_MessageCard_Webhook_Then_Return_204()
+    public async Task When_Sending_A_Valid_MicrosoftTeams_MessageCard_Webhook_Then_Return_200()
     {
         // Arrange
         var messageCard = MessageCardExtensions.BuildDMessageCard(builder => builder
@@ -39,6 +38,36 @@ public class MicrosoftTeamsTests : IntegrationTestBase
         var response = await SendWebhookPayloadAsync(PlatformTypes.MicrosoftTeams, messageCard);
 
         // Assert
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+    }
+    
+    [Fact]
+    public async Task When_Sending_A_Valid_MessageCard_With_All_Action_Types_Then_Return_200()
+    {
+        var messageCard = MessageCardExtensions.BuildDMessageCard(builder => builder
+            .WithThemeColor("0ea4e9")
+            .WithSummary("Test All Action Types")
+            .AddSection(section => section
+                .WithActivityTitle("Testing All Action Types")
+            )
+            .AddOpenUriAction("Open URI", "https://example.com")
+            .AddHttpPostAction("HTTP POST", "https://example.com/api", "{\"key\":\"value\"}", "application/json", new List<Header>())
+            .AddActionCardAction("Action Card", [], [])
+            .AddInvokeAddInCommandAction("Invoke Add-In", "add-in-id", "command-id", null)
+            .Build());
+        
+        var response = await SendWebhookPayloadAsync(PlatformTypes.MicrosoftTeams, messageCard);
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+    }
+    
+    [Fact]
+    public async Task When_Sending_A_Valid_Minimal_MessageCard_Then_Return_200()
+    {
+        var messageCard = MessageCardExtensions.BuildDMessageCard(builder => builder
+            .WithText("Test All Action Types")
+            .Build());
+        
+        var response = await SendWebhookPayloadAsync(PlatformTypes.MicrosoftTeams, messageCard);
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
 }

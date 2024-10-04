@@ -201,10 +201,12 @@ public class ExampleController
 ## 🧭 Roadmap
 
 * [x] POCOs
-* [ ] Implement Unit Tests
+* [x] Implement Unit Tests
+* [x] Provide builders utilising fluent api to reduce boilerplate code when creating webhook payloads
+* [ ] Support Files and Polls in Discord Webhook
+* [ ] Implement type safety POCOs for Discord message components
 * [ ] Introduce Validation to provide a better developer experience (Apps are not returning error details for 400s)
 * [ ] Remove the use of objects in numerous places and replace with a clean union type solution for type safety and readability
-* [ ] Provide builders utilising fluent api to reduce boilerplate code when creating webhook payloads
 * [ ] Support other languages?
 
 <!-- Contributing -->
