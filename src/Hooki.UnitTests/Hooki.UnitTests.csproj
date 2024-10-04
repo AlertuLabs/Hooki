@@ -7,7 +7,7 @@
 
         <IsPackable>false</IsPackable>
         <IsTestProject>true</IsTestProject>
-        <RootNamespace>Hooki.UniTests</RootNamespace>
+        <RootNamespace>Hooki.UnitTests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -19,6 +19,15 @@
 
     <ItemGroup>
         <Using Include="Xunit"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="MicrosoftTeams\" />
+      <Folder Include="Slack\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Hooki\Hooki.csproj" />
     </ItemGroup>
 
 </Project>
