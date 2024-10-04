@@ -4,7 +4,7 @@ namespace Hooki.MicrosoftTeams.Models.BuildingBlocks;
 
 public class Header
 {
-    [JsonPropertyName("name")] public string Name { get; set; } = default!;
+    [JsonPropertyName("name")] public required string Name { get; set; }
 
-    [JsonPropertyName("value")] public string Value { get; set; } = default!;
+    [JsonPropertyName("value")] public required string Value { get; set; }
 }

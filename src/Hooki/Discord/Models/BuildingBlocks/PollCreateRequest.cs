@@ -14,10 +14,17 @@ public class PollCreateRequest
     
     [JsonPropertyName("answers")] public required List<PollAnswer> Answers { get; set; }
     
+    /// <summary>
+    /// Defaults to 24 hours
+    /// Maximum value is 32 days
+    /// </summary>
     [JsonPropertyName("duration")] public int? Duration { get; set; }
     
     [JsonPropertyName("allow_multiselect")] public bool? AllowMultiSelect { get; set; }
     
+    /// <summary>
+    /// Refer to Discord's documentation for more details: https://discord.com/developers/docs/resources/poll#layout-type
+    /// </summary>
     [JsonPropertyName("layout_type")] public int? LayoutType { get; set; }
 }
 
