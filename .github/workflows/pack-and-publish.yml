@@ -6,9 +6,6 @@ on:
     pull_request:
         branches: ["main"]
 
-env:
-    SOLUTION_DIR: src/Hooki
-
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
@@ -21,12 +18,15 @@ jobs:
         dotnet-version: 8.0.x
         
     - name: Restore dependencies
-      run: dotnet restore ${{ env.SOLUTION_DIR }}
+      run: dotnet restore src/Hooki
 
     - name: Build
-      run: dotnet build ${{ env.SOLUTION_DIR }} --configuration Release --no-restore
+      run: dotnet build src/Hooki --configuration Release --no-restore
 
-    - name: Test
+    - name: Run Unit Tests
+      run: dotnet test src/Hooki.UnitTests/Hooki.UnitTests.csproj --no-restore
+    
+    - name: Run Integration Tests
       env:
         DOTNET_ENVIRONMENT: ${{ vars.DOTNET_ENVIRONMENT }}
         TEST_DISCORD_WEBHOOK_URL: ${{ secrets.TEST_DISCORD_WEBHOOK_URL }}
@@ -35,7 +35,7 @@ jobs:
         TEST_PIPEDREAM_URL: ${{ secrets.TEST_PIPEDREAM_URL }}
         TEST_IMAGE_FILE_NAME: ${{ vars.TEST_IMAGE_FILE_NAME }}
         TEST_IMAGE_CLOUD_URL: ${{ secrets.TEST_IMAGE_CLOUD_URL }}
-      run: dotnet test ${{ env.SOLUTION_DIR }} --no-restore
+      run: dotnet test src/Hooki.IntegrationTests/Hooki.IntegrationTests.csproj --no-restore
 
   pack-and-publish:
     needs: build-and-test
@@ -50,10 +50,10 @@ jobs:
         dotnet-version: 8.0.x
 
     - name: Restore dependencies
-      run: dotnet restore ${{ env.SOLUTION_DIR }}
+      run: dotnet restore src/Hooki
 
     - name: Build
-      run: dotnet build ${{ env.SOLUTION_DIR }} --configuration Release --no-restore
+      run: dotnet build src/Hooki --configuration Release --no-restore
 
     - name: Set version and trim leading 'v'
       run: |
@@ -62,7 +62,7 @@ jobs:
         echo "Set VERSION to $version"
 
     - name: Pack
-      run: dotnet pack ${{ env.SOLUTION_DIR }}/Hooki.csproj --configuration Release --no-build -p:PackageVersion=${{env.VERSION}} --output ./nupkgs
+      run: dotnet pack src/Hooki/Hooki.csproj --configuration Release --no-build -p:PackageVersion=${{env.VERSION}} --output ./nupkgs
 
     - name: Publish to NuGet
       run: dotnet nuget push "./nupkgs/Hooki.*" --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
