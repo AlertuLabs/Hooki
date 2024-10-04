@@ -41,6 +41,7 @@ public class DiscordWebhookPayload
 
     /// <summary>
     /// If ThreadName is provided, a thread with that name will be created in the channel if it doesn't already exist
+    /// Requires the webhook channel to be a forum or media channel
     /// </summary>
     [JsonPropertyName("thread_name")] public string? ThreadName { get; set; }
 

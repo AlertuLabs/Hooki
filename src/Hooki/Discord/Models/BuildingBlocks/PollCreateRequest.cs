@@ -7,6 +7,9 @@ namespace Hooki.Discord.Models.BuildingBlocks;
 /// </summary>
 public class PollCreateRequest
 {
+    /// <summary>
+    /// Only Text is supported in PollMedia for questions
+    /// </summary>
     [JsonPropertyName("question")] public required PollMedia Question { get; set; }
     
     [JsonPropertyName("answers")] public required List<PollAnswer> Answers { get; set; }
@@ -50,6 +53,7 @@ public class Emoji
     
     /// <summary>
     /// Provide Name when you're sending a default emoji and optionally when you're sending a custom emoji
+    /// Name have a unicode emoji value like "⭐️"
     /// </summary>
     [JsonPropertyName("name")] public string? Name { get; set; }
     

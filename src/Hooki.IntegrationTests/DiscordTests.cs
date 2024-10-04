@@ -1,7 +1,6 @@
 using System.Net;
+using Hooki.Discord.Builders;
 using IntegrationTests.Config;
-using Hooki.Discord.Extensions;
-using Hooki.Discord.Models;
 using Hooki.Discord.Models.BuildingBlocks;
 using IntegrationTests.Enums;
 using IntegrationTests.Extensions;
@@ -17,9 +16,10 @@ public class DiscordTests(HttpClientFixture fixture) : IntegrationTestBase(fixtu
     public async Task When_Sending_A_Simple_Discord_Webhook_Payload_Then_Return_204()
     {
         // Arrange
-        var payload = DiscordWebhookPayloadExtensions.BuildDiscordWebhookPayload(builder => builder
+        var payload = new DiscordWebhookPayloadBuilder()
             .WithUsername("Alertu Webhook")
             .WithAvatarUrl("https://res.cloudinary.com/deknqhm9k/image/upload/v1727617327/Social2_bvec22.png")
+            .WithContent("This is a test discord webhook payload")
             .AddEmbed(embed => embed
                 .WithAuthor("Alertu", "https://alertu.io", "https://res.cloudinary.com/deknqhm9k/image/upload/v1727617327/Social2_bvec22.png")
                 .WithTitle("Azure Metric Alert triggered")
@@ -33,9 +33,8 @@ public class DiscordTests(HttpClientFixture fixture) : IntegrationTestBase(fixtu
                 .AddField("Severity", "Critical", true)
                 .AddField("Status", "Open", true)
                 .AddField("Triggered At", DateTimeOffset.UtcNow.ToString("f"), true)
-                .AddField("Resolved At", DateTimeOffset.UtcNow.AddMinutes(5).ToString("f"), true)
-            )
-        );
+                .AddField("Resolved At", DateTimeOffset.UtcNow.AddMinutes(5).ToString("f"), true))
+            .Build();
 
         // Act
         var response = await SendWebhookPayloadAsync(PlatformTypes.Discord, payload);
@@ -48,7 +47,8 @@ public class DiscordTests(HttpClientFixture fixture) : IntegrationTestBase(fixtu
     public async Task When_Sending_Discord_Webhook_Payload_With_Only_An_Embed_Then_Return_204()
     {
         // Arrange
-        var payload = DiscordWebhookPayloadExtensions.BuildDiscordWebhookPayload(builder => builder
+        var payload = new DiscordWebhookPayloadBuilder()
+            .WithContent("This is a test discord webhook payload")
             .AddEmbed(embed => embed
                 .WithAuthor("Alertu", "https://alertu.io", "https://res.cloudinary.com/deknqhm9k/image/upload/v1727617327/Social2_bvec22.png")
                 .WithTitle("Azure Metric Alert triggered")
@@ -62,9 +62,8 @@ public class DiscordTests(HttpClientFixture fixture) : IntegrationTestBase(fixtu
                 .AddField("Severity", "Critical", true)
                 .AddField("Status", "Open", true)
                 .AddField("Triggered At", DateTimeOffset.UtcNow.ToString("f"), true)
-                .AddField("Resolved At", DateTimeOffset.UtcNow.AddMinutes(5).ToString("f"), true)
-            )
-        );
+                .AddField("Resolved At", DateTimeOffset.UtcNow.AddMinutes(5).ToString("f"), true))
+            .Build();
 
         // Act
         var response = await SendWebhookPayloadAsync(PlatformTypes.Discord, payload);
@@ -77,9 +76,9 @@ public class DiscordTests(HttpClientFixture fixture) : IntegrationTestBase(fixtu
     public async Task When_Sending_Minimal_Discord_Webhook_Payload_With_Content_Then_Return_204()
     {
         // Arrange
-        var payload = DiscordWebhookPayloadExtensions.BuildDiscordWebhookPayload(builder => builder
+        var payload = new DiscordWebhookPayloadBuilder()
             .WithContent("This is a test discord webhook payload")
-        );
+            .Build();
         
         // Act
         var response = await SendWebhookPayloadAsync(PlatformTypes.Discord, payload);
@@ -92,22 +91,19 @@ public class DiscordTests(HttpClientFixture fixture) : IntegrationTestBase(fixtu
     public async Task When_Sending_Minimal_Discord_Webhook_Payload_With_An_Attachment_Then_Return_200()
     {
         // Arrange
-        var attachment = new Attachment
-        {
-            Id = DiscordSnowflakeId,
-            FileName = HookiLogoFileName,
-            ContentType = "image/png",
-            Height = 128,
-            Width = 128,
-            Size = 19251,
-            Content = ResourceReaderExtensions.GetEmbeddedResourceBytes("IntegrationTests.hooki-icon.png")
-        };
-
-        var payload = new DiscordWebhookPayload
-        {
-            Content = "This is a test discord webhook payload",
-            Attachments = new List<Attachment> { attachment }
-        };
+        var payload = new DiscordWebhookPayloadBuilder()
+            .AddAttachment(new Attachment
+            {
+                Id = DiscordSnowflakeId,
+                FileName = HookiLogoFileName,
+                ContentType = "image/png",
+                Height = 128,
+                Width = 128,
+                Size = 19251,
+                Content = ResourceReaderExtensions.GetEmbeddedResourceBytes("IntegrationTests.hooki-icon.png")
+            })
+            .WithContent("This is a test discord webhook payload")
+            .Build();
         
         // Act
         var response = await SendWebhookPayloadWithFilesAsync(PlatformTypes.Discord, payload, payload.MultipartContent!);
@@ -120,7 +116,7 @@ public class DiscordTests(HttpClientFixture fixture) : IntegrationTestBase(fixtu
     public async Task When_Sending_Minimal_Discord_Webhook_Payload_With_Files_And_An_Attachment_Then_Return_200()
     {
         // Arrange
-        var payload = DiscordWebhookPayloadExtensions.BuildDiscordWebhookPayload(builder => builder
+        var payload = new DiscordWebhookPayloadBuilder()
             .AddEmbed(embed => embed
                 .WithTitle("Test Embed Title")
                 .WithDescription("Test Embed Description")
@@ -142,13 +138,40 @@ public class DiscordTests(HttpClientFixture fixture) : IntegrationTestBase(fixtu
                 FileName = HookiLogoFileName,
                 ContentType = "image/png",
                 FileContents = ResourceReaderExtensions.GetEmbeddedResourceBytes($"IntegrationTests.{HookiLogoFileName}")
-            }));
+            })
+            .Build();
         
         // Act
         var response = await SendWebhookPayloadWithFilesAsync(PlatformTypes.Discord, payload, payload.MultipartContent!);
 
         // Assert
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+    }
+    
+    [Theory]
+    [InlineData(24, false)]
+    [InlineData(48, true)]
+    public async Task When_Sending_Minimal_Discord_Webhook_Payload_With_Poll_Then_Return_204(int duration, bool isMultiSelect)
+    {
+        // Arrange
+        var payload = new DiscordWebhookPayloadBuilder()
+            .WithPoll(poll => 
+                poll.WithQuestion(pollmedia => 
+                    pollmedia.WithText("10x Engineers"))
+                    .WithDuration(duration)
+                    .AllowMultiSelect(isMultiSelect)
+                    .AddAnswer(pollAnswer =>
+                        pollAnswer.WithPollMedia(pollMedia =>
+                            pollMedia.WithText("Because penguins and cats are taking over")
+                                .WithEmoji(emoji => emoji.WithName("🍆")))
+                            .WithAnswerId(1)))
+            .Build();
+        
+        // Act
+        var response = await SendWebhookPayloadAsync(PlatformTypes.Discord, payload);
+
+        // Assert
+        Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
     }
 }
 
