@@ -8,5 +8,5 @@ public class OpenUriAction : ActionBase
 {
     public override ActionType Type => ActionType.OpenUri;
 
-    [JsonPropertyName("targets")] public List<Target> Targets { get; set; } = [];
+    [JsonPropertyName("targets")] public required List<Target> Targets { get; set; }
 }

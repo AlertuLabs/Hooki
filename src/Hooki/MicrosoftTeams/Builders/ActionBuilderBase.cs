@@ -1,3 +1,4 @@
+using Hooki.MicrosoftTeams.Enums;
 using Hooki.MicrosoftTeams.Models.Actions;
 using Hooki.MicrosoftTeams.Models.BuildingBlocks;
 using Hooki.MicrosoftTeams.Models.Inputs;
@@ -13,7 +14,7 @@ public abstract class ActionBuilderBase<TBuilder> where TBuilder : ActionBuilder
         PotentialActions.Add(new OpenUriAction
         {
             Name = name,
-            Targets = [new Target { OperatingSystem = OperatingSystemTypes.Default, Uri = uri }]
+            Targets = [new Target { OperatingSystem = OperatingSystemType.Default, Uri = uri }]
         });
         return (TBuilder)this;
     }

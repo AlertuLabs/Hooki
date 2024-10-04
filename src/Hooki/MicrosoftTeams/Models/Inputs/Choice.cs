@@ -4,7 +4,7 @@ namespace Hooki.MicrosoftTeams.Models.Inputs;
 
 public class Choice
 {
-    [JsonPropertyName("display")] public string Display { get; set; } = default!;
+    [JsonPropertyName("display")] public required string Display { get; set; }
 
-    [JsonPropertyName("value")] public string Value { get; set; } = default!;
+    [JsonPropertyName("value")] public required string Value { get; set; }
 }

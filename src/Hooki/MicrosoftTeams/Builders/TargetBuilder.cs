@@ -1,13 +1,14 @@
+using Hooki.MicrosoftTeams.Enums;
 using Hooki.MicrosoftTeams.Models.BuildingBlocks;
 
 namespace Hooki.MicrosoftTeams.Builders;
 
 public class TargetBuilder
 {
-    private OperatingSystemTypes _operatingSystem;
+    private OperatingSystemType _operatingSystem;
     private string? _uri;
 
-    public TargetBuilder WithOperatingSystem(OperatingSystemTypes operatingSystem)
+    public TargetBuilder WithOperatingSystem(OperatingSystemType operatingSystem)
     {
         _operatingSystem = operatingSystem;
         return this;

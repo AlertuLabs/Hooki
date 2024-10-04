@@ -7,9 +7,9 @@ public class InvokeAddInCommandAction : ActionBase
 {
     public override ActionType Type => ActionType.InvokeAddInCommand;
 
-    [JsonPropertyName("addInId")] public string AddInId { get; set; } = default!;
+    [JsonPropertyName("addInId")] public required string AddInId { get; set; }
 
-    [JsonPropertyName("desktopCommandId")] public string DesktopCommandId { get; set; } = default!;
+    [JsonPropertyName("desktopCommandId")] public required string DesktopCommandId { get; set; }
 
     [JsonPropertyName("initializationContext")] public object? InitializationContext { get; set; }
 }

@@ -23,7 +23,7 @@ namespace Hooki.UnitTests.MicrosoftTeams.BuilderTests
         private const string Name = "Fetch";
 
         [Fact]
-        public void Build_WithAllProperties_ReturnsCorrectSection()
+        public void Build_With_All_Properties_Returns_Correct_Section()
         {
             // Arrange
             var builder = new SectionBuilder()
@@ -66,7 +66,7 @@ namespace Hooki.UnitTests.MicrosoftTeams.BuilderTests
         }
 
         [Fact]
-        public void Build_WithMinimumProperties_ReturnsCorrectSection()
+        public void Build_With_Minimum_Properties_Returns_Correct_Section()
         {
             // Arrange
             var builder = new SectionBuilder()
@@ -91,7 +91,7 @@ namespace Hooki.UnitTests.MicrosoftTeams.BuilderTests
         }
 
         [Fact]
-        public void Build_WithNoProperties_ReturnsEmptySection()
+        public void Build_With_NoProperties_Returns_Empty_Section()
         {
             // Arrange
             var builder = new SectionBuilder();

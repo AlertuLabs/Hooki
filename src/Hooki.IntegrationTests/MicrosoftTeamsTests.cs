@@ -2,6 +2,7 @@ using IntegrationTests.Config;
 using IntegrationTests.Enums;
 using System.Net;
 using Hooki.MicrosoftTeams.Builders;
+using Hooki.MicrosoftTeams.Enums;
 using Hooki.MicrosoftTeams.Models.Actions;
 using Hooki.MicrosoftTeams.Models.BuildingBlocks;
 using Hooki.MicrosoftTeams.Models.Inputs;
@@ -215,7 +216,7 @@ public class MicrosoftTeamsTests(HttpClientFixture fixture) : IntegrationTestBas
                 new OpenUriAction
                 {
                     Name = "Open URI",
-                    Targets = [new Target { OperatingSystem = OperatingSystemTypes.Default, Uri = "https://example.com" }]
+                    Targets = [new Target { OperatingSystem = OperatingSystemType.Default, Uri = "https://example.com" }]
                 }
             ])
             .Build();
