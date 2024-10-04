@@ -27,6 +27,14 @@ jobs:
       run: dotnet build ${{ env.SOLUTION_DIR }} --configuration Release --no-restore
 
     - name: Test
+      env:
+        DOTNET_ENVIRONMENT: ${{ secrets.DOTNET_ENVIRONMENT }}
+        TEST_DISCORD_WEBHOOK_URL: ${{ secrets.TEST_DISCORD_WEBHOOK_URL }}
+        TEST_MICROSOFT_TEAMS_WEBHOOK_URL: ${{ secrets.TEST_MICROSOFT_TEAMS_WEBHOOK_URL }}
+        TEST_SLACK_WEBHOOK_URL: ${{ secrets.TEST_SLACK_WEBHOOK_URL }}
+        TEST_PIPEDREAM_URL: ${{ secrets.TEST_PIPEDREAM_URL }}
+        TEST_IMAGE_FILE_NAME: ${{ secrets.TEST_IMAGE_FILE_NAME }}
+        TEST_IMAGE_CLOUD_URL: ${{ secrets.TEST_IMAGE_CLOUD_URL }}
       run: dotnet test ${{ env.SOLUTION_DIR }} --no-restore
 
   pack-and-publish:
@@ -54,7 +62,7 @@ jobs:
         echo "Set VERSION to $version"
 
     - name: Pack
-      run: dotnet pack ${{ env.SOLUTION_DIR }} --configuration Release --no-build -p:PackageVersion=${{env.VERSION}} --output ./nupkgs
+      run: dotnet pack ${{ env.SOLUTION_DIR }}/Hooki.csproj --configuration Release --no-build -p:PackageVersion=${{env.VERSION}} --output ./nupkgs
 
     - name: Publish to NuGet
       run: dotnet nuget push "./nupkgs/Hooki.*" --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate

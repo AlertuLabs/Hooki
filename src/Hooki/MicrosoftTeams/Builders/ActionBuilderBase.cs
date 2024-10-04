@@ -13,7 +13,7 @@ public abstract class ActionBuilderBase<TBuilder> where TBuilder : ActionBuilder
         PotentialActions.Add(new OpenUriAction
         {
             Name = name,
-            Targets = [new Target { OperatingSystem = "default", Uri = uri }]
+            Targets = [new Target { OperatingSystem = OperatingSystemTypes.Default, Uri = uri }]
         });
         return (TBuilder)this;
     }
@@ -31,7 +31,7 @@ public abstract class ActionBuilderBase<TBuilder> where TBuilder : ActionBuilder
         return (TBuilder)this;
     }
 
-    public TBuilder AddActionCardAction(string name, List<InputBase> inputs, List<ActionBase> actions)
+    public TBuilder AddActionCardAction(string name, List<InputBase>? inputs, List<ActionBase> actions)
     {
         PotentialActions.Add(new ActionCardAction
         {

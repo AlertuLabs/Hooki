@@ -7,13 +7,16 @@ namespace Hooki.MicrosoftTeams.Models.Actions;
 public class HttpPostAction : ActionBase
 {
     public override ActionType Type => ActionType.HttpPost;
+    
+    [JsonPropertyName("target")] public required string Target { get; set; }
 
-    [JsonPropertyName("target")] public string Target { get; set; } = default!;
+    [JsonPropertyName("headers")] public List<Header>? Headers { get; set; }
 
-    [JsonPropertyName("headers")] public List<Header> Headers { get; set; } = [];
+    [JsonPropertyName("body")] public required string Body { get; set; }
 
-    [JsonPropertyName("body")] public string? Body { get; set; }
-
-    //ToDo: Create an enum for content type
+    /// <summary>
+    /// Valid values are application/json and application/x-www-form-urlencoded.
+    /// If not specified, application/json is assumed
+    /// </summary>
     [JsonPropertyName("bodyContentType")] public string? BodyContentType { get; set; }
 }

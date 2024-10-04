@@ -1,8 +1,10 @@
 using System.Text.Json.Serialization;
 using Hooki.MicrosoftTeams.Enums;
+using Hooki.MicrosoftTeams.JsonConverters;
 
 namespace Hooki.MicrosoftTeams.Models.Inputs;
 
+[JsonConverter(typeof(InputBaseJsonConverter))]
 public abstract class InputBase
 {
     [JsonPropertyName("@type")] public abstract InputType Type { get; }

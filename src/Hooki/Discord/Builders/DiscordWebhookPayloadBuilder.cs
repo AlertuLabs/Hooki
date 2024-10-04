@@ -63,7 +63,7 @@ public class DiscordWebhookPayloadBuilder
 
     public DiscordWebhookPayloadBuilder AddComponent(object component)
     {
-        _components ??= new List<object>();
+        _components ??= [];
         _components.Add(component);
         return this;
     }
@@ -83,7 +83,7 @@ public class DiscordWebhookPayloadBuilder
 
     public DiscordWebhookPayloadBuilder AddAttachment(Attachment attachment)
     {
-        _attachments ??= new List<Attachment>();
+        _attachments ??= [];
         _attachments.Add(attachment);
         return this;
     }

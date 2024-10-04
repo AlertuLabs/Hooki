@@ -1,54 +1,57 @@
 using Hooki.MicrosoftTeams.Models;
 using Hooki.MicrosoftTeams.Models.Actions;
+using Hooki.MicrosoftTeams.Models.BuildingBlocks;
 
 namespace Hooki.MicrosoftTeams.Builders;
 
 public class MessageCardBuilder : ActionBuilderBase<MessageCardBuilder>
 {
-    private readonly MessageCard _messageCard = new();
-    protected override List<ActionBase> PotentialActions => _messageCard.PotentialActions ??= new List<ActionBase>();
+    private string? _correlationId;
+    private List<string>? _expectedActors;
+    private string? _originator;
+    private string? _summary;
+    private string? _themeColor;
+    private bool? _hideOriginalBody;
+    private string? _title;
+    private string? _text;
+    private List<Section>? _sections;
     
-    public MessageCard Build() => _messageCard;
-    
-    public MessageCardBuilder WithContext(string context)
-    {
-        _messageCard.Context = context;
-        return this;
-    }
+    private readonly List<ActionBase> _potentialActions = [];
+    protected override List<ActionBase> PotentialActions => _potentialActions;
 
     public MessageCardBuilder WithCorrelationId(string correlationId)
     {
-        _messageCard.CorrelationId = correlationId;
+        _correlationId = correlationId;
         return this;
     }
 
     public MessageCardBuilder WithOriginator(string originator)
     {
-        _messageCard.Originator = originator;
+        _originator = originator;
         return this;
     }
 
     public MessageCardBuilder WithTitle(string title)
     {
-        _messageCard.Title = title;
+        _title = title;
         return this;
     }
 
     public MessageCardBuilder WithText(string text)
     {
-        _messageCard.Text = text;
+        _text = text;
         return this;
     }
 
     public MessageCardBuilder WithThemeColor(string color)
     {
-        _messageCard.ThemeColor = color;
+        _themeColor = color;
         return this;
     }
 
     public MessageCardBuilder WithSummary(string summary)
     {
-        _messageCard.Summary = summary;
+        _summary = summary;
         return this;
     }
 
@@ -57,20 +60,43 @@ public class MessageCardBuilder : ActionBuilderBase<MessageCardBuilder>
         var section = new SectionBuilder();
         sectionBuilder(section);
 
-        _messageCard.Sections ??= [];
-        _messageCard.Sections.Add(section.Build());
+        _sections ??= [];
+        _sections.Add(section.Build());
         return this;
     }
 
-    public MessageCardBuilder AddExpectedActors(string expectedActor)
+    public MessageCardBuilder AddExpectedActor(string expectedActor)
     {
-        _messageCard.ExpectedActors.Add(expectedActor);
+        _expectedActors ??= [];
+        _expectedActors.Add(expectedActor);
         return this;
     }
 
-    public MessageCardBuilder HasHiddenOriginalBody(bool hasHiddenOriginalBody)
+    public MessageCardBuilder WithHiddenOriginalBody(bool hideOriginalBody)
     {
-        _messageCard.HideOriginalBody = hasHiddenOriginalBody;
+        _hideOriginalBody = hideOriginalBody;
         return this;
+    }
+    
+    public MessageCard Build()
+    {
+        if (string.IsNullOrEmpty(_text) && string.IsNullOrEmpty(_summary))
+        {
+            throw new InvalidOperationException("Either Text or Summary must be provided.");
+        }
+
+        return new MessageCard
+        {
+            CorrelationId = _correlationId,
+            ExpectedActors = _expectedActors,
+            Originator = _originator,
+            Summary = _summary,
+            ThemeColor = _themeColor,
+            HideOriginalBody = _hideOriginalBody,
+            Title = _title,
+            Text = _text,
+            Sections = _sections,
+            PotentialActions = _potentialActions.Count > 0 ? _potentialActions : null
+        };
     }
 }

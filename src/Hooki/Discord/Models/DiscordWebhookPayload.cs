@@ -24,6 +24,11 @@ public class DiscordWebhookPayload
 
     [JsonPropertyName("allowed_mentions")] public AllowedMention? AllowedMentions { get; set; }
 
+    /// <summary>
+    /// We're not supporting message components at the moment.
+    /// Please refer to our README to see our roadmap.
+    /// In the meantime, you can use anonymous objects and refer to Discord's documentation for more details: https://discord.com/developers/docs/interactions/message-components#component-object
+    /// </summary>
     [JsonPropertyName("components")] public List<object>? Components { get; set; }
 
     /// <summary>
@@ -82,7 +87,7 @@ public class DiscordWebhookPayload
         
         var payloadJson = JsonSerializer.Serialize(this, HookiJsonSerializerOptions.Default);
         
-        content.Add(new StringContent(payloadJson, Encoding.UTF8, "application/json"), "payload_json");
+        PayloadJson = payloadJson;
 
         // Add files
         if (Files != null)

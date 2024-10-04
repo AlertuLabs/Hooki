@@ -5,21 +5,21 @@ namespace Hooki.MicrosoftTeams.Models.BuildingBlocks;
 
 public class Section
 {
-    [JsonPropertyName("title")] public string Title { get; set; } = default!;
+    [JsonPropertyName("title")] public string? Title { get; set; }
 
-    [JsonPropertyName("startGroup")] public bool? StartGroup { get; set; } = default!;
+    [JsonPropertyName("startGroup")] public bool? StartGroup { get; set; }
 
-    [JsonPropertyName("activityImage")] public string ActivityImage { get; set; } = default!;
+    [JsonPropertyName("activityImage")] public string? ActivityImage { get; set; }
 
-    [JsonPropertyName("activityTitle")] public string ActivityTitle { get; set; } = default!;
+    [JsonPropertyName("activityTitle")] public string? ActivityTitle { get; set; }
 
-    [JsonPropertyName("activitySubtitle")] public string ActivitySubtitle { get; set; } = default!;
+    [JsonPropertyName("activitySubtitle")] public string? ActivitySubtitle { get; set; }
 
-    [JsonPropertyName("activityText")] public string ActivityText { get; set; } = default!;
+    [JsonPropertyName("activityText")] public string? ActivityText { get; set; }
 
     [JsonPropertyName("heroImage")] public Image? HeroImage { get; set; }
 
-    [JsonPropertyName("text")] public string Text { get; set; } = default!;
+    [JsonPropertyName("text")] public string? Text { get; set; }
 
     [JsonPropertyName("facts")] public List<Fact>? Facts { get; set; }
 

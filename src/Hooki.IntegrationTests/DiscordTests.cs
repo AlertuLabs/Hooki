@@ -9,9 +9,6 @@ namespace IntegrationTests;
 
 public class DiscordTests(HttpClientFixture fixture) : IntegrationTestBase(fixture)
 {
-    private const string HookiLogoFileName = "hooki-icon.png";
-    private const string DiscordSnowflakeId = "1282373368523395145"; // General text channel ID in Alertu discord server
-
     [Fact]
     public async Task When_Sending_A_Simple_Discord_Webhook_Payload_Then_Return_204()
     {
@@ -50,7 +47,7 @@ public class DiscordTests(HttpClientFixture fixture) : IntegrationTestBase(fixtu
         var payload = new DiscordWebhookPayloadBuilder()
             .WithContent("This is a test discord webhook payload")
             .AddEmbed(embed => embed
-                .WithAuthor("Alertu", "https://alertu.io", "https://res.cloudinary.com/deknqhm9k/image/upload/v1727617327/Social2_bvec22.png")
+                .WithAuthor("Alertu", "https://alertu.io", TestImageCloudUrl)
                 .WithTitle("Azure Metric Alert triggered")
                 .WithDescription("[**View in Alertu**](https://alertu.io) | [**View in Azure**](https://portal.azure.com)")
                 .WithColor(959721)
@@ -95,7 +92,7 @@ public class DiscordTests(HttpClientFixture fixture) : IntegrationTestBase(fixtu
             .AddAttachment(new Attachment
             {
                 Id = DiscordSnowflakeId,
-                FileName = HookiLogoFileName,
+                FileName = TestImageFileName,
                 ContentType = "image/png",
                 Height = 128,
                 Width = 128,
@@ -120,8 +117,8 @@ public class DiscordTests(HttpClientFixture fixture) : IntegrationTestBase(fixtu
             .AddEmbed(embed => embed
                 .WithTitle("Test Embed Title")
                 .WithDescription("Test Embed Description")
-                .WithThumbnail($"attachment://{HookiLogoFileName}")
-                .WithImage($"attachment://{HookiLogoFileName}")
+                .WithThumbnail($"attachment://{TestImageFileName}")
+                .WithImage($"attachment://{TestImageFileName}")
             )
             .WithContent("Test Content")
             .AddAttachment(new Attachment
@@ -135,9 +132,9 @@ public class DiscordTests(HttpClientFixture fixture) : IntegrationTestBase(fixtu
             .AddFile(new FileContent
             {
                 SnowflakeId = DiscordSnowflakeId,
-                FileName = HookiLogoFileName,
+                FileName = TestImageFileName,
                 ContentType = "image/png",
-                FileContents = ResourceReaderExtensions.GetEmbeddedResourceBytes($"IntegrationTests.{HookiLogoFileName}")
+                FileContents = ResourceReaderExtensions.GetEmbeddedResourceBytes($"IntegrationTests.{TestImageFileName}")
             })
             .Build();
         
@@ -151,19 +148,54 @@ public class DiscordTests(HttpClientFixture fixture) : IntegrationTestBase(fixtu
     [Theory]
     [InlineData(24, false)]
     [InlineData(48, true)]
-    public async Task When_Sending_Minimal_Discord_Webhook_Payload_With_Poll_Then_Return_204(int duration, bool isMultiSelect)
+    public async Task When_Sending_Minimal_Discord_Webhook_Payload_With_Poll_With_1_Answer_Then_Return_204(int duration, bool isMultiSelect)
     {
         // Arrange
         var payload = new DiscordWebhookPayloadBuilder()
             .WithPoll(poll => 
                 poll.WithQuestion(pollmedia => 
-                    pollmedia.WithText("10x Engineers"))
+                    pollmedia.WithText("Penguins"))
                     .WithDuration(duration)
                     .AllowMultiSelect(isMultiSelect)
                     .AddAnswer(pollAnswer =>
                         pollAnswer.WithPollMedia(pollMedia =>
-                            pollMedia.WithText("Because penguins and cats are taking over")
-                                .WithEmoji(emoji => emoji.WithName("🍆")))
+                            pollMedia.WithText("Penguins emojis are the best!")
+                                .WithEmoji(emoji => emoji.WithName("🐧")))
+                            .WithAnswerId(1)))
+            .Build();
+        
+        // Act
+        var response = await SendWebhookPayloadAsync(PlatformTypes.Discord, payload);
+
+        // Assert
+        Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
+    }
+    
+    [Theory]
+    [InlineData(24, false)]
+    [InlineData(48, true)]
+    public async Task When_Sending_Minimal_Discord_Webhook_Payload_With_Poll_With_Multiple_Answers_Then_Return_204(int duration, bool isMultiSelect)
+    {
+        // Arrange
+        var payload = new DiscordWebhookPayloadBuilder()
+            .WithPoll(poll => 
+                poll.WithQuestion(pollmedia => 
+                        pollmedia.WithText("What is your favorite TV show?"))
+                    .WithDuration(duration)
+                    .AllowMultiSelect(isMultiSelect)
+                    .AddAnswer(pollAnswer =>
+                        pollAnswer.WithPollMedia(pollMedia =>
+                                pollMedia.WithText("Penguin")
+                                    .WithEmoji(emoji => emoji.WithName("🐧")))
+                            .WithAnswerId(1)).AddAnswer(pollAnswer =>
+                        pollAnswer.WithPollMedia(pollMedia =>
+                                pollMedia.WithText("Game of Thrones")
+                                    .WithEmoji(emoji => emoji.WithName("❄️")))
+                            .WithAnswerId(1))
+                    .AddAnswer(pollAnswer =>
+                        pollAnswer.WithPollMedia(pollMedia =>
+                                pollMedia.WithText("Breaking bad")
+                                    .WithEmoji(emoji => emoji.WithName("🧪")))
                             .WithAnswerId(1)))
             .Build();
         

@@ -9,5 +9,5 @@ public abstract class ActionBase
 {
     [JsonPropertyName("@type")] public abstract ActionType Type { get; }
 
-    [JsonPropertyName("name")] public string Name { get; set; } = default!;
+    [JsonPropertyName("name")] public required string Name { get; set; }
 }

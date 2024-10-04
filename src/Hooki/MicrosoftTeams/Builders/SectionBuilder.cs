@@ -5,52 +5,104 @@ namespace Hooki.MicrosoftTeams.Builders;
 
 public class SectionBuilder : ActionBuilderBase<SectionBuilder>
 {
-    private readonly Section _section = new();
-    protected override List<ActionBase> PotentialActions => _section.PotentialActions ??= new List<ActionBase>();
+    private string? _title;
+    private bool? _startGroup;
+    private string? _activityImage;
+    private string? _activityTitle;
+    private string? _activitySubtitle;
+    private string? _activityText;
+    private Image? _heroImage;
+    private string? _text;
+    private List<Fact>? _facts;
+    private List<Image>? _images;
     
-    public Section Build() => _section;
+    private readonly List<ActionBase> _potentialActions = [];
+    protected override List<ActionBase> PotentialActions => _potentialActions;
 
-    public SectionBuilder WithActivityTitle(string title)
+    public SectionBuilder WithTitle(string title)
     {
-        _section.ActivityTitle = title;
+        _title = title;
         return this;
     }
 
-    public SectionBuilder WithActivitySubtitle(string subtitle)
+    public SectionBuilder WithStartGroup(bool startGroup)
     {
-        _section.ActivitySubtitle = subtitle;
-        return this;
-    }
-
-    public SectionBuilder WithActivityText(string text)
-    {
-        _section.ActivityText = text;
+        _startGroup = startGroup;
         return this;
     }
 
     public SectionBuilder WithActivityImage(string imageUrl)
     {
-        _section.ActivityImage = imageUrl;
+        _activityImage = imageUrl;
         return this;
     }
 
-    public SectionBuilder WithImages(List<Image> images)
+    public SectionBuilder WithActivityTitle(string title)
     {
-        _section.Images = images;
+        _activityTitle = title;
+        return this;
+    }
+
+    public SectionBuilder WithActivitySubtitle(string subtitle)
+    {
+        _activitySubtitle = subtitle;
+        return this;
+    }
+
+    public SectionBuilder WithActivityText(string text)
+    {
+        _activityText = text;
         return this;
     }
     
-    public SectionBuilder AddImage(Image image)
+    public SectionBuilder WithHeroImage(Action<ImageBuilder> imageBuilderAction)
     {
-        _section.Images ??= [];
-        _section.Images.Add(image);
+        var imageBuilder = new ImageBuilder();
+        imageBuilderAction(imageBuilder);
+        _heroImage = imageBuilder.Build();
         return this;
     }
-    
-    public SectionBuilder AddFact(string name, string value)
+
+    public SectionBuilder WithText(string text)
     {
-        _section.Facts ??= [];
-        _section.Facts.Add(new Fact { Name = name, Value = value });
+        _text = text;
         return this;
+    }
+
+    public SectionBuilder AddImage(Action<ImageBuilder> imageBuilderAction)
+    {
+        var imageBuilder = new ImageBuilder();
+        imageBuilderAction(imageBuilder);
+        _images ??= new List<Image>();
+        _images.Add(imageBuilder.Build());
+        return this;
+    }
+
+    public SectionBuilder AddFact(Action<FactBuilder> factBuilderAction)
+    {
+        var factBuilder = new FactBuilder();
+        factBuilderAction(factBuilder);
+        _facts ??= new List<Fact>();
+        _facts.Add(factBuilder.Build());
+        return this;
+    }
+
+
+    public Section Build()
+    {
+        return new Section
+        {
+            Title = _title,
+            StartGroup = _startGroup,
+            ActivityImage = _activityImage,
+            ActivityTitle = _activityTitle,
+            ActivitySubtitle = _activitySubtitle,
+            ActivityText = _activityText,
+            HeroImage = _heroImage,
+            Text = _text,
+            Facts = _facts,
+            Images = _images,
+            PotentialActions = _potentialActions.Count > 0 ? _potentialActions : null
+        };
     }
 }

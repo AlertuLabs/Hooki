@@ -7,9 +7,9 @@ public class MultiChoiceInput : InputBase
 {
     public override InputType Type => InputType.MultiChoiceInput;
 
-    [JsonPropertyName("choices")] public List<Choice> Choices { get; set; } = [];
+    [JsonPropertyName("choices")] public required List<Choice> Choices { get; set; }
 
     [JsonPropertyName("isMultiSelect")] public bool? IsMultiSelect { get; set; }
 
-    [JsonPropertyName("style")] public string Style { get; set; } = default!;
+    [JsonPropertyName("style")] public string? Style { get; set; }
 }

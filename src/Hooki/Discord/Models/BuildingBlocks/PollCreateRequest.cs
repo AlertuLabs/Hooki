@@ -54,6 +54,7 @@ public class Emoji
     /// <summary>
     /// Provide Name when you're sending a default emoji and optionally when you're sending a custom emoji
     /// Name have a unicode emoji value like "⭐️"
+    /// You can use Emojipedia to find unicode emojis: https://emojipedia.org/
     /// </summary>
     [JsonPropertyName("name")] public string? Name { get; set; }
     
