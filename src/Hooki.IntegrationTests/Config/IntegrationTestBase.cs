@@ -69,7 +69,7 @@ public abstract class IntegrationTestBase : IClassFixture<HttpClientFixture>
         return await _httpClient.PostAsync(url, content);
     }
     
-    protected async Task<HttpResponseMessage> SendWebhookPayloadWithFilesAsync(PlatformTypes platform, object payload, MultipartFormDataContent? content)
+    protected async Task<HttpResponseMessage> SendWebhookPayloadWithMultipartFormDataContentAsync(PlatformTypes platform, object payload, MultipartFormDataContent? content)
     {
         var url = GetWebhookUrl(platform);
 

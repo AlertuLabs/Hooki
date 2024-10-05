@@ -8,7 +8,7 @@ namespace Hooki.UnitTests.Discord.BuilderTests;
 public class DiscordWebhookPayloadBuilderTests
 {
     [Fact]
-    public void Build_WithAllProperties_ReturnsCorrectPayload()
+    public void Build_With_All_Properties_Returns_Correct_Payload()
     {
         // Arrange
         var builder = new DiscordWebhookPayloadBuilder()
@@ -52,7 +52,7 @@ public class DiscordWebhookPayloadBuilderTests
     }
 
     [Fact]
-    public void Build_WithNoProperties_ReturnsEmptyPayload()
+    public void Build_With_No_Properties_Returns_Empty_Payload()
     {
         // Arrange
         var builder = new DiscordWebhookPayloadBuilder();

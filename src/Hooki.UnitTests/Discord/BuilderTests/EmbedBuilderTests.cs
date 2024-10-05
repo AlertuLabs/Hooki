@@ -6,7 +6,7 @@ namespace Hooki.UnitTests.Discord.BuilderTests;
 public class EmbedBuilderTests
 {
     [Fact]
-    public void Build_WithAllProperties_ReturnsCorrectEmbed()
+    public void Build_With_All_Properties_Returns_Correct_Embed()
     {
         const int hexColor = 959721;
         const string url = "http://example.com";
@@ -63,7 +63,7 @@ public class EmbedBuilderTests
     }
 
     [Fact]
-    public void Build_WithNoProperties_ReturnsEmptyEmbed()
+    public void Build_With_No_Properties_Returns_Empty_Embed()
     {
         // Arrange
         var builder = new EmbedBuilder();

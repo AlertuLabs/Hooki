@@ -6,7 +6,7 @@ namespace Hooki.UnitTests.Discord.BuilderTests;
 public class AttachmentBuilderTests
 {
     [Fact]
-    public void Build_WithRequiredProperties_ReturnsCorrectAttachment()
+    public void Build_With_Required_Properties_Returns_Correct_Attachment()
     {
         // Arrange
         var builder = new AttachmentBuilder()
@@ -38,7 +38,7 @@ public class AttachmentBuilderTests
     }
 
     [Fact]
-    public void Build_WithAllProperties_ReturnsCorrectAttachment()
+    public void Build_With_All_Properties_Returns_Correct_Attachment()
     {
         // Arrange
         var builder = new AttachmentBuilder()

@@ -7,7 +7,7 @@ namespace Hooki.UnitTests.Discord.BuilderTests;
 public class AllowedMentionBuilderTests
 {
     [Fact]
-    public void Build_WithAllProperties_ReturnsCorrectAllowedMention()
+    public void Build_With_All_Properties_Returns_Correct_AllowedMention()
     {
         // Arrange
         var builder = new AllowedMentionBuilder()
@@ -30,7 +30,7 @@ public class AllowedMentionBuilderTests
     }
 
     [Fact]
-    public void Build_WithNoProperties_ReturnsEmptyAllowedMention()
+    public void Build_With_No_Properties_Returns_Empty_AllowedMention()
     {
         // Arrange
         var builder = new AllowedMentionBuilder();

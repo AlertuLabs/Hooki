@@ -103,7 +103,7 @@ public class DiscordTests(HttpClientFixture fixture) : IntegrationTestBase(fixtu
             .Build();
         
         // Act
-        var response = await SendWebhookPayloadWithFilesAsync(PlatformTypes.Discord, payload, payload.MultipartContent!);
+        var response = await SendWebhookPayloadWithMultipartFormDataContentAsync(PlatformTypes.Discord, payload, payload.MultipartContent!);
 
         // Assert
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
@@ -139,7 +139,7 @@ public class DiscordTests(HttpClientFixture fixture) : IntegrationTestBase(fixtu
             .Build();
         
         // Act
-        var response = await SendWebhookPayloadWithFilesAsync(PlatformTypes.Discord, payload, payload.MultipartContent!);
+        var response = await SendWebhookPayloadWithMultipartFormDataContentAsync(PlatformTypes.Discord, payload, payload.MultipartContent!);
 
         // Assert
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
