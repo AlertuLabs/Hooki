@@ -1,3 +1,4 @@
+using FluentAssertions;
 using Hooki.Discord.Builders;
 using Hooki.Discord.Enums;
 
@@ -20,12 +21,12 @@ public class AllowedMentionBuilderTests
         var result = builder.Build();
 
         // Assert
-        Assert.NotNull(result);
-        Assert.Contains(AllowedMentionTypes.Roles, result.Parse);
-        Assert.Contains(AllowedMentionTypes.Users, result.Parse);
-        Assert.Contains("123456", result.Roles);
-        Assert.Contains("789012", result.Users);
-        Assert.True(result.RepliedUser);
+        result.Should().NotBeNull();
+        result.Parse.Should().Contain(AllowedMentionTypes.Roles);
+        result.Parse.Should().Contain(AllowedMentionTypes.Users);
+        result.Roles.Should().Contain("123456");
+        result.Users.Should().Contain("789012");
+        result.RepliedUser.Should().BeTrue();
     }
 
     [Fact]
@@ -38,10 +39,10 @@ public class AllowedMentionBuilderTests
         var result = builder.Build();
 
         // Assert
-        Assert.NotNull(result);
-        Assert.Null(result.Parse);
-        Assert.Null(result.Roles);
-        Assert.Null(result.Users);
-        Assert.Null(result.RepliedUser);
+        result.Should().NotBeNull();
+        result.Parse.Should().BeNull();
+        result.Roles.Should().BeNull();
+        result.Users.Should().BeNull();
+        result.RepliedUser.Should().BeNull();
     }
 }
