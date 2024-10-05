@@ -5,6 +5,5 @@ namespace Hooki.Slack.Models;
 
 public class SlackWebhookPayload
 {
-    [JsonPropertyName("blocks")]
-    public required List<BlockBase> Blocks { get; set; }
+    [JsonPropertyName("blocks")] public required List<BlockBase> Blocks { get; set; }
 }

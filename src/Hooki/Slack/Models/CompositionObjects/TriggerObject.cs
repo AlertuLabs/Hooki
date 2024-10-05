@@ -10,11 +10,9 @@ public class TriggerObject
     /// <summary>
     /// Url must be a valid link trigger url. Refer to Slack's documentation for more details: https://api.slack.com/automation/triggers/link
     /// </summary>
-    [JsonPropertyName("url")]
-    public required string Url { get; set; }
+    [JsonPropertyName("url")] public required string Url { get; set; }
     
-    [JsonPropertyName("customizable_input_parameters")]
-    public CustomizableInputParameter[]? CustomizableInputParameters { get; set; }
+    [JsonPropertyName("customizable_input_parameters")] public CustomizableInputParameter[]? CustomizableInputParameters { get; set; }
 }
 
 /// <summary>

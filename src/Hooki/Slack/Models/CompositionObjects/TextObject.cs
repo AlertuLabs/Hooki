@@ -9,7 +9,7 @@ namespace Hooki.Slack.Models.CompositionObjects;
 public class TextObject
 {
     [JsonPropertyName("type")]
-    public TextObjectTypes Type { get; set; }
+    public TextObjectType Type { get; set; }
     
     [JsonPropertyName("text")]
     public required string Text { get; set; }

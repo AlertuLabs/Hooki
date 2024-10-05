@@ -18,22 +18,7 @@ public class WorkflowButtonElement : BlockElementBase
     /// <summary>
     /// If you don't provide a value, default button style will be used
     /// </summary>
-    [JsonPropertyName("style")] public WorkFlowButtonElementStyles? Style { get; set; }
+    [JsonPropertyName("style")] public WorkflowButtonElementStyle? Style { get; set; }
 
     [JsonPropertyName("accessibility_label")] public string? AccessibilityLabel { get; set; }
-}
-
-public enum WorkFlowButtonElementStyles
-{
-    /// <summary>
-    /// Green styling used for affirmation or confirmation actions
-    /// </summary>
-    [JsonPropertyName("primary")]
-    Primary,
-    
-    /// <summary>
-    /// Red styling used for destructive actions
-    /// </summary>
-    [JsonPropertyName("danger")]
-    Danger
 }
