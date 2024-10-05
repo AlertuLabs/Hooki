@@ -26,25 +26,6 @@ jobs:
 
     - name: Run Unit Tests
       run: dotnet test src/Hooki.UnitTests/Hooki.UnitTests.csproj --no-restore
-    
-    - name: Log Environment Variables
-      run: |
-        echo "Checking environment variables:"
-        [ -n "$DOTNET_ENVIRONMENT" ] && echo "DOTNET_ENVIRONMENT is set" || echo "DOTNET_ENVIRONMENT is not set"
-        [ -n "$TEST_DISCORD_WEBHOOK_URL" ] && echo "TEST_DISCORD_WEBHOOK_URL is set" || echo "TEST_DISCORD_WEBHOOK_URL is not set"
-        [ -n "$TEST_MICROSOFT_TEAMS_WEBHOOK_URL" ] && echo "TEST_MICROSOFT_TEAMS_WEBHOOK_URL is set" || echo "TEST_MICROSOFT_TEAMS_WEBHOOK_URL is not set"
-        [ -n "$TEST_SLACK_WEBHOOK_URL" ] && echo "TEST_SLACK_WEBHOOK_URL is set" || echo "TEST_SLACK_WEBHOOK_URL is not set"
-        [ -n "$TEST_PIPEDREAM_URL" ] && echo "TEST_PIPEDREAM_URL is set" || echo "TEST_PIPEDREAM_URL is not set"
-        [ -n "$TEST_IMAGE_FILE_NAME" ] && echo "TEST_IMAGE_FILE_NAME is set" || echo "TEST_IMAGE_FILE_NAME is not set"
-        [ -n "$TEST_IMAGE_CLOUD_URL" ] && echo "TEST_IMAGE_CLOUD_URL is set" || echo "TEST_IMAGE_CLOUD_URL is not set"
-      env:
-        DOTNET_ENVIRONMENT: ${{ vars.DOTNET_ENVIRONMENT }}
-        TEST_DISCORD_WEBHOOK_URL: ${{ secrets.TEST_DISCORD_WEBHOOK_URL }}
-        TEST_MICROSOFT_TEAMS_WEBHOOK_URL: ${{ secrets.TEST_MICROSOFT_TEAMS_WEBHOOK_URL }}
-        TEST_SLACK_WEBHOOK_URL: ${{ secrets.TEST_SLACK_WEBHOOK_URL }}
-        TEST_PIPEDREAM_URL: ${{ secrets.TEST_PIPEDREAM_URL }}
-        TEST_IMAGE_FILE_NAME: ${{ vars.TEST_IMAGE_FILE_NAME }}
-        TEST_IMAGE_CLOUD_URL: ${{ secrets.TEST_IMAGE_CLOUD_URL }}
 
     - name: Run Integration Tests
       env:
