@@ -6,7 +6,7 @@ namespace Hooki.UnitTests.Discord.BuilderTests;
 public class FileContentBuilderTests
 {
     [Fact]
-    public void Build_WithAllProperties_ReturnsCorrectFileContent()
+    public void Build_With_All_Properties_Returns_Correct_FileContent()
     {
         // Arrange
         var builder = new FileContentBuilder()

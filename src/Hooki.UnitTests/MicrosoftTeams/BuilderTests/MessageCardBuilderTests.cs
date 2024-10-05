@@ -19,7 +19,7 @@ public class MessageCardBuilderTests
         private const string Name = "Test Action";
 
         [Fact]
-        public void Build_WithAllProperties_ReturnsCorrectMessageCard()
+        public void Build_With_All_Properties_Returns_Correct_MessageCard()
         {
             // Arrange
             var builder = new MessageCardBuilder()
@@ -53,7 +53,7 @@ public class MessageCardBuilderTests
         }
 
         [Fact]
-        public void Build_WithMinimumProperties_ReturnsCorrectMessageCard()
+        public void Build_With_Minimum_Properties_Returns_Correct_MessageCard()
         {
             // Arrange
             var builder = new MessageCardBuilder()
@@ -77,7 +77,7 @@ public class MessageCardBuilderTests
         }
 
         [Fact]
-        public void Build_WithoutTextOrSummary_ThrowsInvalidOperationException()
+        public void Build_Without_Text_Or_Summary_Throws_InvalidOperationException()
         {
             // Arrange
             var builder = new MessageCardBuilder()

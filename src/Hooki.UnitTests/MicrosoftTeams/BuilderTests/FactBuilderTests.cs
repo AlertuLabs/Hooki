@@ -6,7 +6,7 @@ namespace Hooki.UnitTests.MicrosoftTeams.BuilderTests;
 public class FactBuilderTests
 {
     [Fact]
-    public void Build_WithAllProperties_ReturnsCorrectFact()
+    public void Build_With_All_Properties_Returns_Correct_Fact()
     {
         // Arrange
         var builder = new FactBuilder()
@@ -23,7 +23,7 @@ public class FactBuilderTests
     }
 
     [Fact]
-    public void Build_WithoutProperties_ThrowsInvalidOperationException()
+    public void Build_Without_Properties_Throws_InvalidOperationException()
     {
         // Arrange
         var builder = new FactBuilder();
