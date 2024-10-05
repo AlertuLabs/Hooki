@@ -8,7 +8,7 @@ namespace Hooki.Slack.Models.Blocks;
 /// </summary>
 public class FileBlock : BlockBase
 {
-    public override BlockType Type => BlockType.FileBlock;
+    [JsonPropertyName("type")] public BlockType Type => BlockType.FileBlock;
     
     [JsonPropertyName("external_id")]
     public required string ExternalId { get; set; }

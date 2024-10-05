@@ -9,7 +9,7 @@ namespace Hooki.Slack.Models.Blocks;
 /// </summary>
 public class ImageBlock : BlockBase
 {
-    public override BlockType Type => BlockType.ImageBlock;
+    [JsonPropertyName("type")] public BlockType Type => BlockType.ImageBlock;
     
     [JsonPropertyName("alt_text")] public required TextObject AltText { get; set; }
     

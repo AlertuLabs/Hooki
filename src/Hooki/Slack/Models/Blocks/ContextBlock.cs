@@ -8,8 +8,9 @@ namespace Hooki.Slack.Models.Blocks;
 /// </summary>
 public class ContextBlock : BlockBase
 {
-    public override BlockType Type => BlockType.ActionBlock;
-
-    //ToDo: Add type safety for the compatible block elements 
-    [JsonPropertyName("elements")] public required object[] Elements { get; set; }
+    [JsonPropertyName("type")] public static BlockType Type => BlockType.ContextBlock;
+    
+    [JsonPropertyName("elements")] public required IContextBlockElement[] Elements { get; set; }
 }
+
+public interface IContextBlockElement { }

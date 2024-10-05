@@ -4,10 +4,8 @@ using Hooki.Slack.JsonConverters;
 
 namespace Hooki.Slack.Models.Blocks;
 
-[JsonConverter(typeof(BlockBaseConverter))]
-public abstract class BlockBase
+[JsonConverter(typeof(ActionBlockConverter))]
+public class BlockBase
 {
-    [JsonPropertyName("type")] public abstract BlockType Type { get; }
-
     [JsonPropertyName("block_id")] public string? BlockId { get; set; }
 }

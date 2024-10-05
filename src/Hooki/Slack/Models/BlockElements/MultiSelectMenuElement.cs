@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using Hooki.Slack.Enums;
+using Hooki.Slack.Models.Blocks;
 using Hooki.Slack.Models.CompositionObjects;
 
 namespace Hooki.Slack.Models.BlockElements;
@@ -7,9 +8,9 @@ namespace Hooki.Slack.Models.BlockElements;
 /// <summary>
 /// Refer to Slack's documentation for more details: https://api.slack.com/reference/block-kit/block-elements#multi_select
 /// </summary>
-public class MultiSelectMenuElement : BlockElementBase
+public class MultiSelectMenuElement : BlockElementBase, IActionBlockElement, IInputBlockElement, ISectionBlockElement
 {
-    public override BlockElementType Type => BlockElementType.MultiSelectMenu;
+    [JsonPropertyName("type")] public BlockElementType Type => BlockElementType.MultiSelectMenu;
 
     [JsonPropertyName("placeholder")] public TextObject? Placeholder { get; set; }
 

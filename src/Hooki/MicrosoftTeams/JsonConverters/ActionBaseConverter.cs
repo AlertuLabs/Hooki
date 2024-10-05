@@ -24,7 +24,7 @@ public class ActionBaseConverter : JsonConverter<ActionBase>
         // Serialize other properties
         foreach (var property in value.GetType().GetProperties())
         {
-            if (property.Name == nameof(BlockBase.Type)) continue;
+            if (property.Name == nameof(ActionBase.Type)) continue;
 
             var propertyValue = property.GetValue(value);
             

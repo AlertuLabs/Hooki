@@ -8,33 +8,35 @@ namespace Hooki.Slack.Models.Blocks;
 /// </summary>
 public class RichTextBlock : BlockBase
 {
-    public override BlockType Type => BlockType.RichTextBlock;
+    [JsonPropertyName("type")] public BlockType Type => BlockType.RichTextBlock;
     
-    [JsonPropertyName("elements")] public required object[] Elements { get; set; }
+    [JsonPropertyName("elements")] public required IRichTextBlockElement[] Elements { get; set; }
 }
+
+public interface IRichTextBlockElement { }
+
+public interface IRichTextElement { }
 
 /// <summary>
 /// Refer to Slack's documentation for more details: https://api.slack.com/reference/block-kit/blocks#rich_text_section
 /// </summary>
-public class RichTextSection
+public class RichTextSection : IRichTextBlockElement
 {
-    [JsonPropertyName("type")] public const RichTextObjectType Type = RichTextObjectType.RichTextSection;
+    [JsonPropertyName("type")] public const RichTextBlockElementType Type = RichTextBlockElementType.RichTextSection;
     
-    //ToDo: Implement Rich element types for type safety and validation: https://api.slack.com/reference/block-kit/blocks#broadcast-element-type
-    [JsonPropertyName("elements")] public required object[] Elements { get; set; }
+    [JsonPropertyName("elements")] public required IRichTextElement[] Elements { get; set; }
 }
 
 /// <summary>
 /// Refer to Slack's documentation for more details: https://api.slack.com/reference/block-kit/blocks#rich_text_list
 /// </summary>
-public class RichTextList
+public class RichTextList : IRichTextBlockElement
 {
-    [JsonPropertyName("type")] public const RichTextObjectType Type = RichTextObjectType.RichTextList;
+    [JsonPropertyName("type")] public const RichTextBlockElementType Type = RichTextBlockElementType.RichTextList;
     
     [JsonPropertyName("style")] public required RichTextListStyleType Style { get; set; }
     
-    //ToDo: Implement Rich element types for type safety and validation: https://api.slack.com/reference/block-kit/blocks#broadcast-element-type
-    [JsonPropertyName("elements")] public required object[] Elements { get; set; }
+    [JsonPropertyName("elements")] public required IRichTextElement[] Elements { get; set; }
     
     [JsonPropertyName("indent")] public int? Indent { get; set; }
     
@@ -46,12 +48,11 @@ public class RichTextList
 /// <summary>
 /// Refer to Slack's documentation for more details: https://api.slack.com/reference/block-kit/blocks#rich_text_preformatted
 /// </summary>
-public class RichTextPreformatted
+public class RichTextPreformatted : IRichTextBlockElement
 {
-    [JsonPropertyName("type")] public const RichTextObjectType Type = RichTextObjectType.RichTextPreformatted;
+    [JsonPropertyName("type")] public const RichTextBlockElementType Type = RichTextBlockElementType.RichTextPreformatted;
     
-    //ToDo: Implement Rich element types for type safety and validation: https://api.slack.com/reference/block-kit/blocks#broadcast-element-type
-    [JsonPropertyName("elements")] public required object[] Elements { get; set; }
+    [JsonPropertyName("elements")] public required IRichTextElement[] Elements { get; set; }
     
     [JsonPropertyName("border")] public int? Border { get; set; }
 }
@@ -59,12 +60,11 @@ public class RichTextPreformatted
 /// <summary>
 /// Refer to Slack's documentation for more details: https://api.slack.com/reference/block-kit/blocks#rich_text_quote
 /// </summary>
-public class RichTextQuote
+public class RichTextQuote : IRichTextBlockElement
 {
-    [JsonPropertyName("type")] public const RichTextObjectType Type = RichTextObjectType.RichTextQuote;
+    [JsonPropertyName("type")] public const RichTextBlockElementType Type = RichTextBlockElementType.RichTextQuote;
     
-    //ToDo: Implement Rich element types for type safety and validation: https://api.slack.com/reference/block-kit/blocks#broadcast-element-type
-    [JsonPropertyName("elements")] public required object[] Elements { get; set; }
+    [JsonPropertyName("elements")] public required IRichTextElement[] Elements { get; set; }
     
     [JsonPropertyName("border")] public int? Border { get; set; }
 }

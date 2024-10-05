@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using Hooki.Slack.Enums;
 
 namespace Hooki.Slack.Models.Blocks;
@@ -7,5 +8,5 @@ namespace Hooki.Slack.Models.Blocks;
 /// </summary>
 public class DividerBlock : BlockBase
 {
-    public override BlockType Type => BlockType.DividerBlock;
+    [JsonPropertyName("type")] public BlockType Type => BlockType.DividerBlock;
 }
