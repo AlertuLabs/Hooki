@@ -3,7 +3,7 @@ using Hooki.MicrosoftTeams.Builders;
 
 namespace Hooki.UnitTests.MicrosoftTeams.BuilderTests;
 
-public class ImageBuilderTests
+public class ImageBlockBuilderTests
 {
     private const string TestImageUrl = "https://example.com/image.jpg";
     private const string Title = "Test Image";
@@ -12,7 +12,7 @@ public class ImageBuilderTests
     public void Build_With_All_Properties_Returns_Correct_Image()
     {
         // Arrange
-        var builder = new ImageBuilder()
+        var builder = new ImageBlockBuilder()
             .WithImageUrl(TestImageUrl)
             .WithTitle(Title);
 
@@ -29,7 +29,7 @@ public class ImageBuilderTests
     public void Build_With_Minimum_Properties_Returns_Correct_Image()
     {
         // Arrange
-        var builder = new ImageBuilder()
+        var builder = new ImageBlockBuilder()
             .WithImageUrl(TestImageUrl);
 
         // Act
@@ -45,7 +45,7 @@ public class ImageBuilderTests
     public void Build_Without_ImageUrl_Throws_InvalidOperationException()
     {
         // Arrange
-        var builder = new ImageBuilder()
+        var builder = new ImageBlockBuilder()
             .WithTitle(Title);
 
         // Act & Assert

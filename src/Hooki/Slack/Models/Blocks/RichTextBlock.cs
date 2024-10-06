@@ -10,7 +10,7 @@ public class RichTextBlock : BlockBase
 {
     [JsonPropertyName("type")] public BlockType Type => BlockType.RichTextBlock;
     
-    [JsonPropertyName("elements")] public required IRichTextBlockElement[] Elements { get; set; }
+    [JsonPropertyName("elements")] public required List<IRichTextBlockElement> Elements { get; set; }
 }
 
 public interface IRichTextBlockElement { }

@@ -11,8 +11,7 @@ public class ActionBlock : BlockBase
 {
     [JsonPropertyName("type")] public BlockType Type => BlockType.ActionBlock;
 
-    [JsonPropertyName("elements")]
-    public required List<IActionBlockElement> Elements { get; set; }
+    [JsonPropertyName("elements")] public required List<IActionBlockElement> Elements { get; set; }
 }
 
 public interface IActionBlockElement { }

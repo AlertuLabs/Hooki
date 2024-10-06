@@ -55,9 +55,9 @@ public class SectionBuilder : ActionBuilderBase<SectionBuilder>
         return this;
     }
     
-    public SectionBuilder WithHeroImage(Action<ImageBuilder> imageBuilderAction)
+    public SectionBuilder WithHeroImage(Action<ImageBlockBuilder> imageBuilderAction)
     {
-        var imageBuilder = new ImageBuilder();
+        var imageBuilder = new ImageBlockBuilder();
         imageBuilderAction(imageBuilder);
         _heroImage = imageBuilder.Build();
         return this;
@@ -69,9 +69,9 @@ public class SectionBuilder : ActionBuilderBase<SectionBuilder>
         return this;
     }
 
-    public SectionBuilder AddImage(Action<ImageBuilder> imageBuilderAction)
+    public SectionBuilder AddImage(Action<ImageBlockBuilder> imageBuilderAction)
     {
-        var imageBuilder = new ImageBuilder();
+        var imageBuilder = new ImageBlockBuilder();
         imageBuilderAction(imageBuilder);
         _images ??= new List<Image>();
         _images.Add(imageBuilder.Build());

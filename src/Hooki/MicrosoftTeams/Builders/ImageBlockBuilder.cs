@@ -2,18 +2,18 @@ using Hooki.MicrosoftTeams.Models.BuildingBlocks;
 
 namespace Hooki.MicrosoftTeams.Builders;
 
-public class ImageBuilder
+public class ImageBlockBuilder
 {
     private string? _imageUrl;
     private string? _title;
 
-    public ImageBuilder WithImageUrl(string imageUrl)
+    public ImageBlockBuilder WithImageUrl(string imageUrl)
     {
         _imageUrl = imageUrl;
         return this;
     }
 
-    public ImageBuilder WithTitle(string title)
+    public ImageBlockBuilder WithTitle(string title)
     {
         _title = title;
         return this;

@@ -10,7 +10,7 @@ public class ContextBlock : BlockBase
 {
     [JsonPropertyName("type")] public static BlockType Type => BlockType.ContextBlock;
     
-    [JsonPropertyName("elements")] public required IContextBlockElement[] Elements { get; set; }
+    [JsonPropertyName("elements")] public required List<IContextBlockElement> Elements { get; set; }
 }
 
 public interface IContextBlockElement { }

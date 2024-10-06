@@ -26,5 +26,5 @@ public class ImageBlock : BlockBase
     /// <summary>
     /// When provided, TextObject must be of type "PlainText"
     /// </summary>
-    [JsonPropertyName("title")] public required TextObject? Title { get; set; }
+    [JsonPropertyName("title")] public TextObject? Title { get; set; }
 }

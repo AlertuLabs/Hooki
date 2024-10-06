@@ -15,10 +15,10 @@ public class DiscordTests(HttpClientFixture fixture) : IntegrationTestBase(fixtu
         // Arrange
         var payload = new DiscordWebhookPayloadBuilder()
             .WithUsername("Alertu Webhook")
-            .WithAvatarUrl("https://res.cloudinary.com/deknqhm9k/image/upload/v1727617327/Social2_bvec22.png")
+            .WithAvatarUrl(TestImageCloudUrl)
             .WithContent("This is a test discord webhook payload")
             .AddEmbed(embed => embed
-                .WithAuthor("Alertu", "https://alertu.io", "https://res.cloudinary.com/deknqhm9k/image/upload/v1727617327/Social2_bvec22.png")
+                .WithAuthor("Alertu", "https://alertu.io", TestImageCloudUrl)
                 .WithTitle("Azure Metric Alert triggered")
                 .WithDescription("[**View in Alertu**](https://alertu.io) | [**View in Azure**](https://portal.azure.com)")
                 .WithColor(959721)

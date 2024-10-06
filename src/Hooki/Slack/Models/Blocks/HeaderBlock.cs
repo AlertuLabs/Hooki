@@ -11,6 +11,5 @@ public class HeaderBlock : BlockBase
 {
     [JsonPropertyName("type")] public BlockType Type => BlockType.HeaderBlock;
     
-    [JsonPropertyName("text")]
-    public required TextObject Text { get; set; }
+    [JsonPropertyName("text")] public required TextObject Text { get; set; }
 }
