@@ -6,9 +6,9 @@ public class ContextBlockBuilder : BlockBaseBuilder
 {
     private readonly List<IContextBlockElement> _elements = new();
 
-    public ContextBlockBuilder AddElement(IContextBlockElement element)
+    public ContextBlockBuilder AddElement<T>(Func<T> elementFactory) where T : IContextBlockElement
     {
-        _elements.Add(element);
+        _elements.Add(elementFactory());
         return this;
     }
 

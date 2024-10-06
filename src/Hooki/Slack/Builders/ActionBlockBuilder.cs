@@ -4,11 +4,17 @@ namespace Hooki.Slack.Builders;
 
 public class ActionBlockBuilder : BlockBaseBuilder
 {
-     private List<IActionBlockElement>? _elements;
+     private readonly List<IActionBlockElement> _elements = new();
 
-     public ActionBlock Build()
+     public ActionBlockBuilder AddElement<T>(Func<T> elementFactory) where T : IActionBlockElement
      {
-          if (_elements is null)
+          _elements.Add(elementFactory());
+          return this;
+     }
+     
+     public override ActionBlock Build()
+     {
+          if (_elements is null || _elements.Count == 0)
                throw new InvalidOperationException("Elements are required");
           
           return new ActionBlock

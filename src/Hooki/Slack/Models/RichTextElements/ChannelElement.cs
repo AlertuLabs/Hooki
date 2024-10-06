@@ -13,5 +13,5 @@ public class ChannelElement : IRichTextElement
     
     [JsonPropertyName("channel_id")] public required string ChannelId { get; set; }
     
-    [JsonPropertyName("style")] public required AdvancedTextStyle Style { get; set; }
+    [JsonPropertyName("style")] public AdvancedTextStyle? Style { get; set; }
 }

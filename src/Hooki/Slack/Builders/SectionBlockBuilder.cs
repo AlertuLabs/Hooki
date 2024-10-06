@@ -27,9 +27,9 @@ public class SectionBlockBuilder : BlockBaseBuilder
         return this;
     }
 
-    public SectionBlockBuilder WithAccessory(ISectionBlockElement accessory)
+    public SectionBlockBuilder WithAccessory<T>(Func<T> accessoryFactory) where T : ISectionBlockElement
     {
-        _accessory = accessory;
+        _accessory = accessoryFactory();
         return this;
     }
 
