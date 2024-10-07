@@ -40,7 +40,7 @@ var payload = new DiscordWebhookPayload
 };
 ```
 
-## Embed Author
+### Embed Author
 
 You can add author information to an embed:
 
@@ -59,7 +59,7 @@ new Embed
 }
 ```
 
-## Embed Fields
+### Embed Fields
 
 Fields are useful for displaying key-value pairs of information:
 
@@ -77,11 +77,57 @@ new Embed
 }
 ```
 
+### Embed Images
+
+Embeds support thumbnails and images. There are two ways to provide these images:
+
+1. Reference an attachment by using the `attachment://` prefix followed by the `FileName` of the attachment.
+
+```csharp
+using Hooki.Discord.Models.BuildingBlocks;
+
+new Embed
+{
+    Title = "Test Embed Title",
+    Description = "Test Embed Description",
+    Thumbnail = new EmbedThumbnail
+    {
+        Url = $"attachment://hooki-icon.png"
+    },
+    Image = new EmbedImage
+    {
+        Url = $"attachment://hooki-icon.png"
+    }
+}
+```
+
+2. Provide the URL to the public image directly in the embed
+
+```csharp
+using Hooki.Discord.Models.BuildingBlocks;
+
+new Embed
+{
+    Title = "Test Embed Title",
+    Description = "Test Embed Description",
+    Thumbnail = new EmbedThumbnail
+    {
+        Url = "https://example-thumbnail-image.png"
+    },
+    Image = new EmbedImage
+    {
+        Url = "https://example-image.png"
+    }
+}
+```
+
 ## Polls
 
 Polls are a great way to automatically gather feedback from members in Discord servers
 
-A poll needs to be created with at least one question and one answer. Emojis cannot be used in Questions. 
+A poll needs to be created with at least one question and one answer. 
+
+**Note:** Emojis cannot be used in Questions
 
 ```csharp
 using Hooki.Discord.Models;
@@ -151,9 +197,12 @@ You can use attachments on their own by providing a `SnowflakeId` for the attach
 
 `Height`, `Size` and `Width` are optional. These properties are used to specify the dimensions of the attachment.
 
-**Note:** When using attachments without files, you will need to specify the attachment content for each attachment
+**Note:** When using attachments without files, you need to specify the content for each attachment
 
 ```csharp
+using Hooki.Discord.Models;
+using Hooki.Discord.Models.BuildingBlocks;
+
 var payload = new DiscordWebhookPayload
 {
     Content = "This is a test discord webhook payload",
@@ -175,7 +224,7 @@ var payload = new DiscordWebhookPayload
 
 ### Using Files with Attachments
 
-Files can be provided alongside attachments which allows you to send multiple attachments with a single file.
+Files can be provided alongside attachments making it convenient to use a single file for multiple attachments.
 
 1. Add Files to the payload containing the `SnowflakeId`, `FileName`, `ContentType` and `FileContents`.
 2. Add Attachments to the payload containing the `SnowflakeId` and `FileName`. The `FileName` needs to match the `FileName` of the file you want to attach.
@@ -233,6 +282,9 @@ var payload = new DiscordWebhookPayload
 Here's a more comprehensive example that puts it all together:
 
 ```csharp
+using Hooki.Discord.Models;
+using Hooki.Discord.Models.BuildingBlocks;
+
 var payload = new DiscordWebhookPayload
 {
     Username = "Alert Webhook",
@@ -348,6 +400,9 @@ Use the greater-than symbol for quotes:
 Here's how you might use markdown styling in your webhook payload:
 
 ```csharp
+using Hooki.Discord.Models;
+using Hooki.Discord.Models.BuildingBlocks;
+
 var payload = new DiscordWebhookPayload
 {
     Username = "Alertu Webhook",
@@ -391,13 +446,10 @@ Remember that while markdown can enhance readability, it's important to use it j
 3. You can add up to 10 embeds per message.
 4. The total size of all embeds in a message must not exceed 6000 characters.
 5. Remember to respect Discord's rate limits when sending webhooks.
-
-For more details on Discord's webhook structure and limitations, refer to the [official Discord documentation](https://discord.com/developers/docs/resources/webhook#execute-webhook).
+6. File upload some limit applies to all files in a request (rather than each individual file). Limit depends on the boost tier of your guild but the default is `25 MiB` by default.
 
 ## Links
 
 1. [Good example of a Discord webhook](https://birdie0.github.io/discord-webhooks-guide/discord_webhook.html)
 
 2. [Discord webhook payload documentation](https://discord.com/developers/docs/resources/webhook#execute-webhook)
-
-3. [Discord embed object documentation](https://discord.com/developers/docs/resources/message#embed-object)

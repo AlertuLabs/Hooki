@@ -41,3 +41,53 @@ return new DiscordWebhookPayload
 };
 ```
 
+![plot](../screenshots/discord-poll-example-screenshot.png)
+
+```csharp
+using Hooki.Discord.Models;
+using Hooki.Discord.Models.BuildingBlocks;
+
+var pollPayload = new DiscordWebhookPayload
+{
+    Poll = new PollCreateRequest
+    {
+        Question = new PollMedia
+        {
+            Text = "What is your favorite TV show?",
+        },
+        Duration = 24,
+        AllowMultiSelect = true,
+        Answers = new List<PollAnswer>
+        {
+            new PollAnswer
+            {
+                AnswerId = 1,
+                PollMedia = new PollMedia
+                {
+                    Text = "Penguin",
+                    Emoji = new Emoji { Name = "🐧" }
+                }
+            },
+            new PollAnswer
+            {
+                AnswerId = 2,
+                PollMedia = new PollMedia
+                {
+                    Text = "Game of Thrones",
+                    Emoji = new Emoji { Name = "❄️" }
+                }
+            },
+            new PollAnswer
+            {
+                AnswerId = 3,
+                PollMedia = new PollMedia
+                {
+                    Text = "Breaking Bad",
+                    Emoji = new Emoji { Name = "🧪" }
+                }
+            }
+        }
+    }
+};
+```
+
