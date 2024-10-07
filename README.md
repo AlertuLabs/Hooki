@@ -47,9 +47,15 @@
 </div>
 
 <div align="center">
-    <img width="48" height="48" src="https://img.icons8.com/color/48/discord--v2.png" alt="discord--v2"/>
-    <img width="48" height="48" src="https://img.icons8.com/fluency/48/microsoft-teams-2019.png" alt="microsoft-teams-2019"/>
-    <img width="48" height="48" src="https://img.icons8.com/color-glass/48/slack-new.png"  alt="slack-new"/>
+  <a href="https://discord.com/developers/docs/resources/webhook">
+    <img width="48" height="48" src="https://img.icons8.com/color/48/discord--v2.png" alt="Discord logo"/>
+  </a>
+  <a href="https://learn.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook?tabs=newteams%2Cdotnet">
+    <img width="48" height="48" src="https://img.icons8.com/fluency/48/microsoft-teams-2019.png" alt="Microsoft Team's logo"/>
+  </a>
+  <a href="https://api.slack.com/messaging/webhooks">
+     <img width="48" height="48" src="https://img.icons8.com/color-glass/48/slack-new.png" alt="Slack logo"/>
+  </a>  
 </div>
 
 <br />
