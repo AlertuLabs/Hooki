@@ -1,60 +1,9 @@
-<div align="center">
-
-  <img src="./assets/hooki-icon.png" alt="logo" width="100" height="auto" />
-  <h1>Hooki</h1>
-  
-  <p>
-    An awesome library created by <a href="https://alertu.io">Alertu</a> to help with implementing incoming webhooks for various applications! 
-  </p>
-  
-<!-- Badges -->
-<p>
-    <a href="https://www.nuget.org/packages/Hooki/">
-      <img src="https://img.shields.io/nuget/dt/Hooki.svg" alt="nuget downloads" />
-    </a>
-    <a href="https://www.nuget.org/packages/Hooki/">
-      <img src="https://img.shields.io/nuget/v/Hooki.svg" alt="latest version" />
-    </a>
-    <a href="https://github.com/AlertuLabs/Hooki/graphs/contributors">
-      <img src="https://img.shields.io/github/contributors/AlertuLabs/Hooki" alt="contributors" />
-    </a>
-    <a href="">
-      <img src="https://img.shields.io/github/last-commit/AlertuLabs/Hooki" alt="last update" />
-    </a>
-    <a href="https://github.com/AlertuLabs/Hooki/network/members">
-      <img src="https://img.shields.io/github/forks/AlertuLabs/Hooki" alt="forks" />
-    </a>
-    <a href="https://github.com/AlertuLabs/Hooki/stargazers">
-      <img src="https://img.shields.io/github/stars/AlertuLabs/Hooki" alt="stars" />
-    </a>
-    <a href="https://github.com/AlertuLabs/Hooki/issues/">
-      <img src="https://img.shields.io/github/issues/AlertuLabs/Hooki" alt="open issues" />
-    </a>
-    <a href="https://github.com/AlertuLabs/Hooki/blob/master/LICENSE">
-      <img src="https://img.shields.io/github/license/AlertuLabs/Hooki.svg" alt="license" />
-    </a>
-</p>
-   
-<h4>
-    <a href="https://github.com/AlertuLabs/Hooki/tree/main/docs/examples">View Examples</a>
-  <span> · </span>
-    <a href="https://github.com/AlertuLabs/Hooki/tree/main/docs">Documentation</a>
-  <span> · </span>
-    <a href="https://github.com/AlertuLabs/Hooki/issues/">Report Bug</a>
-  <span> · </span>
-    <a href="https://github.com/AlertuLabs/Hooki/issues/">Request Feature</a>
-  </h4>
-</div>
-
-<br />
-
 <!-- Table of Contents -->
 # 📔 Table of Contents
 
 - [About Hooki](#star2-about-the-project)
   * [Features](#dart-features)
   * [Why use Hooki?](#key-why-use-hooki)
-- [Trusted By](#office-trusted-by)
 - [Getting Started](#toolbox-getting-started)
   * [Prerequisites](#bangbang-prerequisites)
 - [Usage](#eyes-usage)
@@ -65,15 +14,8 @@
 - [Contact](#handshake-contact)
 - [Acknowledgements](#gem-acknowledgements)
   
-
 <!-- About the Project -->
 ## 🌟 About the Project
-
-<div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 20px;">
-  <img src="docs/screenshots/discord-example-screenshot.png" alt="Discord webhook example screenshot" style="max-height: 300px; width: 150px; object-fit: contain;" />
-  <img src="docs/screenshots/microsoft-teams-example-screenshot.png" alt="Microsoft Team's webhook example screenshot" style="max-height: 300px; width: 150px; object-fit: contain;" />
-  <img src="docs/screenshots/slack-example-screenshot.png" alt="Slack webhook example screenshot" style="max-height: 300px; width: 150px; object-fit: contain;" />
-</div>
 
 <!-- Features -->
 ### 🎯 Features
@@ -97,23 +39,6 @@ Hooki is a powerful .NET library designed to simplify the creation of webhook pa
 - **Clean Code:** Eliminates the need for anonymous objects and inline JSON strings.
 - **Focus on Content:** Concentrate on your payload's data and style rather than low-level JSON structure.
 - **Flexibility:** Easily extensible for custom webhook requirements while maintaining type safety.
-
-## 🏢 Trusted By
-
-<div align="center">
-  <table>
-    <tr>
-      <td align="center">
-        <a href="https://cloudcat.dev">
-          <img src="https://cloudcat.dev/img/logo.svg" width="100px;" alt="Cloudcat Logo"/>
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td align="center">Cloudcat.dev</td>
-    </tr>
-  </table>
-</div>
 
 <!-- Getting Started -->
 ##  🧰 Getting Started

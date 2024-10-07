@@ -13,12 +13,12 @@
         <RepositoryUrl>https://github.com/AlertuLabs/Hookigit</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>webhooks, microsoftTeams, slack, discord, json, payload</PackageTags>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageReadmeFile>nuget.readme.md</PackageReadmeFile>
         <PackageIcon>hooki-icon.png</PackageIcon>
     </PropertyGroup>
 
     <ItemGroup>
-        <None Include="..\..\README.md" Pack="true" PackagePath="\"/>
+        <None Include="..\..\nuget.readme.md" Pack="true" PackagePath="\"/>
         <None Include="..\..\assets\hooki-icon.png" Pack="true" PackagePath="\"/>
     </ItemGroup>
 
