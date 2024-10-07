@@ -57,23 +57,23 @@
 <!-- Table of Contents -->
 # 📔 Table of Contents
 
-- [About Hooki](#star2-about-the-project)
-  * [Features](#dart-features)
-  * [Why use Hooki?](#key-why-use-hooki)
-- [Trusted By](#office-trusted-by)
-- [Getting Started](#toolbox-getting-started)
-  * [Prerequisites](#bangbang-prerequisites)
-- [Usage](#eyes-usage)
-- [Roadmap](#compass-roadmap)
-- [Contributing](#wave-contributing)
-  * [Code of Conduct](#scroll-code-of-conduct)
-- [License](#warning-license)
-- [Contact](#handshake-contact)
-- [Acknowledgements](#gem-acknowledgements)
+- [About Hooki](#about-hooki)
+  * [Features](#features)
+  * [Why use Hooki?](#why-use-hooki)
+- [Trusted By](#trusted-by)
+- [Getting Started](#getting-started)
+  * [Prerequisites](#prerequisites)
+- [Usage](#usage)
+- [Roadmap](#roadmap)
+- [Contributing](#contributing)
+  * [Code of Conduct](#code-of-conduct)
+- [License](#license)
+- [Contact](#contact)
+- [Acknowledgements](#acknowledgements)
   
 
-<!-- About the Project -->
-## 🌟 About the Project
+<!-- About Hooki -->
+## 🌟 About Hooki
 
 <!-- Features -->
 ### 🎯 Features
@@ -98,6 +98,7 @@ Hooki is a powerful .NET library designed to simplify the creation of webhook pa
 - **Focus on Content:** Concentrate on your payload's data and style rather than low-level JSON structure.
 - **Flexibility:** Easily extensible for custom webhook requirements while maintaining type safety.
 
+<!-- Trusted By -->
 ## 🏢 Trusted By
 
 <div align="center">
@@ -232,11 +233,10 @@ public class ExampleController
 
 * [x] POCOs
 * [x] Implement Unit Tests
+* [x] Implement Integration Tests
 * [x] Provide builders utilising fluent api to reduce boilerplate code when creating webhook payloads
-* [ ] Support Files and Polls in Discord Webhook
 * [ ] Implement type safety POCOs for Discord message components
 * [ ] Introduce Validation to provide a better developer experience (Apps are not returning error details for 400s)
-* [ ] Remove the use of objects in numerous places and replace with a clean union type solution for type safety and readability
 * [ ] Support other languages?
 
 <!-- Contributing -->
