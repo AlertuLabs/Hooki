@@ -1,6 +1,23 @@
-# Guide: Creating Discord Webhook Payloads
+# Guide: Creating Discord Webhook Payloads with Hooki
 
-This guide will walk you through using our library to create Discord webhook payloads. The library provides a set of Plain Old CLR Objects (POCOs) that correspond to the Discord webhook payload structure.
+This guide will walk you through using the Hooki library to create Discord webhook payloads. The library provides a set of Plain Old CLR Objects (POCOs) that correspond to the Discord webhook payload structure.
+
+## Table of Contents
+
+1. [Basic Structure](#basic-structure)
+2. [Adding Embeds](#adding-embeds)
+   - [Embed Author](#embed-author)
+   - [Embed Fields](#embed-fields)
+   - [Embed Images](#embed-images)
+3. [Polls](#polls)
+4. [Attachments and Files](#attachments-and-files)
+   - [Multipart/form-data](#multipartform-data)
+   - [Attachments](#attachments)
+   - [Using Files with Attachments](#using-files-with-attachments)
+5. [Complete Example](#complete-example)
+6. [Markdown Styling in Discord Webhooks](#markdown-styling-in-discord-webhooks)
+7. [Best Practices and Limitations](#best-practices-and-limitations)
+8. [Additional Resources](#additional-resources)
 
 ## Basic Structure
 
@@ -9,7 +26,7 @@ The main object you'll be working with is `DiscordWebhookPayload`. Here's a basi
 ```csharp
 using Hooki.Discord.Models;
 
-vvar payload = new DiscordWebhookPayload
+var payload = new DiscordWebhookPayload
 {
     Username = "My Webhook",
     AvatarUrl = "https://example.com/avatar.png",
@@ -19,7 +36,7 @@ vvar payload = new DiscordWebhookPayload
 
 ## Adding Embeds
 
-Embeds are rich content blocks that can contain various elements. Embeds will contain most of your webhook payload content. Here's how to add an embed:
+Embeds are rich content blocks that can contain various elements. Here's how to add an embed:
 
 ```csharp
 using Hooki.Discord.Models;
@@ -45,15 +62,13 @@ var payload = new DiscordWebhookPayload
 You can add author information to an embed:
 
 ```csharp
-using Hooki.Discord.Models.BuildingBlocks;
-
 new Embed
 {
     Author = new EmbedAuthor
     {
         Name = "Alertu",
         Url = "https://alertu.io",
-        IconUrl =  Logos.TestLogoUrl
+        IconUrl = "https://example.com/logo.png"
     },
     // ... other embed properties
 }
@@ -64,8 +79,6 @@ new Embed
 Fields are useful for displaying key-value pairs of information:
 
 ```csharp
-using Hooki.Discord.Models.BuildingBlocks;
-
 new Embed
 {
     // ... other embed properties
@@ -79,60 +92,49 @@ new Embed
 
 ### Embed Images
 
-Embeds support thumbnails and images. There are two ways to provide these images:
+Embeds support thumbnails and images. You can provide these images in two ways:
 
-1. Reference an attachment by using the `attachment://` prefix followed by the `FileName` of the attachment.
+1. Reference an attachment:
 
 ```csharp
-using Hooki.Discord.Models.BuildingBlocks;
-
 new Embed
 {
     Title = "Test Embed Title",
     Description = "Test Embed Description",
     Thumbnail = new EmbedThumbnail
     {
-        Url = $"attachment://hooki-icon.png"
+        Url = "attachment://hooki-icon.png"
     },
     Image = new EmbedImage
     {
-        Url = $"attachment://hooki-icon.png"
+        Url = "attachment://hooki-icon.png"
     }
 }
 ```
 
-2. Provide the URL to the public image directly in the embed
+2. Provide a direct URL to a public image:
 
 ```csharp
-using Hooki.Discord.Models.BuildingBlocks;
-
 new Embed
 {
     Title = "Test Embed Title",
     Description = "Test Embed Description",
     Thumbnail = new EmbedThumbnail
     {
-        Url = "https://example-thumbnail-image.png"
+        Url = "https://example.com/thumbnail.png"
     },
     Image = new EmbedImage
     {
-        Url = "https://example-image.png"
+        Url = "https://example.com/image.png"
     }
 }
 ```
 
 ## Polls
 
-Polls are a great way to automatically gather feedback from members in Discord servers
-
-A poll needs to be created with at least one question and one answer. 
-
-**Note:** Emojis cannot be used in Questions
+Polls are a great way to gather feedback from Discord server members automatically. Here's how to create a poll:
 
 ```csharp
-using Hooki.Discord.Models;
-using Hooki.Discord.Models.BuildingBlocks;
-
 var pollPayload = new DiscordWebhookPayload
 {
     Poll = new PollCreateRequest
@@ -154,55 +156,29 @@ var pollPayload = new DiscordWebhookPayload
                     Emoji = new Emoji { Name = "🐧" }
                 }
             },
-            new PollAnswer
-            {
-                AnswerId = 2,
-                PollMedia = new PollMedia
-                {
-                    Text = "Game of Thrones",
-                    Emoji = new Emoji { Name = "❄️" }
-                }
-            },
-            new PollAnswer
-            {
-                AnswerId = 3,
-                PollMedia = new PollMedia
-                {
-                    Text = "Breaking Bad",
-                    Emoji = new Emoji { Name = "🧪" }
-                }
-            }
+            // ... more answers
         }
     }
 };
 ```
 
+**Note:** Emojis cannot be used in Questions.
+
 ## Attachments and Files
-
-To use attachments or files, you need to provide a `SnowflakeId` for the attachment or file, a `FileName` for the attachment or file, and a `FileContents` for the attachment or file.
-
-When using attachments or files, you need to use multipart/form-data as the content for the webhook request. This is because attachments and files are sent as binary data, and the webhook payload is sent as a form-data.
 
 ### Multipart/form-data
 
-When using Multipart/form-data, you can use the `MultipartContent` property on the `DiscordWebhookPayload` class. This property builds the `Multipart/form-data` content for you, using the attachments, files and the message body you provided in the `PayloadJson` property. Sending a Discord webhook with `Multipart/form-data` is as simple as:
+When using attachments or files, you need to use multipart/form-data as the content for the webhook request. The `MultipartContent` property on the `DiscordWebhookPayload` class builds this for you:
 
 ```csharp
-_httpClient.PostAsync(url, discordPayload.MultipartContent);
+await _httpClient.PostAsync(url, discordPayload.MultipartContent);
 ```
 
 ### Attachments
 
-You can use attachments on their own by providing a `SnowflakeId` for the attachment, a `FileName` for the attachment, `ContentType` and a `FileContents` for the attachment.
-
-`Height`, `Size` and `Width` are optional. These properties are used to specify the dimensions of the attachment.
-
-**Note:** When using attachments without files, you need to specify the content for each attachment
+To use attachments on their own:
 
 ```csharp
-using Hooki.Discord.Models;
-using Hooki.Discord.Models.BuildingBlocks;
-
 var payload = new DiscordWebhookPayload
 {
     Content = "This is a test discord webhook payload",
@@ -224,16 +200,9 @@ var payload = new DiscordWebhookPayload
 
 ### Using Files with Attachments
 
-Files can be provided alongside attachments making it convenient to use a single file for multiple attachments.
-
-1. Add Files to the payload containing the `SnowflakeId`, `FileName`, `ContentType` and `FileContents`.
-2. Add Attachments to the payload containing the `SnowflakeId` and `FileName`. The `FileName` needs to match the `FileName` of the file you want to attach.
-3. You can reference these attachments in your embeds by using the `attachment://` prefix followed by the `FileName` of the attachment.
+To use files alongside attachments:
 
 ```csharp
-using Hooki.Discord.Models;
-using Hooki.Discord.Models.BuildingBlocks;
-
 var payload = new DiscordWebhookPayload
 {
     Content = "Test Content",
@@ -245,11 +214,11 @@ var payload = new DiscordWebhookPayload
             Description = "Test Embed Description",
             Thumbnail = new EmbedThumbnail
             {
-                Url = $"attachment://hooki-icon.png"
+                Url = "attachment://hooki-icon.png"
             },
             Image = new EmbedImage
             {
-                Url = $"attachment://hooki-icon.png"
+                Url = "attachment://hooki-icon.png"
             }
         }
     },
@@ -271,20 +240,17 @@ var payload = new DiscordWebhookPayload
             SnowflakeId = "123456789",
             FileName = "hooki-icon.png",
             ContentType = "image/png",
-            FileContents = GetImageBytes() // Implement this method to return the bytes for the image you want to attach
+            FileContents = GetImageBytes() // Implement this method to return the image bytes
         }
     }
-}
+};
 ```
 
 ## Complete Example
 
-Here's a more comprehensive example that puts it all together:
+Here's a comprehensive example that puts it all together:
 
 ```csharp
-using Hooki.Discord.Models;
-using Hooki.Discord.Models.BuildingBlocks;
-
 var payload = new DiscordWebhookPayload
 {
     Username = "Alert Webhook",
@@ -316,140 +282,38 @@ var payload = new DiscordWebhookPayload
 
 ## Markdown Styling in Discord Webhooks
 
-Discord supports a subset of markdown formatting in webhook messages, allowing you to style your text for better readability and emphasis. Here are some common markdown techniques you can use:
+Discord supports a subset of markdown formatting in webhook messages. Here are some common markdown techniques:
 
-### Text Formatting
+- **Bold**: `**bold text**` or `__bold text__`
+- *Italic*: `*italic text*` or `_italic text_`
+- ***Bold Italic***: `***bold italic***`
+- ~~Strikethrough~~: `~~strikethrough~~`
+- `Inline code`: `` `inline code` ``
+- Code blocks: 
+  ```
+  ```language
+  code here
+  ```
+  ```
+- [Links](https://example.com): `[Link text](https://example.com)`
+- Lists:
+  ```
+  * Unordered item
+  1. Ordered item
+  ```
+- Quotes: `> This is a quote`
 
-1. **Bold**: Surround text with double asterisks or double underscores
-   ```
-   **bold text** or __bold text__
-   ```
+## Best Practices and Limitations
 
-2. *Italic*: Surround text with single asterisks or single underscores
-   ```
-   *italic text* or _italic text_
-   ```
-
-3. ***Bold Italic***: Combine bold and italic
-   ```
-   ***bold italic*** or **_bold italic_** or __*bold italic*__
-   ```
-
-4. ~~Strikethrough~~: Surround text with double tildes
-   ```
-   ~~strikethrough~~
-   ```
-
-5. `Inline code`: Surround text with backticks
-   ```
-   `inline code`
-   ```
-
-### Code Blocks
-
-For multi-line code blocks, use triple backticks:
-
-```
-​```
-Multi-line
-code block
-​```
-```
-
-You can also specify the language for syntax highlighting:
-
-```
-​```python
-def hello_world():
-    print("Hello, Discord!")
-​```
-```
-
-### Links
-
-Create links using square brackets for the text and parentheses for the URL:
-```
-[Visit Discord](https://discord.com)
-```
-
-### Lists
-
-Unordered lists use asterisks, plus signs, or hyphens:
-```
-* Item 1
-* Item 2
-* Item 3
-```
-
-Ordered lists use numbers:
-```
-1. First item
-2. Second item
-3. Third item
-```
-
-### Quotes
-
-Use the greater-than symbol for quotes:
-```
-> This is a quote
-```
-
-### Example in Code
-
-Here's how you might use markdown styling in your webhook payload:
-
-```csharp
-using Hooki.Discord.Models;
-using Hooki.Discord.Models.BuildingBlocks;
-
-var payload = new DiscordWebhookPayload
-{
-    Username = "Alertu Webhook",
-    AvatarUrl = "https://example.com/alert-avatar.png",
-    Embeds = new List<Embed>
-    {
-        new Embed
-        {
-            Author = new EmbedAuthor
-            {
-                Name = "Alertu-system",
-                Url = "https://alertsystem.com",
-                IconUrl = "https://example.com/alert-icon.png"
-            },
-            Title = "**New Alert Triggered**",
-            Description = $"[**View in AlertSystem**](https://alertsystem.com) | [**View in Azure**](https://portal.azure.com)",
-            Color = 15158332, // Red color in decimal
-            Fields = new List<EmbedField>
-            {
-                new EmbedField { Name = "**Summary**", Value = $"```Test Summary```", Inline = false },
-                new EmbedField { Name = "Organization", Value = $"*Test Organization*", Inline = true },
-                new EmbedField { Name = "Project", Value = $"*Test Project*", Inline = true },
-                new EmbedField { Name = "Cloud Provider", Value = $"`Azure`", Inline = true },
-                new EmbedField { Name = "Resources", Value = $"• test-redis\n• test-postgreSQL", Inline = false },
-                new EmbedField { Name = "Severity", Value = $"**Critical**", Inline = true },
-                new EmbedField { Name = "Status", Value = $"**Open**", Inline = true },
-                new EmbedField { Name = "Triggered At", Value = $"_{DateTimeOffset.UtcNow.ToString("f")}_", Inline = true },
-                new EmbedField { Name = "Resolved At", Value = $"_{DateTimeOffset.UtcNow.ToString("f")}_", Inline = true }
-            }
-        }
-    }
-};
-```
-
-Remember that while markdown can enhance readability, it's important to use it judiciously to maintain a clean and professional appearance in your webhook messages.
-
-## Notes
-
-1. Ensure that you provide a value for at least one of: `Content`, `Embeds`, or `File` in the `DiscordWebhookPayload`.
+1. Provide a value for at least one of: `Content`, `Embeds`, or `File` in the `DiscordWebhookPayload`.
 2. The `Color` property in `Embed` should be a decimal representation of a hexadecimal color code.
 3. You can add up to 10 embeds per message.
 4. The total size of all embeds in a message must not exceed 6000 characters.
-5. Remember to respect Discord's rate limits when sending webhooks.
-6. File upload some limit applies to all files in a request (rather than each individual file). Limit depends on the boost tier of your guild but the default is `25 MiB` by default.
+5. Respect Discord's rate limits when sending webhooks.
+6. File upload limit applies to all files in a request. The default limit is 25 MiB, but it can vary based on the guild's boost tier.
 
-## Links
+## Additional Resources
 
-1. [Good example of a Discord webhook](https://birdie0.github.io/discord-webhooks-guide/discord_webhook.html)
-
+1. [Example of a Discord webhook](https://birdie0.github.io/discord-webhooks-guide/discord_webhook.html)
 2. [Discord webhook payload documentation](https://discord.com/developers/docs/resources/webhook#execute-webhook)
+3. [Discord API Rate Limits](https://discord.com/developers/docs/topics/rate-limits)
