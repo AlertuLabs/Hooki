@@ -48,6 +48,7 @@
 - [About Hooki](#star2-about-the-project)
   * [Features](#dart-features)
   * [Why use Hooki?](#key-why-use-hooki)
+- [Trusted By](#office-trusted-by)
 - [Getting Started](#toolbox-getting-started)
   * [Prerequisites](#bangbang-prerequisites)
 - [Usage](#eyes-usage)
@@ -88,6 +89,23 @@ Hooki is a powerful .NET library designed to simplify the creation of webhook pa
 - **Clean Code:** Eliminates the need for anonymous objects and inline JSON strings.
 - **Focus on Content:** Concentrate on your payload's data and style rather than low-level JSON structure.
 - **Flexibility:** Easily extensible for custom webhook requirements while maintaining type safety.
+
+## 🏢 Trusted By
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center">
+        <a href="https://cloudcat.dev">
+          <img src="https://cloudcat.dev/img/logo.png" width="100px;" alt="Cloudcat Logo"/>
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">Cloudcat.dev</td>
+    </tr>
+  </table>
+</div>
 
 <!-- Getting Started -->
 ##  🧰 Getting Started
