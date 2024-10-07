@@ -51,7 +51,7 @@
     <img width="48" height="48" src="https://img.icons8.com/color/48/discord--v2.png" alt="Discord logo"/>
   </a>
   <a href="https://learn.microsoft.com">
-    <img width="48" height="48" src="https://img.icons8.com/color/48/microsoft-teams.png" alt="Microsoft Team's logo"/>
+    <img width="48" height="48" src="https://img.icons8.com/color/48/microsoft-teams.png" alt="Microsoft Teams logo"/>
   </a>
   <a href="https://api.slack.com/messaging/webhooks">
      <img width="48" height="48" src="https://img.icons8.com/color-glass/48/slack-new.png" alt="Slack logo"/>
