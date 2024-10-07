@@ -70,9 +70,9 @@
 ## 🌟 About the Project
 
 <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 20px;">
-  <img src="docs/screenshots/discord-example-screenshot.png" alt="Discord webhook example screenshot" style="max-height: 300px; width: auto; object-fit: contain;" />
-  <img src="docs/screenshots/microsoft-teams-example-screenshot.png" alt="Microsoft Team's webhook example screenshot" style="max-height: 300px; width: auto; object-fit: contain;" />
-  <img src="docs/screenshots/slack-example-screenshot.png" alt="Slack webhook example screenshot" style="max-height: 300px; width: auto; object-fit: contain;" />
+  <img src="docs/screenshots/discord-example-screenshot.png" alt="Discord webhook example screenshot" style="max-height: 300px; width: 300px; object-fit: contain;" />
+  <img src="docs/screenshots/microsoft-teams-example-screenshot.png" alt="Microsoft Team's webhook example screenshot" style="max-height: 300px; width: 300px; object-fit: contain;" />
+  <img src="docs/screenshots/slack-example-screenshot.png" alt="Slack webhook example screenshot" style="max-height: 300px; width: 300px; object-fit: contain;" />
 </div>
 
 <!-- Features -->
