@@ -2,7 +2,7 @@ using Hooki.Slack.Models.BlockElements;
 using Hooki.Slack.Models.Blocks;
 using Hooki.Slack.Models.CompositionObjects;
 
-namespace Hooki.Slack.Builders.BlockElementBuilders;
+namespace Hooki.Slack.Builders;
 
 public class MultiSelectMenuBlockElementBuilder
 {
@@ -74,7 +74,7 @@ public class MultiSelectMenuBlockElementBuilder
         {
             ActionId = _actionId,
             Placeholder = _placeholder,
-            Options = _options.Count > 0 ? _options.ToArray() : null,
+            Options = (_options.Count > 0 ? _options.ToArray() : null) ?? Array.Empty<OptionObject>(),
             InitialOptions = _initialOptions.Count > 0 ? _initialOptions.ToArray() : null,
             OptionGroups = _optionGroups.Count > 0 ? _optionGroups.ToArray() : null,
             Confirm = _confirm,
