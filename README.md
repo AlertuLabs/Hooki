@@ -69,10 +69,16 @@
 <!-- About the Project -->
 ## 🌟 About the Project
 
-<div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 20px;">
-  <img src="docs/screenshots/discord-example-screenshot.png" alt="Discord webhook example screenshot" style="max-height: 300px; width: 300px; object-fit: contain;" />
-  <img src="docs/screenshots/microsoft-teams-example-screenshot.png" alt="Microsoft Team's webhook example screenshot" style="max-height: 300px; width: 300px; object-fit: contain;" />
-  <img src="docs/screenshots/slack-example-screenshot.png" alt="Slack webhook example screenshot" style="max-height: 300px; width: 300px; object-fit: contain;" />
+<div align="center">
+  <a href="https://www.nuget.org/packages/Hooki/">
+    <img width="48" height="48" src="https://img.icons8.com/color/48/discord--v2.png" alt="discord--v2"/>
+  </a>
+  <a href="https://www.nuget.org/packages/Hooki/">
+    <img width="48" height="48" src="https://img.icons8.com/fluency/48/microsoft-teams-2019.png" alt="microsoft-teams-2019"/>
+  </a>
+  <a href="https://github.com/AlertuLabs/Hooki/graphs/contributors">
+    <img width="48" height="48" src="https://img.icons8.com/color-glass/48/slack-new.png"  alt="slack-new"/>
+  </a>
 </div>
 
 <!-- Features -->
