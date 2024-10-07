@@ -7,6 +7,8 @@ This guide will walk you through using the provided POCOs (Plain Old CLR Objects
 The main object you'll be working with is `MessageCard`. Here's a basic example of how to create one:
 
 ```csharp
+using Hooki.MicrosoftTeams.Models;
+
 var messageCard = new MessageCard
 {
     Type = "MessageCard",
@@ -29,6 +31,8 @@ If your card represents multiple "entities" or is, for instance, a digest for a 
 **Note: Don't include more than 10 sections**
 
 ```csharp
+using Hooki.MicrosoftTeams.BuildingBlocks;
+
 var section = new Section
 {
     ActivityTitle = "**Section Title**",
@@ -36,8 +40,6 @@ var section = new Section
     ActivityText = "This is the section's text content",
     ActivityImage = "https://example.com/image.png"
 };
-
-messageCard.Sections = new List<Section> { section };
 ```
 
 ## Adding Facts
@@ -45,7 +47,9 @@ messageCard.Sections = new List<Section> { section };
 Facts are key-value pairs that can be added to a section:
 
 ```csharp
-section.Facts = new List<Fact>
+using Hooki.MicrosoftTeams.BuildingBlocks;
+
+var facts = new List<Fact>
 {
     new Fact { Name = "Project:", Value = "Project Phoenix" },
     new Fact { Name = "Status:", Value = "In Progress" }
@@ -59,6 +63,9 @@ Actions allow users to interact with your card. There are different types of act
 ### OpenUri Action
 
 ```csharp
+using Hooki.MicrosoftTeams.Actions;
+using Hooki.MicrosoftTeams.BuildingBlocks;
+
 var openUriAction = new OpenUriAction
 {
     Name = "View Details",
@@ -74,6 +81,8 @@ messageCard.PotentialActions = new List<ActionBase> { openUriAction };
 ### HttpPost Action
 
 ```csharp
+using Hooki.MicrosoftTeams.Actions;
+
 var httpPostAction = new HttpPostAction
 {
     Name = "Approve",
@@ -89,6 +98,9 @@ messageCard.PotentialActions.Add(httpPostAction);
 ActionCard allows you to create a set of inputs that users can fill out:
 
 ```csharp
+using Hooki.MicrosoftTeams.Actions;
+using Hooki.MicrosoftTeams.Inputs;
+
 var actionCard = new ActionCardAction
 {
     Name = "Add Comment",
@@ -119,6 +131,10 @@ messageCard.PotentialActions.Add(actionCard);
 Here's a more comprehensive example that puts it all together:
 
 ```csharp
+using Hooki.MicrosoftTeams.Models;
+using Hooki.MicrosoftTeams.BuildingBlocks;
+using Hooki.MicrosoftTeams.Actions;
+
 var messageCard = new MessageCard
 {
     ThemeColor = "0x0EA5E9", // Light blue color
@@ -186,6 +202,8 @@ You can use these Markdown elements in various text fields of your message card,
 Example usage in a message card:
 
 ```csharp
+using Hooki.MicrosoftTeams.BuildingBlocks;
+
 var section = new Section
 {
     ActivityTitle = "**Important Update**",
