@@ -57,19 +57,19 @@
 <!-- Table of Contents -->
 # 📔 Table of Contents
 
-- [About Hooki](#🌟-about-hooki)
-  * [Features](#🎯-features)
-  * [Why use Hooki?](#🪝-why-use-hooki)
-- [Trusted By](#🏢-trusted-by)
-- [Getting Started](#🧰-getting-started)
-  * [Prerequisites](#‼️-prerequisites)
-- [Usage](#👀-usage)
-- [Roadmap](#🧭-roadmap)
-- [Contributing](#👋-contributing)
-  * [Code of Conduct](#📜-code-of-conduct)
-- [License](#⚠️-license)
-- [Contact](#🤝-contact)
-- [Acknowledgements](#💎-acknowledgements)
+- [About Hooki](#-about-hooki)
+  * [Features](#-features)
+  * [Why use Hooki?](#-why-use-hooki)
+- [Trusted By](#-trusted-by)
+- [Getting Started](#-getting-started)
+  * [Prerequisites](#-prerequisites)
+- [Usage](#-usage)
+- [Roadmap](#-roadmap)
+- [Contributing](#-contributing)
+  * [Code of Conduct](#-code-of-conduct)
+- [License](#-license)
+- [Contact](#-contact)
+- [Acknowledgements](#-acknowledgements)
   
 
 <!-- About Hooki -->
