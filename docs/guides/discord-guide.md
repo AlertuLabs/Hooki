@@ -7,6 +7,8 @@ This guide will walk you through using our library to create Discord webhook pay
 The main object you'll be working with is `DiscordWebhookPayload`. Here's a basic example of how to create one:
 
 ```csharp
+using Hooki.Discord.Models;
+
 vvar payload = new DiscordWebhookPayload
 {
     Username = "My Webhook",
@@ -20,6 +22,9 @@ vvar payload = new DiscordWebhookPayload
 Embeds are rich content blocks that can contain various elements. Embeds will contain most of your webhook payload content. Here's how to add an embed:
 
 ```csharp
+using Hooki.Discord.Models;
+using Hooki.Discord.Models.BuildingBlocks;
+
 var payload = new DiscordWebhookPayload
 {
     Username = "My Webhook",
@@ -40,13 +45,15 @@ var payload = new DiscordWebhookPayload
 You can add author information to an embed:
 
 ```csharp
+using Hooki.Discord.Models.BuildingBlocks;
+
 new Embed
 {
     Author = new EmbedAuthor
     {
-        Name = "Author Name",
-        Url = "https://example.com/author",
-        IconUrl = "https://example.com/author-icon.png"
+        Name = "Alertu",
+        Url = "https://alertu.io",
+        IconUrl =  Logos.TestLogoUrl
     },
     // ... other embed properties
 }
@@ -57,6 +64,8 @@ new Embed
 Fields are useful for displaying key-value pairs of information:
 
 ```csharp
+using Hooki.Discord.Models.BuildingBlocks;
+
 new Embed
 {
     // ... other embed properties
@@ -64,6 +73,157 @@ new Embed
     {
         new EmbedField { Name = "Field 1", Value = "Value 1", Inline = true },
         new EmbedField { Name = "Field 2", Value = "Value 2", Inline = true }
+    }
+}
+```
+
+## Polls
+
+Polls are a great way to automatically gather feedback from members in Discord servers
+
+A poll needs to be created with at least one question and one answer. Emojis cannot be used in Questions. 
+
+```csharp
+using Hooki.Discord.Models;
+using Hooki.Discord.Models.BuildingBlocks;
+
+var pollPayload = new DiscordWebhookPayload
+{
+    Poll = new PollCreateRequest
+    {
+        Question = new PollMedia
+        {
+            Text = "What is your favorite TV show?",
+        },
+        Duration = 24,
+        AllowMultiSelect = true,
+        Answers = new List<PollAnswer>
+        {
+            new PollAnswer
+            {
+                AnswerId = 1,
+                PollMedia = new PollMedia
+                {
+                    Text = "Penguin",
+                    Emoji = new Emoji { Name = "🐧" }
+                }
+            },
+            new PollAnswer
+            {
+                AnswerId = 2,
+                PollMedia = new PollMedia
+                {
+                    Text = "Game of Thrones",
+                    Emoji = new Emoji { Name = "❄️" }
+                }
+            },
+            new PollAnswer
+            {
+                AnswerId = 3,
+                PollMedia = new PollMedia
+                {
+                    Text = "Breaking Bad",
+                    Emoji = new Emoji { Name = "🧪" }
+                }
+            }
+        }
+    }
+};
+```
+
+## Attachments and Files
+
+To use attachments or files, you need to provide a `SnowflakeId` for the attachment or file, a `FileName` for the attachment or file, and a `FileContents` for the attachment or file.
+
+When using attachments or files, you need to use multipart/form-data as the content for the webhook request. This is because attachments and files are sent as binary data, and the webhook payload is sent as a form-data.
+
+### Multipart/form-data
+
+When using Multipart/form-data, you can use the `MultipartContent` property on the `DiscordWebhookPayload` class. This property builds the `Multipart/form-data` content for you, using the attachments, files and the message body you provided in the `PayloadJson` property. Sending a Discord webhook with `Multipart/form-data` is as simple as:
+
+```csharp
+_httpClient.PostAsync(url, discordPayload.MultipartContent);
+```
+
+### Attachments
+
+You can use attachments on their own by providing a `SnowflakeId` for the attachment, a `FileName` for the attachment, `ContentType` and a `FileContents` for the attachment.
+
+`Height`, `Size` and `Width` are optional. These properties are used to specify the dimensions of the attachment.
+
+**Note:** When using attachments without files, you will need to specify the attachment content for each attachment
+
+```csharp
+var payload = new DiscordWebhookPayload
+{
+    Content = "This is a test discord webhook payload",
+    Attachments = new List<Attachment>
+    {
+        new Attachment
+        {
+            Id = DiscordSnowflakeId,
+            FileName = TestImageFileName,
+            ContentType = "image/png",
+            Height = 128,
+            Width = 128,
+            Size = 19251,
+            Content = GetTestImageBytes() // Implement this method to return your image bytes
+        }
+    }
+};
+```
+
+### Using Files with Attachments
+
+Files can be provided alongside attachments which allows you to send multiple attachments with a single file.
+
+1. Add Files to the payload containing the `SnowflakeId`, `FileName`, `ContentType` and `FileContents`.
+2. Add Attachments to the payload containing the `SnowflakeId` and `FileName`. The `FileName` needs to match the `FileName` of the file you want to attach.
+3. You can reference these attachments in your embeds by using the `attachment://` prefix followed by the `FileName` of the attachment.
+
+```csharp
+using Hooki.Discord.Models;
+using Hooki.Discord.Models.BuildingBlocks;
+
+var payload = new DiscordWebhookPayload
+{
+    Content = "Test Content",
+    Embeds = new List<Embed>
+    {
+        new Embed
+        {
+            Title = "Test Embed Title",
+            Description = "Test Embed Description",
+            Thumbnail = new EmbedThumbnail
+            {
+                Url = $"attachment://hooki-icon.png"
+            },
+            Image = new EmbedImage
+            {
+                Url = $"attachment://hooki-icon.png"
+            }
+        }
+    },
+    Attachments = new List<Attachment>
+    {
+        new Attachment
+        {
+            Id = DiscordSnowflakeId,
+            Description = "Hooki Logo",
+            FileName = "hooki-icon.png",
+            Height = 128,
+            Width = 128
+        }
+    },
+    Files = new List<FileContent>
+    {
+        new FileContent
+        {
+            SnowflakeId = "123456789",
+            FileName = "hooki-icon.png",
+            ContentType = "image/png",
+            FileContents = GetImageBytes() // Implement this method to return the bytes for the image you want to attach
+        }
     }
 }
 ```

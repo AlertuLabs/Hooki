@@ -109,6 +109,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 
+using Hooki.Discord.Enums;
+using Hooki.Discord.Models.BuildingBlocks;
+using Hooki.Discord.Models;
+
 public class DiscordWebhookService
 {
     private readonly IHttpClientFactory _httpClientFactory;

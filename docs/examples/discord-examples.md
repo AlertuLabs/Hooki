@@ -3,6 +3,10 @@
 ![plot](../screenshots/discord-example-screenshot.png)
 
 ```csharp
+using Hooki.Discord.Enums;
+using Hooki.Discord.Models.BuildingBlocks;
+using Hooki.Discord.Models;
+
 return new DiscordWebhookPayload
 {
     Username = "Alertu Webhook",
@@ -36,3 +40,4 @@ return new DiscordWebhookPayload
     }
 };
 ```
+
