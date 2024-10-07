@@ -57,19 +57,19 @@
 <!-- Table of Contents -->
 # 📔 Table of Contents
 
-- [About Hooki](#about-hooki)
-  * [Features](#features)
-  * [Why use Hooki?](#why-use-hooki)
-- [Trusted By](#trusted-by)
-- [Getting Started](#getting-started)
-  * [Prerequisites](#prerequisites)
-- [Usage](#usage)
-- [Roadmap](#roadmap)
-- [Contributing](#contributing)
-  * [Code of Conduct](#code-of-conduct)
-- [License](#license)
-- [Contact](#contact)
-- [Acknowledgements](#acknowledgements)
+- [About Hooki](#🌟-about-hooki)
+  * [Features](#🎯-features)
+  * [Why use Hooki?](#🪝-why-use-hooki)
+- [Trusted By](#🏢-trusted-by)
+- [Getting Started](#🧰-getting-started)
+  * [Prerequisites](#‼️-prerequisites)
+- [Usage](#👀-usage)
+- [Roadmap](#🧭-roadmap)
+- [Contributing](#👋-contributing)
+  * [Code of Conduct](#📜-code-of-conduct)
+- [License](#⚠️-license)
+- [Contact](#🤝-contact)
+- [Acknowledgements](#💎-acknowledgements)
   
 
 <!-- About Hooki -->
@@ -234,9 +234,9 @@ public class ExampleController
 * [x] POCOs
 * [x] Implement Unit Tests
 * [x] Implement Integration Tests
-* [x] Provide builders utilising fluent api to reduce boilerplate code when creating webhook payloads
-* [ ] Implement type safety POCOs for Discord message components
-* [ ] Introduce Validation to provide a better developer experience (Apps are not returning error details for 400s)
+* [x] Provide builders
+* [ ] Implement POCOs for Discord message components
+* [ ] Introduce Validation
 * [ ] Support other languages?
 
 <!-- Contributing -->
