@@ -7,7 +7,7 @@ namespace Hooki.Slack.Models.Blocks;
 [JsonConverter(typeof(BlockBaseConverter))]
 public abstract class BlockBase
 {
-    [JsonPropertyName("type")] public abstract BlockType Type { get; }
-
     [JsonPropertyName("block_id")] public string? BlockId { get; set; }
+    
+    [JsonIgnore] public abstract BlockType Type { get; }
 }

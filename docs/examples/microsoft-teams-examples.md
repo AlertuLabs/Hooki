@@ -3,6 +3,10 @@
 ![plot](../screenshots/microsoft-teams-example-screenshot.png)
 
 ```csharp
+using Hooki.MicrosoftTeams.Models;
+using Hooki.MicrosoftTeams.Models.BuildingBlocks;
+using Hooki.MicrosoftTeams.Models.Actions;
+
 return new MessageCard
 {
     ThemeColor = "0x0EA5E9", // Light blue color

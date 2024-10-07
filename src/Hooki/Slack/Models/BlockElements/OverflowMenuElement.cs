@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using Hooki.Slack.Enums;
+using Hooki.Slack.Models.Blocks;
 using Hooki.Slack.Models.CompositionObjects;
 
 namespace Hooki.Slack.Models.BlockElements;
@@ -7,9 +8,9 @@ namespace Hooki.Slack.Models.BlockElements;
 /// <summary>
 /// Refer to Slack's documentation for more details: https://api.slack.com/reference/block-kit/block-elements#overflow
 /// </summary>
-public class OverflowMenuElement : BlockElementBase
+public class OverflowMenuElement : BlockElementBase, IActionBlockElement, ISectionBlockElement
 {
-    public override BlockElementType Type => BlockElementType.OverflowMenu;
+    [JsonPropertyName("type")] public BlockElementType Type => BlockElementType.OverflowMenu;
 
     [JsonPropertyName("options")] public required List<OptionObject> Options { get; set; }
 

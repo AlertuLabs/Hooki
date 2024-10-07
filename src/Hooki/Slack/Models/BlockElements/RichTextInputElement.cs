@@ -8,9 +8,9 @@ namespace Hooki.Slack.Models.BlockElements;
 /// <summary>
 /// Refer to Slack's documentation for more details: https://api.slack.com/reference/block-kit/block-elements#rich_text_input
 /// </summary>
-public class RichTextInputElement : BlockElementBase
+public class RichTextInputElement : BlockElementBase, IActionBlockElement, IInputBlockElement
 {
-    public override BlockElementType Type => BlockElementType.RichTextInput;
+    [JsonPropertyName("type")] public BlockElementType Type => BlockElementType.RichTextInput;
 
     [JsonPropertyName("initial_value")]
     public RichTextBlock? InitialValue { get; set; }

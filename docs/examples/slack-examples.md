@@ -3,6 +3,11 @@
 ![plot](../screenshots/slack-example-screenshot.png)
 
 ```csharp
+using Hooki.Slack.Models;
+using Hooki.Slack.Models.BlockElements;
+using Hooki.Slack.Models.Blocks;
+using Hooki.Slack.Models.CompositionObjects;
+
 return new SlackWebhookPayload
 {
     Blocks = new List<BlockBase>

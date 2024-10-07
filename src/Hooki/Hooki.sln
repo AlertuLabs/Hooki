@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hooki", ".\Hooki.csproj", "{4E79DB1B-84E2-4364-9407-1329BAF14F8C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hooki.UnitTests", "..\Hooki.UnitTests\Hooki.UnitTests.csproj", "{56B54DE5-873F-4C6D-A085-1552079A8B62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hooki.IntegrationTests", "..\Hooki.IntegrationTests\Hooki.IntegrationTests.csproj", "{4F088F93-039B-4D46-90EE-147FB8ED7E07}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +16,13 @@ Global
 		{4E79DB1B-84E2-4364-9407-1329BAF14F8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E79DB1B-84E2-4364-9407-1329BAF14F8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E79DB1B-84E2-4364-9407-1329BAF14F8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56B54DE5-873F-4C6D-A085-1552079A8B62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56B54DE5-873F-4C6D-A085-1552079A8B62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56B54DE5-873F-4C6D-A085-1552079A8B62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56B54DE5-873F-4C6D-A085-1552079A8B62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F088F93-039B-4D46-90EE-147FB8ED7E07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F088F93-039B-4D46-90EE-147FB8ED7E07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F088F93-039B-4D46-90EE-147FB8ED7E07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F088F93-039B-4D46-90EE-147FB8ED7E07}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

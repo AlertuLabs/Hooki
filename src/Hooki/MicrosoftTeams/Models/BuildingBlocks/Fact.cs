@@ -2,9 +2,12 @@ using System.Text.Json.Serialization;
 
 namespace Hooki.MicrosoftTeams.Models.BuildingBlocks;
 
+/// <summary>
+/// Refer to Microsoft Team's documentation for more details: https://learn.microsoft.com/en-us/outlook/actionable-messages/message-card-reference#openuri-action
+/// </summary>
 public class Fact
 {
-    [JsonPropertyName("name")] public string Name { get; set; } = default!;
+    [JsonPropertyName("name")] public required string Name { get; set; }
 
-    [JsonPropertyName("value")] public string Value { get; set; } = default!;
+    [JsonPropertyName("value")] public required string Value { get; set; }
 }

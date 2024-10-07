@@ -7,6 +7,5 @@ namespace Hooki.Slack.Models.CompositionObjects;
 /// </summary>
 public class DispatchActionConfigurationObject
 {
-    [JsonPropertyName("trigger_actions_on")]
-    public string[]? TriggerActionsOn { get; set; }
+    [JsonPropertyName("trigger_actions_on")] public string[]? TriggerActionsOn { get; set; }
 }

@@ -10,9 +10,7 @@ public class OptionGroupObject
     /// <summary>
     /// TextObject type should be "PlainText"
     /// </summary>
-    [JsonPropertyName("label")]
-    public required TextObject Label { get; set; }
+    [JsonPropertyName("label")] public required TextObject Label { get; set; }
     
-    [JsonPropertyName("options")]
-    public required OptionObject[] Options { get; set; }
+    [JsonPropertyName("options")] public required OptionObject[] Options { get; set; }
 }

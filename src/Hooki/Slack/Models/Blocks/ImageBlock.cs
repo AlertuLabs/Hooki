@@ -9,9 +9,9 @@ namespace Hooki.Slack.Models.Blocks;
 /// </summary>
 public class ImageBlock : BlockBase
 {
-    public override BlockType Type => BlockType.ImageBlock;
+    [JsonPropertyName("type")] public override BlockType Type => BlockType.ImageBlock;
     
-    [JsonPropertyName("alt_text")] public required TextObject AltText { get; set; }
+    [JsonPropertyName("alt_text")] public required string AltText { get; set; }
     
     /// <summary>
     /// Must provide either ImageUrl or SlackFile
@@ -26,5 +26,5 @@ public class ImageBlock : BlockBase
     /// <summary>
     /// When provided, TextObject must be of type "PlainText"
     /// </summary>
-    [JsonPropertyName("title")] public required TextObject? Title { get; set; }
+    [JsonPropertyName("title")] public TextObject? Title { get; set; }
 }

@@ -9,8 +9,7 @@ namespace Hooki.Slack.Models.Blocks;
 /// </summary>
 public class HeaderBlock : BlockBase
 {
-    public override BlockType Type => BlockType.HeaderBlock;
+    [JsonPropertyName("type")] public override BlockType Type => BlockType.HeaderBlock;
     
-    [JsonPropertyName("text")]
-    public required TextObject Text { get; set; }
+    [JsonPropertyName("text")] public required TextObject Text { get; set; }
 }

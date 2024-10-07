@@ -8,54 +8,74 @@ namespace Hooki.Slack.JsonConverters;
 
 public class BlockBaseConverter : JsonConverter<BlockBase>
 {
-    public override BlockBase Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    public override BlockBase? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
-        throw new NotImplementedException("Deserialization is not implemented for this converter.");
+        if (reader.TokenType != JsonTokenType.StartObject)
+        {
+            throw new JsonException("JSON object expected.");
+        }
+
+        using var jsonDoc = JsonDocument.ParseValue(ref reader);
+        var root = jsonDoc.RootElement;
+
+        if (!root.TryGetProperty("type", out var typeProperty))
+        {
+            throw new JsonException("Missing 'type' property");
+        }
+
+        var typeString = typeProperty.GetString();
+        return typeString switch
+        {
+            "actions" => JsonSerializer.Deserialize<ActionBlock>(root.GetRawText(), options),
+            "context" => JsonSerializer.Deserialize<ContextBlock>(root.GetRawText(), options),
+            "divider" => JsonSerializer.Deserialize<DividerBlock>(root.GetRawText(), options),
+            "file" => JsonSerializer.Deserialize<FileBlock>(root.GetRawText(), options),
+            "header" => JsonSerializer.Deserialize<HeaderBlock>(root.GetRawText(), options),
+            "image" => JsonSerializer.Deserialize<ImageBlock>(root.GetRawText(), options),
+            "input" => JsonSerializer.Deserialize<InputBlock>(root.GetRawText(), options),
+            "rich_text" => JsonSerializer.Deserialize<RichTextBlock>(root.GetRawText(), options),
+            "section" => JsonSerializer.Deserialize<SectionBlock>(root.GetRawText(), options),
+            "video" => JsonSerializer.Deserialize<VideoBlock>(root.GetRawText(), options),
+            _ => throw new JsonException($"Unknown block type: {typeString}")
+        };
     }
 
     public override void Write(Utf8JsonWriter writer, BlockBase value, JsonSerializerOptions options)
     {
-        writer.WriteStartObject();
-
-        // Write the "type" property as a string
-        writer.WriteString("type", GetBlockTypeJsonValue(value.Type));
-
-        // Serialize other properties
-        foreach (var property in value.GetType().GetProperties())
+        switch (value.Type)
         {
-            if (property.Name == nameof(BlockBase.Type)) continue;
-
-            var propertyValue = property.GetValue(value);
-            
-            if (propertyValue == null) continue;
-            
-            var propertyName = property.GetCustomAttribute<JsonPropertyNameAttribute>()?.Name 
-                               ?? options.PropertyNamingPolicy?.ConvertName(property.Name) 
-                               ?? property.Name;
-            
-                
-            writer.WritePropertyName(propertyName);
-            JsonSerializer.Serialize(writer, propertyValue, property.PropertyType, options);
+            case BlockType.ActionBlock:
+                JsonSerializer.Serialize(writer, value as ActionBlock, options);
+                break;
+            case BlockType.ContextBlock:
+                JsonSerializer.Serialize(writer, value as ContextBlock, options);
+                break;
+            case BlockType.DividerBlock:
+                JsonSerializer.Serialize(writer, value as DividerBlock, options);
+                break;
+            case BlockType.FileBlock:
+                JsonSerializer.Serialize(writer, value as FileBlock, options);
+                break;
+            case BlockType.HeaderBlock:
+                JsonSerializer.Serialize(writer, value as HeaderBlock, options);
+                break;
+            case BlockType.ImageBlock:
+                JsonSerializer.Serialize(writer, value as ImageBlock, options);
+                break;
+            case BlockType.InputBlock:
+                JsonSerializer.Serialize(writer, value as InputBlock, options);
+                break;
+            case BlockType.RichTextBlock:
+                JsonSerializer.Serialize(writer, value as RichTextBlock, options);
+                break;
+            case BlockType.SectionBlock:
+                JsonSerializer.Serialize(writer, value as SectionBlock, options);
+                break;
+            case BlockType.VideoBlock:
+                JsonSerializer.Serialize(writer, value as VideoBlock, options);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
-
-        writer.WriteEndObject();
-    }
-    
-    private static string GetBlockTypeJsonValue(BlockType blockType)
-    {
-        return blockType switch
-        {
-            BlockType.ActionBlock => "actions",
-            BlockType.ContextBlock => "context",
-            BlockType.DividerBlock => "divider",
-            BlockType.FileBlock => "file",
-            BlockType.HeaderBlock => "header",
-            BlockType.ImageBlock => "image",
-            BlockType.InputBlock => "input",
-            BlockType.RichTextBlock => "rich_text",
-            BlockType.SectionBlock => "section",
-            BlockType.VideoBlock => "video",
-            _ => throw new ArgumentOutOfRangeException(nameof(blockType), blockType, null)
-        };
     }
 }

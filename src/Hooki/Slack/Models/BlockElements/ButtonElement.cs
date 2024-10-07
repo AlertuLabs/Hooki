@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using Hooki.Slack.Enums;
+using Hooki.Slack.Models.Blocks;
 using Hooki.Slack.Models.CompositionObjects;
 
 namespace Hooki.Slack.Models.BlockElements;
@@ -7,9 +8,9 @@ namespace Hooki.Slack.Models.BlockElements;
 /// <summary>
 /// Refer to Slack's documentation for more details: https://api.slack.com/reference/block-kit/block-elements#button
 /// </summary>
-public class ButtonElement : BlockElementBase
+public class ButtonElement : BlockElementBase, IActionBlockElement, ISectionBlockElement
 {
-    public override BlockElementType Type => BlockElementType.Button;
+    [JsonPropertyName("type")] public BlockElementType Type => BlockElementType.Button;
 
     [JsonPropertyName("text")] public required TextObject Text { get; set; }
 

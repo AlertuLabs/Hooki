@@ -2,9 +2,12 @@ using System.Text.Json.Serialization;
 
 namespace Hooki.MicrosoftTeams.Models.Inputs;
 
+/// <summary>
+/// Refer to Microsoft Team's documentation for more details: https://learn.microsoft.com/en-us/outlook/actionable-messages/message-card-reference#multichoiceinput
+/// </summary>
 public class Choice
 {
-    [JsonPropertyName("display")] public string Display { get; set; } = default!;
+    [JsonPropertyName("display")] public required string Display { get; set; }
 
-    [JsonPropertyName("value")] public string Value { get; set; } = default!;
+    [JsonPropertyName("value")] public required string Value { get; set; }
 }

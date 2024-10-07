@@ -1,12 +1,28 @@
-# Guide: Creating Microsoft Teams Message Card Payloads
+# Guide: Creating Microsoft Teams Message Card Payloads with Hooki
 
-This guide will walk you through using the provided POCOs (Plain Old CLR Objects) to create a message card payload for Microsoft Teams. The message card allows you to send rich, interactive messages to Teams channels or personal chats.
+This guide will walk you through using the Hooki library to create message card payloads for Microsoft Teams. Message cards allow you to send rich, interactive messages to Teams channels or personal chats.
+
+## Table of Contents
+
+1. [Basic Structure](#basic-structure)
+2. [Adding Sections](#adding-sections)
+3. [Adding Facts](#adding-facts)
+4. [Adding Actions](#adding-actions)
+   - [OpenUri Action](#openuri-action)
+   - [HttpPost Action](#httppost-action)
+   - [ActionCard Action](#actioncard-action)
+5. [Complete Example](#complete-example)
+6. [Markdown Styling in Teams Message Cards](#markdown-styling-in-teams-message-cards)
+7. [Best Practices and Limitations](#best-practices-and-limitations)
+8. [Additional Resources](#additional-resources)
 
 ## Basic Structure
 
 The main object you'll be working with is `MessageCard`. Here's a basic example of how to create one:
 
 ```csharp
+using Hooki.MicrosoftTeams.Models;
+
 var messageCard = new MessageCard
 {
     Type = "MessageCard",
@@ -20,15 +36,11 @@ var messageCard = new MessageCard
 
 ## Adding Sections
 
-Sections allow you to group related information.
-
-If your card represents a single "entity", you may be able to get away with not using any section. That said, sections support the concept of an "activity" which is often a good way to represent data in a card.
-
-If your card represents multiple "entities" or is, for instance, a digest for a particular news source, you will definitely want to use multiple sections, one per "entity."
-
-**Note: Don't include more than 10 sections**
+Sections allow you to group related information. Here's how to add a section:
 
 ```csharp
+using Hooki.MicrosoftTeams.BuildingBlocks;
+
 var section = new Section
 {
     ActivityTitle = "**Section Title**",
@@ -40,16 +52,22 @@ var section = new Section
 messageCard.Sections = new List<Section> { section };
 ```
 
+**Note:** Don't include more than 10 sections in a single card.
+
 ## Adding Facts
 
 Facts are key-value pairs that can be added to a section:
 
 ```csharp
-section.Facts = new List<Fact>
+using Hooki.MicrosoftTeams.BuildingBlocks;
+
+var facts = new List<Fact>
 {
     new Fact { Name = "Project:", Value = "Project Phoenix" },
     new Fact { Name = "Status:", Value = "In Progress" }
 };
+
+section.Facts = facts;
 ```
 
 ## Adding Actions
@@ -59,6 +77,9 @@ Actions allow users to interact with your card. There are different types of act
 ### OpenUri Action
 
 ```csharp
+using Hooki.MicrosoftTeams.Actions;
+using Hooki.MicrosoftTeams.BuildingBlocks;
+
 var openUriAction = new OpenUriAction
 {
     Name = "View Details",
@@ -74,6 +95,8 @@ messageCard.PotentialActions = new List<ActionBase> { openUriAction };
 ### HttpPost Action
 
 ```csharp
+using Hooki.MicrosoftTeams.Actions;
+
 var httpPostAction = new HttpPostAction
 {
     Name = "Approve",
@@ -89,6 +112,9 @@ messageCard.PotentialActions.Add(httpPostAction);
 ActionCard allows you to create a set of inputs that users can fill out:
 
 ```csharp
+using Hooki.MicrosoftTeams.Actions;
+using Hooki.MicrosoftTeams.Inputs;
+
 var actionCard = new ActionCardAction
 {
     Name = "Add Comment",
@@ -116,9 +142,13 @@ messageCard.PotentialActions.Add(actionCard);
 
 ## Complete Example
 
-Here's a more comprehensive example that puts it all together:
+Here's a comprehensive example that puts it all together:
 
 ```csharp
+using Hooki.MicrosoftTeams.Models;
+using Hooki.MicrosoftTeams.BuildingBlocks;
+using Hooki.MicrosoftTeams.Actions;
+
 var messageCard = new MessageCard
 {
     ThemeColor = "0x0EA5E9", // Light blue color
@@ -130,7 +160,7 @@ var messageCard = new MessageCard
             ActivityTitle = "**Azure Metric Alert triggered**",
             ActivitySubtitle = "**Severity - Critical | Status - Open**",
             ActivityText = "This is a test summary for the Azure Metric Alert",
-            ActivityImage = "https://example-url/image.png",
+            ActivityImage = "https://example.com/alert-image.png",
             Facts = new List<Fact>
             {
                 new Fact { Name = "Organization Name:", Value = "Test Organization" },
@@ -167,9 +197,9 @@ var messageCard = new MessageCard
 };
 ```
 
-## Markdown Styling
+## Markdown Styling in Teams Message Cards
 
-Microsoft Teams supports a subset of Markdown in message cards. Here's a table of common formatting options:
+Microsoft Teams supports a subset of Markdown in message cards. Here are some common formatting options:
 
 | Effect | Markdown | Example |
 |--------|----------|---------|
@@ -180,8 +210,6 @@ Microsoft Teams supports a subset of Markdown in message cards. Here's a table o
 | Links | `[Microsoft](https://www.microsoft.com)` | [Microsoft](https://www.microsoft.com) |
 | Headings | `# Heading` through `###### Heading` | Varies from `<h1>` to `<h6>` |
 | Bulleted lists | `* List item` or `- List item` | • List item |
-
-You can use these Markdown elements in various text fields of your message card, such as `ActivityTitle`, `ActivitySubtitle`, `ActivityText`, and in the `Value` field of `Fact` objects.
 
 Example usage in a message card:
 
@@ -202,15 +230,18 @@ var section = new Section
 };
 ```
 
-Remember that while Markdown can enhance readability, it's important to use it judiciously to maintain a clean and professional appearance in your message cards.
+## Best Practices and Limitations
 
-## Notes
-
-1. The `ThemeColor` property accepts a hexadecimal color value. Here is an example "0ea4e9".
-2. The `Summary` field is used when the card is displayed in a notification or in a condensed view.
-3. Images used in the card (like `ActivityImage`) should be accessible from the internet.
-4. When using `OpenUriAction`, you can specify different URIs for different operating systems if needed.
-5. The `HttpPostAction` can be used to send data back to your server when a user interacts with the card.
+1. The `ThemeColor` property accepts a hexadecimal color value (e.g., "0ea4e9").
+2. Use the `Summary` field for notifications or condensed views of the card.
+3. Ensure images used in the card (like `ActivityImage`) are accessible from the internet.
+4. With `OpenUriAction`, you can specify different URIs for different operating systems if needed.
+5. Use `HttpPostAction` to send data back to your server when a user interacts with the card.
 6. Remember to handle potential actions server-side if you're using interactive elements.
+7. Limit the number of sections to 10 or fewer per card for better readability.
+8. Use Markdown formatting judiciously to maintain a clean and professional appearance.
 
-For more details on Microsoft Teams message card structure and capabilities, refer to the [official Microsoft documentation](https://learn.microsoft.com/en-us/outlook/actionable-messages/message-card-reference).
+## Additional Resources
+
+1. [Microsoft Teams Message Card Reference](https://learn.microsoft.com/en-us/outlook/actionable-messages/message-card-reference)
+2. [Microsoft Teams Developer Platform](https://learn.microsoft.com/en-us/microsoftteams/platform/)

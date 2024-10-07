@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 using Hooki.Slack.Enums;
-using Hooki.Slack.Models.BlockElements;
+using Hooki.Slack.JsonConverters;
 
 namespace Hooki.Slack.Models.Blocks;
 
@@ -9,8 +9,10 @@ namespace Hooki.Slack.Models.Blocks;
 /// </summary>
 public class ActionBlock : BlockBase
 {
-    public override BlockType Type => BlockType.ActionBlock;
+    [JsonPropertyName("type")] public override BlockType Type => BlockType.ActionBlock;
 
-    [JsonPropertyName("elements")]
-    public required List<BlockElementBase> Elements { get; set; }
+    [JsonConverter(typeof(ActionBlockElementConverter))] [JsonPropertyName("elements")] public required List<IActionBlockElement> Elements { get; set; }
 }
+
+public interface IActionBlockElement { }
+

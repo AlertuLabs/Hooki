@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using Hooki.Slack.Enums;
+using Hooki.Slack.Models.Blocks;
 using Hooki.Slack.Models.CompositionObjects;
 
 namespace Hooki.Slack.Models.BlockElements;
@@ -7,9 +8,9 @@ namespace Hooki.Slack.Models.BlockElements;
 /// <summary>
 /// Refer to Slack's documentation for more details: https://api.slack.com/reference/block-kit/block-elements#url
 /// </summary>
-public class UrlInputElement : BlockElementBase
+public class UrlInputElement : BlockElementBase, IInputBlockElement
 {
-    public override BlockElementType Type => BlockElementType.UrlInput;
+    [JsonPropertyName("type")] public BlockElementType Type => BlockElementType.UrlInput;
 
     [JsonPropertyName("initial_value")] public string? InitialValue { get; set; }
 
