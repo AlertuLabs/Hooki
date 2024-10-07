@@ -1,6 +1,6 @@
 using Hooki.Slack.Models.BlockElements;
 
-namespace Hooki.Slack.Builders.BlockElementBuilders;
+namespace Hooki.Slack.Builders;
 
 
 public class BlockElementBaseBuilder

@@ -1,7 +1,8 @@
+using Hooki.Slack.Builders.BlockElementBuilders;
 using Hooki.Slack.Models.BlockElements;
 using Hooki.Slack.Models.CompositionObjects;
 
-namespace Hooki.Slack.Builders.BlockElementBuilders;
+namespace Hooki.Slack.Builders;
 
 public class ButtonElementBuilder : BlockElementBaseBuilder
 {
