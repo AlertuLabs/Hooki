@@ -1,6 +1,5 @@
 using FluentAssertions;
 using Hooki.Slack.Builders;
-using Hooki.Slack.Builders.BlockElementBuilders;
 using Hooki.Slack.Enums;
 using Hooki.Slack.Models.BlockElements;
 
