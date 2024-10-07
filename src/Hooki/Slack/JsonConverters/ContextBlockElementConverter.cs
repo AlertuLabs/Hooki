@@ -9,7 +9,7 @@ namespace Hooki.Slack.JsonConverters;
 
 public class ContextBlockElementConverter : JsonConverter<List<IContextBlockElement>>
 {
-    public override List<IContextBlockElement> Read(ref Utf8JsonReader reader, Type typeToConvert,
+    public override List<IContextBlockElement>? Read(ref Utf8JsonReader reader, Type typeToConvert,
         JsonSerializerOptions options)
     {
         if (reader.TokenType != JsonTokenType.StartArray)
