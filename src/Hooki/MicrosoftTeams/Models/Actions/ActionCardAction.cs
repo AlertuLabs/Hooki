@@ -6,7 +6,7 @@ using Hooki.MicrosoftTeams.Models.Inputs;
 namespace Hooki.MicrosoftTeams.Models.Actions;
 
 /// <summary>
-/// Refer to Discord's documentation for more details: https://learn.microsoft.com/en-us/outlook/actionable-messages/message-card-reference#actioncard-action
+/// Refer to Microsoft Team's documentation for more details: https://learn.microsoft.com/en-us/outlook/actionable-messages/message-card-reference#actioncard-action
 /// </summary>
 public class ActionCardAction : ActionBase
 {
