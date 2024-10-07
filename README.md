@@ -70,15 +70,9 @@
 ## 🌟 About the Project
 
 <div align="center">
-  <a href="https://www.nuget.org/packages/Hooki/">
     <img width="48" height="48" src="https://img.icons8.com/color/48/discord--v2.png" alt="discord--v2"/>
-  </a>
-  <a href="https://www.nuget.org/packages/Hooki/">
     <img width="48" height="48" src="https://img.icons8.com/fluency/48/microsoft-teams-2019.png" alt="microsoft-teams-2019"/>
-  </a>
-  <a href="https://github.com/AlertuLabs/Hooki/graphs/contributors">
     <img width="48" height="48" src="https://img.icons8.com/color-glass/48/slack-new.png"  alt="slack-new"/>
-  </a>
 </div>
 
 <!-- Features -->
