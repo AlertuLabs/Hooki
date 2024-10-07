@@ -2,9 +2,10 @@ using Hooki.Slack.Models.Blocks;
 
 namespace Hooki.Slack.Builders;
 
-public class ContextBlockBuilder : BlockBaseBuilder
+public class ContextBlockBuilder : IBlockBuilder
 {
     private readonly List<IContextBlockElement> _elements = new();
+    private string? _blockId;
 
     public ContextBlockBuilder AddElement<T>(Func<T> elementFactory) where T : IContextBlockElement
     {
@@ -12,14 +13,20 @@ public class ContextBlockBuilder : BlockBaseBuilder
         return this;
     }
 
-    public override BlockBase Build()
+    public ContextBlockBuilder WithBlockId(string blockId)
+    {
+        _blockId = blockId;
+        return this;
+    }
+
+    public BlockBase Build()
     {
         if (_elements.Count == 0)
             throw new InvalidOperationException("At least one element is required for an ActionBlock.");
 
         return new ContextBlock
         {
-            BlockId = base.Build().BlockId,
+            BlockId = _blockId,
             Elements = _elements
         };
     }

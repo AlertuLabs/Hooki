@@ -57,7 +57,7 @@ public class SlackWebhookPayloadBuilder
         return AddBlock(buildAction);
     }
 
-    private SlackWebhookPayloadBuilder AddBlock<T>(Action<T> buildAction) where T : BlockBaseBuilder, new()
+    private SlackWebhookPayloadBuilder AddBlock<T>(Action<T> buildAction) where T : IBlockBuilder, new()
     {
         var builder = new T();
         buildAction(builder);

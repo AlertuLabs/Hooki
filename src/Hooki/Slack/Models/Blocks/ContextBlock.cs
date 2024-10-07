@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using Hooki.Slack.Enums;
+using Hooki.Slack.JsonConverters;
 
 namespace Hooki.Slack.Models.Blocks;
 
@@ -8,9 +9,9 @@ namespace Hooki.Slack.Models.Blocks;
 /// </summary>
 public class ContextBlock : BlockBase
 {
-    [JsonPropertyName("type")] public static BlockType Type => BlockType.ContextBlock;
+    [JsonPropertyName("type")] public override BlockType Type => BlockType.ContextBlock;
     
-    [JsonPropertyName("elements")] public required List<IContextBlockElement> Elements { get; set; }
+    [JsonConverter(typeof(ContextBlockElementConverter))] [JsonPropertyName("elements")] public required List<IContextBlockElement> Elements { get; set; }
 }
 
 public interface IContextBlockElement { }

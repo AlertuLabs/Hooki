@@ -31,8 +31,7 @@ public class HeaderBlockBuilderTests
             // Arrange
             var text = new TextObject { Text = "Header Text", Type = TextObjectType.PlainText };
             var builder = new HeaderBlockBuilder()
-                .WithText(text)
-                .WithBlockId("test-header-block");
+                .WithText(text);
 
             // Act
             var result = builder.Build() as HeaderBlock;;
@@ -41,7 +40,6 @@ public class HeaderBlockBuilderTests
             result.Should().NotBeNull();
             result.Should().BeOfType<HeaderBlock>();
             result?.Text.Should().Be(text);
-            result?.BlockId.Should().Be("test-header-block");
         }
 
         [Fact]
@@ -76,8 +74,7 @@ public class HeaderBlockBuilderTests
             // Arrange
             var text = new TextObject { Text = "Header Text", Type = TextObjectType.PlainText };
             var builder = new HeaderBlockBuilder()
-                .WithText(text)
-                .WithBlockId("test-header-block");
+                .WithText(text);
 
             // Act
             var result1 = builder.Build() as HeaderBlock;;
@@ -86,7 +83,6 @@ public class HeaderBlockBuilderTests
             // Assert
             result1.Should().NotBeSameAs(result2);
             result1?.Text.Should().Be(result2?.Text);
-            result1?.BlockId.Should().Be(result2?.BlockId);
         }
 
         [Fact]

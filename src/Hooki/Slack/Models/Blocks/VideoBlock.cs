@@ -9,7 +9,7 @@ namespace Hooki.Slack.Models.Blocks;
 /// </summary>
 public class VideoBlock : BlockBase
 {
-    [JsonPropertyName("type")] public BlockType Type => BlockType.VideoBlock;
+    [JsonPropertyName("type")] public override BlockType Type => BlockType.VideoBlock;
     
     [JsonPropertyName("alt_text")] public required string AltText { get; set; }
     

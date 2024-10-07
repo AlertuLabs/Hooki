@@ -8,5 +8,5 @@ namespace Hooki.Slack.Models.Blocks;
 /// </summary>
 public class DividerBlock : BlockBase
 {
-    [JsonPropertyName("type")] public BlockType Type => BlockType.DividerBlock;
+    [JsonPropertyName("type")] public override BlockType Type => BlockType.DividerBlock;
 }

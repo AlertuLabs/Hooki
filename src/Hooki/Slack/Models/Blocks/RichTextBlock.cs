@@ -8,7 +8,7 @@ namespace Hooki.Slack.Models.Blocks;
 /// </summary>
 public class RichTextBlock : BlockBase
 {
-    [JsonPropertyName("type")] public BlockType Type => BlockType.RichTextBlock;
+    [JsonPropertyName("type")] public override BlockType Type => BlockType.RichTextBlock;
     
     [JsonPropertyName("elements")] public required List<IRichTextBlockElement> Elements { get; set; }
 }

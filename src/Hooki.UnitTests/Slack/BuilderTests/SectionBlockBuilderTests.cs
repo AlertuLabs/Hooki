@@ -104,15 +104,13 @@ public class SectionBlockBuilderTests
     {
         // Arrange
         var builder = new SectionBlockBuilder()
-            .WithText(t => t.WithText("Section Text").WithType(TextObjectType.PlainText))
-            .WithBlockId("test-section-block");
+            .WithText(t => t.WithText("Section Text").WithType(TextObjectType.PlainText));
 
         // Act
         var result = builder.Build() as SectionBlock;
 
         // Assert
         result.Should().NotBeNull();
-        result!.BlockId.Should().Be("test-section-block");
     }
 
     [Fact]

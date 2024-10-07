@@ -2,13 +2,21 @@ using Hooki.Slack.Models.Blocks;
 
 namespace Hooki.Slack.Builders;
 
-public class DividerBlockBuilder : BlockBaseBuilder
+public class DividerBlockBuilder : IBlockBuilder
 {
-    public override BlockBase Build()
+    private string? _blockId;
+    
+    public DividerBlockBuilder WithBlockId(string blockId)
+    {
+        _blockId = blockId;
+        return this;
+    }
+    
+    public BlockBase Build()
     {
         return new DividerBlock
         {
-            BlockId = base.Build().BlockId
+            BlockId = _blockId
         };
     }
 }

@@ -3,12 +3,19 @@ using Hooki.Slack.Models.CompositionObjects;
 
 namespace Hooki.Slack.Builders;
 
-public class SectionBlockBuilder : BlockBaseBuilder
+public class SectionBlockBuilder : IBlockBuilder
 {
     private TextObject? _text;
     private List<TextObject>? _fields;
     private ISectionBlockElement? _accessory;
     private bool? _expand;
+    private string? _blockId;
+
+    public SectionBlockBuilder WithBlockId(string blockId)
+    {
+        _blockId = blockId;
+        return this;
+    }
 
     public SectionBlockBuilder WithText(Action<TextObjectBuilder> buildAction)
     {
@@ -39,14 +46,14 @@ public class SectionBlockBuilder : BlockBaseBuilder
         return this;
     }
 
-    public override BlockBase Build()
+    public BlockBase Build()
     {
         if (_text == null && (_fields == null || _fields.Count == 0))
             throw new InvalidOperationException("Either text or at least one field is required for a SectionBlock.");
 
         return new SectionBlock
         {
-            BlockId = base.Build().BlockId,
+            BlockId = _blockId,
             Text = _text,
             Fields = _fields?.ToArray(),
             Accessory = _accessory,

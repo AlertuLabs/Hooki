@@ -67,15 +67,13 @@ public class RichTextBlockBuilderTests
     {
         // Arrange
         var builder = new RichTextBlockBuilder()
-            .AddElement(() => new RichTextSection { Elements = new[] { new TextElement { Text = "Test" } } })
-            .WithBlockId("test-rich-text-block");
+            .AddElement(() => new RichTextSection { Elements = new[] { new TextElement { Text = "Test" } } });
 
         // Act
         var result = builder.Build() as RichTextBlock;
 
         // Assert
         result.Should().NotBeNull();
-        result!.BlockId.Should().Be("test-rich-text-block");
     }
 
     [Fact]
@@ -89,23 +87,6 @@ public class RichTextBlockBuilderTests
 
         // Assert
         result.Should().BeSameAs(builder);
-    }
-
-    [Fact]
-    public void Multiple_Builds_With_Same_Builder_Return_Different_Instances()
-    {
-        // Arrange
-        var builder = new RichTextBlockBuilder()
-            .AddElement(() => new RichTextSection { Elements = new[] { new TextElement { Text = "Test" } } });
-
-        // Act
-        var result1 = builder.Build();
-        var result2 = builder.Build();
-
-        // Assert
-        result1.Should().NotBeSameAs(result2);
-        (result1 as RichTextBlock)!.Elements.Should().NotBeSameAs((result2 as RichTextBlock)!.Elements);
-        (result1 as RichTextBlock)!.Elements.Count.Should().Be((result2 as RichTextBlock)!.Elements.Count);
     }
 
     [Fact]

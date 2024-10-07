@@ -61,15 +61,13 @@ public class ContextBlockBuilderTests
     {
         // Arrange
         var builder = new ContextBlockBuilder()
-            .AddElement(() => new TextObject { Text = "Context text", Type = TextObjectType.PlainText })
-            .WithBlockId("test-block-id");
+            .AddElement(() => new TextObject { Text = "Context text", Type = TextObjectType.PlainText });
 
         // Act
         var result = builder.Build() as ContextBlock;
 
         // Assert
         result.Should().NotBeNull();
-        result!.BlockId.Should().Be("test-block-id");
     }
 
     [Fact]

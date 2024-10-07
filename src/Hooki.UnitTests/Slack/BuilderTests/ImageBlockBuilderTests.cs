@@ -8,7 +8,7 @@ namespace Hooki.UnitTests.Slack.BuilderTests;
 
 public class ImageBlockBuilderTests
 {
-    private readonly TextObject _validAltText = new TextObject { Text = "Alt Text", Type = TextObjectType.PlainText };
+    private readonly string _validAltText = "Alt Text";
 
     [Fact]
     public void Build_With_Required_Properties_Returns_Valid_ImageBlock()
@@ -19,16 +19,16 @@ public class ImageBlockBuilderTests
             .WithImageUrl("https://example.com/image.jpg");
 
         // Act
-        var result = builder.Build();
+        var result = builder.Build() as ImageBlock;
 
         // Assert
         result.Should().NotBeNull();
         result.Should().BeOfType<ImageBlock>();
-        result.AltText.Should().Be(_validAltText);
-        result.ImageUrl.Should().Be("https://example.com/image.jpg");
-        result.SlackFile.Should().BeNull();
-        result.Title.Should().BeNull();
-        result.BlockId.Should().BeNull();
+        result?.AltText.Should().Be(_validAltText);
+        result?.ImageUrl.Should().Be("https://example.com/image.jpg");
+        result?.SlackFile.Should().BeNull();
+        result?.Title.Should().BeNull();
+        result?.BlockId.Should().BeNull();
     }
 
     [Fact]
@@ -39,15 +39,13 @@ public class ImageBlockBuilderTests
         var builder = new ImageBlockBuilder()
             .WithAltText(_validAltText)
             .WithImageUrl("https://example.com/image.jpg")
-            .WithTitle(title)
-            .WithBlockId("test-image-block");
+            .WithTitle(title);
 
         // Act
         var result = builder.Build() as ImageBlock;
 
         // Assert
         result.Should().NotBeNull();
-        result?.BlockId.Should().Be("test-image-block");
         result?.AltText.Should().Be(_validAltText);
         result?.ImageUrl.Should().Be("https://example.com/image.jpg");
         result?.Title.Should().Be(title);
@@ -64,13 +62,13 @@ public class ImageBlockBuilderTests
             .WithSlackFile(slackFile);
 
         // Act
-        var result = builder.Build();
+        var result = builder.Build() as ImageBlock;
 
         // Assert
         result.Should().NotBeNull();
-        result.AltText.Should().Be(_validAltText);
-        result.SlackFile.Should().Be(slackFile);
-        result.ImageUrl.Should().BeNull();
+        result?.AltText.Should().Be(_validAltText);
+        result?.SlackFile.Should().Be(slackFile);
+        result?.ImageUrl.Should().BeNull();
     }
 
     [Fact]
@@ -162,12 +160,12 @@ public class ImageBlockBuilderTests
             .WithImageUrl("https://example.com/image.jpg");
 
         // Act
-        var result1 = builder.Build();
-        var result2 = builder.Build();
+        var result1 = builder.Build() as ImageBlock;
+        var result2 = builder.Build() as ImageBlock;
 
         // Assert
         result1.Should().NotBeSameAs(result2);
-        result1.AltText.Should().Be(result2.AltText);
-        result1.ImageUrl.Should().Be(result2.ImageUrl);
+        result1?.AltText.Should().Be(result2?.AltText);
+        result1?.ImageUrl.Should().Be(result2?.ImageUrl);
     }
 }

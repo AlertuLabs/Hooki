@@ -3,14 +3,21 @@ using Hooki.Slack.Models.CompositionObjects;
 
 namespace Hooki.Slack.Builders;
 
-public class ImageBlockBuilder : BlockBaseBuilder
+public class ImageBlockBuilder : IBlockBuilder
 {
-    private TextObject? _altText;
+    private string? _altText;
     private string? _imageUrl;
     private SlackFileObject? _slackFile;
     private TextObject? _title;
+    private string? _blockId;
 
-    public ImageBlockBuilder WithAltText(TextObject altText)
+    public ImageBlockBuilder WithBlockId(string blockId)
+    {
+        _blockId = blockId;
+        return this;
+    }
+
+    public ImageBlockBuilder WithAltText(string altText)
     {
         _altText = altText;
         return this;
@@ -34,7 +41,7 @@ public class ImageBlockBuilder : BlockBaseBuilder
         return this;
     }
 
-    public override ImageBlock Build()
+    public BlockBase Build()
     {
         if (_altText is null)
             throw new InvalidOperationException("AltText is required");
@@ -44,7 +51,7 @@ public class ImageBlockBuilder : BlockBaseBuilder
         
         return new ImageBlock
         {
-            BlockId = base.Build().BlockId,
+            BlockId = _blockId,
             AltText = _altText,
             ImageUrl = _imageUrl,
             SlackFile = _slackFile,

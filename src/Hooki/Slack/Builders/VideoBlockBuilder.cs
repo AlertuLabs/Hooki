@@ -4,7 +4,7 @@ using Hooki.Slack.Enums;
 
 namespace Hooki.Slack.Builders;
 
-public class VideoBlockBuilder : BlockBaseBuilder
+public class VideoBlockBuilder : IBlockBuilder
 {
     private string? _altText;
     private string? _authorName;
@@ -15,7 +15,14 @@ public class VideoBlockBuilder : BlockBaseBuilder
     private string? _titleUrl;
     private string? _thumbnailUrl;
     private string? _videoUrl;
+    private string? _blockId;
 
+    public VideoBlockBuilder WithBlockId(string blockId)
+    {
+        _blockId = blockId;
+        return this;
+    }
+    
     public VideoBlockBuilder WithAltText(string altText)
     {
         _altText = altText;
@@ -77,7 +84,7 @@ public class VideoBlockBuilder : BlockBaseBuilder
         return this;
     }
 
-    public override BlockBase Build()
+    public BlockBase Build()
     {
         if (string.IsNullOrWhiteSpace(_altText))
             throw new InvalidOperationException("AltText is required for a VideoBlock.");
@@ -99,7 +106,7 @@ public class VideoBlockBuilder : BlockBaseBuilder
 
         return new VideoBlock
         {
-            BlockId = base.Build().BlockId,
+            BlockId = _blockId,
             AltText = _altText,
             AuthorName = _authorName,
             Description = _description,

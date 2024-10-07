@@ -9,7 +9,7 @@ namespace Hooki.Slack.Models.Blocks;
 /// </summary>
 public class SectionBlock : BlockBase
 {
-    [JsonPropertyName("type")] public BlockType Type => BlockType.SectionBlock;
+    [JsonPropertyName("type")] public override BlockType Type => BlockType.SectionBlock;
     
     /// <summary>
     /// TextObject must have type of "PlainText"

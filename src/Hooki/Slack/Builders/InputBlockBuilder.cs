@@ -3,13 +3,20 @@ using Hooki.Slack.Models.CompositionObjects;
 
 namespace Hooki.Slack.Builders;
 
-public class InputBlockBuilder : BlockBaseBuilder
+public class InputBlockBuilder : IBlockBuilder
 {
     private TextObject? _label;
     private IInputBlockElement? _element;
     private bool? _dispatchAction;
     private TextObject? _hint;
     private bool? _optional;
+    private string? _blockId;
+
+    public InputBlockBuilder WithBlockId(string blockId)
+    {
+        _blockId = blockId;
+        return this;
+    }
     
     public InputBlockBuilder WithLabel(TextObject label)
     {
@@ -41,7 +48,7 @@ public class InputBlockBuilder : BlockBaseBuilder
         return this;
     }
     
-    public override InputBlock Build()
+    public BlockBase Build()
     {
         if (_label is null)
             throw new InvalidOperationException("Label must have a value");
@@ -51,7 +58,7 @@ public class InputBlockBuilder : BlockBaseBuilder
         
         return new InputBlock
         {
-            BlockId = base.Build().BlockId,
+            BlockId = _blockId,
             Label = _label,
             Element = _element,
             DispatchAction = _dispatchAction,

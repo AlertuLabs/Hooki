@@ -36,10 +36,8 @@ public class SlackWebhookPayloadBuilderTests
             .AddSectionBlock(b =>
                 b.WithText(t => t.WithText("Test Text").WithType(TextObjectType.PlainText))
                     .AddField(t => t.WithText("Test Field").WithType(TextObjectType.PlainText)))
-            .AddDividerBlock(b => b.WithBlockId("123"))
             .AddImageBlock(b =>
-                b.WithImageUrl("http://example.com/image.jpg").WithAltText(new TextObject
-                    { Type = TextObjectType.PlainText, Text = "Image Text" }))
+                b.WithImageUrl("http://example.com/image.jpg").WithAltText("Image Text"))
             .AddActionBlock(a => a.AddElement(() => new ButtonElement
                 { Text = new TextObject { Text = "Button Text", Type = TextObjectType.PlainText } }))
             .AddContextBlock(c =>
@@ -72,17 +70,16 @@ public class SlackWebhookPayloadBuilderTests
 
         // Assert
         result.Should().NotBeNull();
-        result.Blocks.Should().HaveCount(10);
+        result.Blocks.Should().HaveCount(9);
         result.Blocks[0].Should().BeOfType<SectionBlock>();
-        result.Blocks[1].Should().BeOfType<DividerBlock>();
-        result.Blocks[2].Should().BeOfType<ImageBlock>();
-        result.Blocks[3].Should().BeOfType<ActionBlock>();
-        result.Blocks[4].Should().BeOfType<ContextBlock>();
-        result.Blocks[5].Should().BeOfType<FileBlock>();
-        result.Blocks[6].Should().BeOfType<HeaderBlock>();
-        result.Blocks[7].Should().BeOfType<InputBlock>();
-        result.Blocks[8].Should().BeOfType<RichTextBlock>();
-        result.Blocks[9].Should().BeOfType<VideoBlock>();
+        result.Blocks[1].Should().BeOfType<ImageBlock>();
+        result.Blocks[2].Should().BeOfType<ActionBlock>();
+        result.Blocks[3].Should().BeOfType<ContextBlock>();
+        result.Blocks[4].Should().BeOfType<FileBlock>();
+        result.Blocks[5].Should().BeOfType<HeaderBlock>();
+        result.Blocks[6].Should().BeOfType<InputBlock>();
+        result.Blocks[7].Should().BeOfType<RichTextBlock>();
+        result.Blocks[8].Should().BeOfType<VideoBlock>();
         
         // SectionBlock assertions
         var sectionBlock = result.Blocks[0] as SectionBlock;
@@ -93,20 +90,14 @@ public class SlackWebhookPayloadBuilderTests
         sectionBlock.Fields![0].Text.Should().Be("Test Field");
         sectionBlock.Fields![0].Type.Should().Be(TextObjectType.PlainText);
 
-        // DividerBlock assertions
-        var dividerBlock = result.Blocks[1] as DividerBlock;
-        dividerBlock.Should().NotBeNull();
-        dividerBlock!.BlockId.Should().Be("123");
-
         // ImageBlock assertions
-        var imageBlock = result.Blocks[2] as ImageBlock;
+        var imageBlock = result.Blocks[1] as ImageBlock;
         imageBlock.Should().NotBeNull();
         imageBlock!.ImageUrl.Should().Be("http://example.com/image.jpg");
-        imageBlock.AltText.Text.Should().Be("Image Text");
-        imageBlock.AltText.Type.Should().Be(TextObjectType.PlainText);
+        imageBlock.AltText.Should().Be("Image Text");
 
         // ActionBlock assertions
-        var actionBlock = result.Blocks[3] as ActionBlock;
+        var actionBlock = result.Blocks[2] as ActionBlock;
         actionBlock.Should().NotBeNull();
         actionBlock!.Elements.Should().HaveCount(1);
         var buttonElement = actionBlock.Elements[0] as ButtonElement;
@@ -115,7 +106,7 @@ public class SlackWebhookPayloadBuilderTests
         buttonElement.Text.Type.Should().Be(TextObjectType.PlainText);
 
         // ContextBlock assertions
-        var contextBlock = result.Blocks[4] as ContextBlock;
+        var contextBlock = result.Blocks[3] as ContextBlock;
         contextBlock.Should().NotBeNull();
         contextBlock!.Elements.Should().HaveCount(2);
         var imageElement = contextBlock.Elements[0] as ImageElement;
@@ -128,19 +119,19 @@ public class SlackWebhookPayloadBuilderTests
         textElement.Type.Should().Be(TextObjectType.PlainText);
 
         // FileBlock assertions
-        var fileBlock = result.Blocks[5] as FileBlock;
+        var fileBlock = result.Blocks[4] as FileBlock;
         fileBlock.Should().NotBeNull();
         fileBlock!.ExternalId.Should().Be("external-unique-id");
         fileBlock.Source.Should().Be("source");
 
         // HeaderBlock assertions
-        var headerBlock = result.Blocks[6] as HeaderBlock;
+        var headerBlock = result.Blocks[5] as HeaderBlock;
         headerBlock.Should().NotBeNull();
         headerBlock!.Text.Text.Should().Be("Header Text");
         headerBlock.Text.Type.Should().Be(TextObjectType.PlainText);
 
         // InputBlock assertions
-        var inputBlock = result.Blocks[7] as InputBlock;
+        var inputBlock = result.Blocks[6] as InputBlock;
         inputBlock.Should().NotBeNull();
         inputBlock!.Label.Text.Should().Be("Label");
         inputBlock.Label.Type.Should().Be(TextObjectType.PlainText);
@@ -151,7 +142,7 @@ public class SlackWebhookPayloadBuilderTests
         urlInputElement.InitialValue.Should().Be("InitialValue");
 
         // RichTextBlock assertions
-        var richTextBlock = result.Blocks[8] as RichTextBlock;
+        var richTextBlock = result.Blocks[7] as RichTextBlock;
         richTextBlock.Should().NotBeNull();
         richTextBlock!.Elements.Should().HaveCount(1);
         var richTextSection = richTextBlock.Elements[0] as RichTextSection;
@@ -162,7 +153,7 @@ public class SlackWebhookPayloadBuilderTests
         channelElement!.ChannelId.Should().Be("123");
 
         // VideoBlock assertions
-        var videoBlock = result.Blocks[9] as VideoBlock;
+        var videoBlock = result.Blocks[8] as VideoBlock;
         videoBlock.Should().NotBeNull();
         videoBlock!.AltText.Should().Be("Alt Text");
         videoBlock.Title!.Text.Should().Be("Text");

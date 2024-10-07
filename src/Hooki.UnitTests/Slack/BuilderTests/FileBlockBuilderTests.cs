@@ -30,17 +30,15 @@ public class FileBlockBuilderTests
         // Arrange
         var builder = new FileBlockBuilder()
             .WithExternalId("external-123")
-            .WithSource("source-456")
-            .WithBlockId("block-789");
+            .WithSource("source-456");
 
         // Act
         var result = builder.Build() as FileBlock;
 
         // Assert
         result.Should().NotBeNull();
-        result!.BlockId.Should().Be("block-789");
-        result.ExternalId.Should().Be("external-123");
-        result.Source.Should().Be("source-456");
+        result?.ExternalId.Should().Be("external-123");
+        result?.Source.Should().Be("source-456");
     }
 
     [Fact]
@@ -107,8 +105,7 @@ public class FileBlockBuilderTests
         // Arrange
         var builder = new FileBlockBuilder()
             .WithExternalId("external-123")
-            .WithSource("source-456")
-            .WithBlockId("block-789");
+            .WithSource("source-456");
 
         // Act
         var result1 = builder.Build();
@@ -118,6 +115,5 @@ public class FileBlockBuilderTests
         result1.Should().NotBeSameAs(result2);
         (result1 as FileBlock)!.ExternalId.Should().Be((result2 as FileBlock)!.ExternalId);
         (result1 as FileBlock)!.Source.Should().Be((result2 as FileBlock)!.Source);
-        result1.BlockId.Should().Be(result2.BlockId);
     }
 }

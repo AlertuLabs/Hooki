@@ -2,10 +2,17 @@ using Hooki.Slack.Models.Blocks;
 
 namespace Hooki.Slack.Builders;
 
-public class FileBlockBuilder : BlockBaseBuilder
+public class FileBlockBuilder : IBlockBuilder
 {
     private string _externalId = default!;
     private string _source = default!;
+    private string? _blockId;
+    
+    public FileBlockBuilder WithBlockId(string blockId)
+    {
+        _blockId = blockId;
+        return this;
+    }
     
     public FileBlockBuilder WithExternalId(string externalId)
     {
@@ -19,11 +26,11 @@ public class FileBlockBuilder : BlockBaseBuilder
         return this;
     }
     
-    public override BlockBase Build()
+    public BlockBase Build()
     {
         return new FileBlock
         {
-            BlockId = base.Build().BlockId,
+            BlockId = _blockId,
             ExternalId = _externalId,
             Source = _source
         };

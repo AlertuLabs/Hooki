@@ -2,6 +2,7 @@ using FluentAssertions;
 using Hooki.Slack.Builders;
 using Hooki.Slack.Enums;
 using Hooki.Slack.Models.BlockElements;
+using Hooki.Slack.Models.Blocks;
 using Hooki.Slack.Models.CompositionObjects;
 
 namespace Hooki.UnitTests.Slack.BuilderTests;
@@ -16,13 +17,13 @@ public class ActionBlockBuilderTests
             .AddElement(() => new ButtonElement { Text = new TextObject { Text = "Click me", Type = TextObjectType.PlainText } });
 
         // Act
-        var result = builder.Build();
+        var result = builder.Build() as ActionBlock;
 
         // Assert
         result.Should().NotBeNull();
-        result.Elements.Should().HaveCount(1);
-        result.Elements.First().Should().BeOfType<ButtonElement>();
-        (result.Elements.First() as ButtonElement)!.Text.Text.Should().Be("Click me");
+        result?.Elements.Should().HaveCount(1);
+        result?.Elements.First().Should().BeOfType<ButtonElement>();
+        (result?.Elements.First() as ButtonElement)!.Text.Text.Should().Be("Click me");
     }
 
     [Fact]
@@ -34,13 +35,13 @@ public class ActionBlockBuilderTests
             .AddElement(() => new ButtonElement { Text = new TextObject { Text = "Button 2", Type = TextObjectType.PlainText } });
 
         // Act
-        var result = builder.Build();
+        var result = builder.Build() as ActionBlock;
 
         // Assert
         result.Should().NotBeNull();
-        result.Elements.Should().HaveCount(2);
-        result.Elements.Should().AllBeOfType<ButtonElement>();
-        result.Elements.Cast<ButtonElement>().Select(b => b.Text.Text).Should().ContainInOrder("Button 1", "Button 2");
+        result?.Elements.Should().HaveCount(2);
+        result?.Elements.Should().AllBeOfType<ButtonElement>();
+        result?.Elements.Cast<ButtonElement>().Select(b => b.Text.Text).Should().ContainInOrder("Button 1", "Button 2");
     }
 
     [Fact]
@@ -60,15 +61,14 @@ public class ActionBlockBuilderTests
     {
         // Arrange
         var builder = new ActionBlockBuilder()
-            .AddElement(() => new ButtonElement { Text = new TextObject { Text = "Click me", Type = TextObjectType.PlainText } })
-            .WithBlockId("test-block-id");
+            .AddElement(() => new ButtonElement
+                { Text = new TextObject { Text = "Click me", Type = TextObjectType.PlainText } });
 
         // Act
         var result = builder.Build();
 
         // Assert
         result.Should().NotBeNull();
-        result.BlockId.Should().Be("test-block-id");
     }
 
     [Fact]
@@ -109,21 +109,21 @@ public class ActionBlockBuilderTests
             });
 
         // Act
-        var result = builder.Build();
+        var result = builder.Build() as ActionBlock;
 
         // Assert
         result.Should().NotBeNull();
-        result.Elements.Should().HaveCount(10);
-        result.Elements[0].Should().BeOfType<ButtonElement>();
-        result.Elements[1].Should().BeOfType<SelectMenuElement>();
-        result.Elements[2].Should().BeOfType<MultiSelectMenuElement>();
-        result.Elements[3].Should().BeOfType<OverflowMenuElement>();
-        result.Elements[4].Should().BeOfType<DatePickerElement>();
-        result.Elements[5].Should().BeOfType<TimePickerElement>();
-        result.Elements[6].Should().BeOfType<DateTimePickerElement>();
-        result.Elements[7].Should().BeOfType<RadioButtonGroupElement>();
-        result.Elements[8].Should().BeOfType<CheckboxElement>();
-        result.Elements[9].Should().BeOfType<WorkflowButtonElement>();
+        result?.Elements.Should().HaveCount(10);
+        result?.Elements[0].Should().BeOfType<ButtonElement>();
+        result?.Elements[1].Should().BeOfType<SelectMenuElement>();
+        result?.Elements[2].Should().BeOfType<MultiSelectMenuElement>();
+        result?.Elements[3].Should().BeOfType<OverflowMenuElement>();
+        result?.Elements[4].Should().BeOfType<DatePickerElement>();
+        result?.Elements[5].Should().BeOfType<TimePickerElement>();
+        result?.Elements[6].Should().BeOfType<DateTimePickerElement>();
+        result?.Elements[7].Should().BeOfType<RadioButtonGroupElement>();
+        result?.Elements[8].Should().BeOfType<CheckboxElement>();
+        result?.Elements[9].Should().BeOfType<WorkflowButtonElement>();
     }
 
     [Fact]

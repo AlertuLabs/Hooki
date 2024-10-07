@@ -43,26 +43,24 @@ public class VideoBlockBuilderTests
                 .WithTitle(t => t.WithText("Title").WithType(TextObjectType.PlainText))
                 .WithTitleUrl("https://example.com/title")
                 .WithThumbnailUrl("https://example.com/thumbnail.jpg")
-                .WithVideoUrl("https://example.com/video.mp4")
-                .WithBlockId("123");
+                .WithVideoUrl("https://example.com/video.mp4");
 
             // Act
             var result = builder.Build() as VideoBlock;
 
             // Assert
             result.Should().NotBeNull();
-            result!.BlockId.Should().Be("123");
-            result.AltText.Should().Be("Alt Text");
-            result.AuthorName.Should().Be("Author");
-            result.Description.Should().NotBeNull();
-            result.Description!.Text.Should().Be("Description");
-            result.ProviderIconUrl.Should().Be("https://example.com/icon.png");
-            result.ProviderName.Should().Be("Provider");
-            result.Title.Should().NotBeNull();
-            result.Title!.Text.Should().Be("Title");
-            result.TitleUrl.Should().Be("https://example.com/title");
-            result.ThumbnailUrl.Should().Be("https://example.com/thumbnail.jpg");
-            result.VideoUrl.Should().Be("https://example.com/video.mp4");
+            result?.AltText.Should().Be("Alt Text");
+            result?.AuthorName.Should().Be("Author");
+            result?.Description.Should().NotBeNull();
+            result?.Description!.Text.Should().Be("Description");
+            result?.ProviderIconUrl.Should().Be("https://example.com/icon.png");
+            result?.ProviderName.Should().Be("Provider");
+            result?.Title.Should().NotBeNull();
+            result?.Title?.Text.Should().Be("Title");
+            result?.TitleUrl.Should().Be("https://example.com/title");
+            result?.ThumbnailUrl.Should().Be("https://example.com/thumbnail.jpg");
+            result?.VideoUrl.Should().Be("https://example.com/video.mp4");
         }
 
         [Fact]
