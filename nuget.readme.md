@@ -177,10 +177,6 @@ var jsonString = payload.Serialize();
 <!-- Contributing -->
 ## 👋 Contributing
 
-<a href="https://github.com/AlertuLabs/Hooki/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=AlertuLabs/Hooki" />
-</a>
-
 Contributions are always welcome!
 
 Please read [Contributing](https://github.com/AlertuLabs/Hooki/blob/main/.github/CONTRIBUTING.md) for ways to get started.
