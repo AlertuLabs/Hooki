@@ -81,11 +81,11 @@ public class DiscordWebhookService
         {
             Username = "Alertu Webhook",
             AvatarUrl = "https://example-url/image.png",
-            Embeds = new List<Embed>
+            Embeds = new List<DiscordEmbed>
             {
-                new Embed
+                new DiscordEmbed
                 {
-                    Author = new EmbedAuthor
+                    Author = new DiscordEmbedAuthor
                     {
                         Name = "Alertu",
                         Url = "https://alertu.io",
@@ -94,17 +94,17 @@ public class DiscordWebhookService
                     Title = $"Azure Metric Alert triggered",
                     Description = $"[**View in Alertu**](https://alertu.io) | [**View in Azure**](https://portal.azure.com)",
                     Color = 959721,
-                    Fields = new List<EmbedField>
+                    Fields = new List<DiscordEmbedField>
                     {
-                        new EmbedField { Name = "Summary", Value = "This is a test summary", Inline = false },
-                        new EmbedField { Name = "Organization Name", Value = "Test Organization", Inline = true },
-                        new EmbedField { Name = "Project Name", Value = "Test Project", Inline = true },
-                        new EmbedField { Name = "Cloud Provider", Value = "Azure", Inline = true },
-                        new EmbedField { Name = "Resources", Value = "test-redis, test-postgreSQL", Inline = true },
-                        new EmbedField { Name = "Severity", Value = "Critical", Inline = true },
-                        new EmbedField { Name = "Status", Value = "Open", Inline = true },
-                        new EmbedField { Name = "Triggered At", Value = DateTimeOffset.UtcNow.ToString("f"), Inline = true },
-                        new EmbedField { Name = "Resolved At", Value = DateTimeOffset.UtcNow.ToString("f"), Inline = true }
+                        new DiscordEmbedField { Name = "Summary", Value = "This is a test summary", Inline = false },
+                        new DiscordEmbedField { Name = "Organization Name", Value = "Test Organization", Inline = true },
+                        new DiscordEmbedField { Name = "Project Name", Value = "Test Project", Inline = true },
+                        new DiscordEmbedField { Name = "Cloud Provider", Value = "Azure", Inline = true },
+                        new DiscordEmbedField { Name = "Resources", Value = "test-redis, test-postgreSQL", Inline = true },
+                        new DiscordEmbedField { Name = "Severity", Value = "Critical", Inline = true },
+                        new DiscordEmbedField { Name = "Status", Value = "Open", Inline = true },
+                        new DiscordEmbedField { Name = "Triggered At", Value = DateTimeOffset.UtcNow.ToString("f"), Inline = true },
+                        new DiscordEmbedField { Name = "Resolved At", Value = DateTimeOffset.UtcNow.ToString("f"), Inline = true }
                     }
                 }
             }
@@ -116,7 +116,7 @@ public class DiscordWebhookService
         try
         {
             var discordPayload = CreateDiscordPayload();
-            var jsonString = JsonSerializer.Serialize(discordPayload);
+            var jsonString = discordPayload.Serialize();
 
             using var client = _httpClientFactory.CreateClient();
             var content = new StringContent(jsonString, Encoding.UTF8, "application/json");
@@ -150,6 +150,16 @@ public class ExampleController
         await _discordWebhookService.SendWebhookAsync(webhookUrl, CancellationToken.None);
     }
 }
+```
+
+Please make sure to use the extension available on the `DiscordWebhookPayload`, `MsTeamsWebhookPayload` and `SlackWebhookPayload` classes to serialize the payload into JSON using Hooki's settings for convenience and consistency.
+
+```csharp
+// Build your payload with what you want to send
+var payload = new MsTeamsWebhookPayload();
+
+// Serialize your payload into JSON ready to send
+var jsonString = payload.Serialize();
 ```
 
 <!-- Roadmap -->

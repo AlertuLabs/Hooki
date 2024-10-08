@@ -15,7 +15,7 @@ public class MsTeamsWebhookPayload
 
     [JsonPropertyName("correlationId")] public string? CorrelationId { get; set; }
 
-    [JsonPropertyName("expectedActors")] public List<string>? ExpectedActors { get; set; } = null;
+    [JsonPropertyName("expectedActors")] public List<string>? ExpectedActors { get; set; }
 
     [JsonPropertyName("originator")] public string? Originator { get; set; }
 
