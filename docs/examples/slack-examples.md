@@ -10,68 +10,137 @@ using Hooki.Slack.Models.CompositionObjects;
 
 return new SlackWebhookPayload
 {
-    Blocks = new List<BlockBase>
+    Blocks = new List<SlackBlock>
     {
-        new HeaderBlock
+        new SlackHeaderBlock
         {
-            Text = new TextObject
+            Text = new SlackTextObject
             {
                 Type = TextObjectTypes.PlainText,
                 Text = $"Slack Webhook using Slack Block Kit"
             }
         },
-        new SectionBlock
+        new SlackSectionBlock
         {
             Fields =
             [
-                new TextObject { Type = TextObjectTypes.Markdown, Text = $"*Organization Name:*\nTest Organization Name" },
-                new TextObject { Type = TextObjectTypes.Markdown, Text = $"*Project Name:*\nTest Project Name" },
-                new TextObject { Type = TextObjectTypes.Markdown, Text = $"*Cloud Provider:*\nAzure Name" },
-                new TextObject { Type = TextObjectTypes.Markdown, Text = $"*Resources:*\ntest-redis, test-postgreSQL" }
+                new SlackTextObject { Type = TextObjectType.Markdown, Text = $"*Organization Name:*\nTest Organization Name" },
+                new SlackTextObject { Type = TextObjectType.Markdown, Text = $"*Project Name:*\nTest Project Name" },
+                new SlackTextObject { Type = TextObjectType.Markdown, Text = $"*Cloud Provider:*\nAzure Name" },
+                new SlackTextObject { Type = TextObjectType.Markdown, Text = $"*Resources:*\ntest-redis, test-postgreSQL" }
             ]
         },
-        new SectionBlock
+        new SlackSectionBlock
         {
             Fields =
             [
-                new TextObject { Type = TextObjectTypes.Markdown, Text = $"*Severity:*\nCritical" },
-                new TextObject { Type = TextObjectTypes.Markdown, Text = $"*Status:*\nOpen" },
-                new TextObject { Type = TextObjectTypes.Markdown, Text = $"*Triggered At:*\n{DateTimeOffset.UtcNow.ToString("f")}" }
+                new SlackTextObject { Type = TextObjectType.Markdown, Text = $"*Severity:*\nCritical" },
+                new SlackTextObject { Type = TextObjectType.Markdown, Text = $"*Status:*\nOpen" },
+                new SlackTextObject { Type = TextObjectType.Markdown, Text = $"*Triggered At:*\n{DateTimeOffset.UtcNow.ToString("f")}" }
             ]
         },
-        new SectionBlock
+        new SlackSectionBlock
         {
-            Text = new TextObject
+            Text = new SlackTextObject
             {
-                Type = TextObjectTypes.Markdown,
+                Type = TextObjectType.Markdown,
                 Text = $"*Summary:*\nTesting Slack Webhook"
             }
         },
-        new ActionBlock
+        new SlackActionBlock
         {
             Elements =
             [
-                new ButtonElement
+                new SlackButtonElement
                 {
-                    Text = new TextObject
+                    Text = new SlackTextObject
                     {
-                        Type = TextObjectTypes.PlainText,
+                        Type = TextObjectType.PlainText,
                         Text = "View in Alertu"
                     },
                     Url = appUrl,
                     Style = "primary"
                 },
 
-                new ButtonElement
+                new SlackButtonElement
                 {
-                    Text = new TextObject
+                    Text = new SlackTextObject
                     {
-                        Type = TextObjectTypes.PlainText,
+                        Type = TextObjectType.PlainText,
                         Text = $"View in Azure"
                     },
                     Url = alert.CloudUrl
                 }
             ]
+        }
+    }
+};
+```
+
+```csharp
+var payload = new SlackWebhookPayload
+{
+    Blocks = new List<SlackBlock>
+    {
+        new SlackVideoBlock
+        {
+            Description = new SlackTextObject
+            {
+                Type = SlackTextObjectType.PlainText,
+                Text = "Test Description"
+            },
+            AltText = "Walking on a dream",
+            VideoUrl = "https://www.youtube.com/embed/8876OZV_Yy0?feature=oembed&autoplay=1",
+            ThumbnailUrl = "https://i.ytimg.com/vi/8876OZV_Yy0/hqdefault.jpg",
+            Title = new SlackTextObject
+            {
+                Type = SlackTextObjectType.PlainText,
+                Text = "Test Video Title"
+            }
+        }
+    }
+};
+```
+
+```csharp
+var payload = new SlackWebhookPayload
+{
+    Blocks = new List<SlackBlock>
+    {
+        new SlackInputBlock
+        {
+            Label = new SlackTextObject
+            {
+                Type = SlackTextObjectType.PlainText,
+                Text = "Email"
+            },
+            Element = new SlackEmailInputElement
+            {
+                Placeholder = new SlackTextObject
+                {
+                    Type = SlackTextObjectType.PlainText,
+                    Text = "My Email Address"
+                }
+            }
+        }
+    }
+};
+```
+
+```csharp
+var payload = new SlackWebhookPayload
+{
+    Blocks = new List<SlackBlock>
+    {
+        new SlackImageBlock
+        {
+            AltText = "**Test image alt text**",
+            ImageUrl = TestImageCloudUrl,
+            Title = new SlackTextObject
+            {
+                Type = SlackTextObjectType.PlainText,
+                Text = "Test Image Title"
+            }
         }
     }
 };

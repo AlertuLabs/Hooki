@@ -12,10 +12,10 @@ namespace IntegrationTests;
 public class MicrosoftTeamsTests(HttpClientFixture fixture) : IntegrationTestBase(fixture)
 {
     [Fact]
-    public async Task When_Sending_A_Valid_MicrosoftTeams_MessageCard_Webhook_Then_Return_200()
+    public async Task When_Sending_A_Valid_MsTeams_Webhook_Payload_Webhook_Then_Return_200()
     {
         // Arrange
-        var messageCard = new MessageCardBuilder()
+        var messageCard = new MsTeamsWebhookPayloadBuilder()
             .WithThemeColor("0ea4e9")
             .WithSummary("Test Summary")
             .AddSection(section => section
@@ -63,16 +63,16 @@ public class MicrosoftTeamsTests(HttpClientFixture fixture) : IntegrationTestBas
     }
     
     [Fact]
-    public async Task When_Sending_A_Valid_MessageCard_With_All_Action_Types_Then_Return_200()
+    public async Task When_Sending_A_Valid_MsTeams_Webhook_Payload_With_All_Action_Types_Then_Return_200()
     {
-        var messageCard = new MessageCardBuilder()
+        var messageCard = new MsTeamsWebhookPayloadBuilder()
             .WithThemeColor("0ea4e9")
             .WithSummary("Test All Action Types")
             .AddSection(section => section
                 .WithActivityTitle("Testing All Action Types")
             )
             .AddOpenUriAction("Open URI", "https://example.com")
-            .AddHttpPostAction("HTTP POST", "https://example.com/api", "{\"key\":\"value\"}", "application/json", new List<Header>())
+            .AddHttpPostAction("HTTP POST", "https://example.com/api", "{\"key\":\"value\"}", "application/json", new List<MsTeamsHeader>())
             .AddActionCardAction("Action Card", [], [])
             .AddInvokeAddInCommandAction("Invoke Add-In", "add-in-id", "command-id", null)
             .Build();
@@ -82,9 +82,9 @@ public class MicrosoftTeamsTests(HttpClientFixture fixture) : IntegrationTestBas
     }
     
     [Fact]
-    public async Task When_Sending_A_Valid_Minimal_MessageCard_Then_Return_200()
+    public async Task When_Sending_A_Valid_Minimal_MsTeams_Webhook_Payload_Then_Return_200()
     {
-        var messageCard = new MessageCardBuilder()
+        var messageCard = new MsTeamsWebhookPayloadBuilder()
             .WithText("Test All Action Types")
             .Build();
         
@@ -93,9 +93,9 @@ public class MicrosoftTeamsTests(HttpClientFixture fixture) : IntegrationTestBas
     }
     
     [Fact]
-    public async Task When_Sending_MessageCard_With_Multiple_Sections_Then_Return_200()
+    public async Task When_Sending_MsTeams_Webhook_Payload_With_Multiple_Sections_Then_Return_200()
     {
-        var messageCard = new MessageCardBuilder()
+        var messageCard = new MsTeamsWebhookPayloadBuilder()
             .WithTitle("Multi-Section Card")
             .WithText("This card has multiple sections")
             .AddSection(section => section
@@ -115,9 +115,9 @@ public class MicrosoftTeamsTests(HttpClientFixture fixture) : IntegrationTestBas
     }
 
     [Fact]
-    public async Task When_Sending_MessageCard_With_HeroImage_And_ActivityDetails_Then_Return_200()
+    public async Task When_Sending_MsTeams_Webhook_Payload_With_HeroImage_And_ActivityDetails_Then_Return_200()
     {
-        var messageCard = new MessageCardBuilder()
+        var messageCard = new MsTeamsWebhookPayloadBuilder()
             .WithTitle("Card with Hero Image and Activity")
             .WithSummary("Testing HeroImage and Activity")
             .AddSection(section => section
@@ -136,28 +136,28 @@ public class MicrosoftTeamsTests(HttpClientFixture fixture) : IntegrationTestBas
     }
 
     [Fact]
-    public async Task When_Sending_MessageCard_With_ActionCard_With_A_TextInput_And_DateInput_And_HttpPostAction_Then_Return_200()
+    public async Task When_Sending_MsTeams_Webhook_Payloadd_With_ActionCard_With_A_TextInput_And_DateInput_And_HttpPostAction_Then_Return_200()
     {
-        var messageCard = new MessageCardBuilder()
+        var messageCard = new MsTeamsWebhookPayloadBuilder()
             .WithTitle("Card with Complex Action Card")
             .WithText("This card demonstrates a complex Action Card")
-            .AddActionCardAction("Fill Form", new List<InputBase>
+            .AddActionCardAction("Fill Form", new List<MsTeamsInput>
                 {
-                    new TextInput 
+                    new MsTeamsTextInput 
                     { 
                         Id = "comment",
                         Title = "Input's title property",
                         IsMultiline = true 
                     },
-                    new DateInput 
+                    new MsTeamsDateInput 
                     { 
                         Id = "date",
                         Title = "Select Date" 
                     }
                 }, 
-                new List<ActionBase>
+                new List<MsTeamsAction>
                 {
-                    new HttpPostAction
+                    new MsTeamsHttpPostAction
                     {
                         Name = "Submit",
                         Target = PipedreamUrl,
@@ -171,28 +171,28 @@ public class MicrosoftTeamsTests(HttpClientFixture fixture) : IntegrationTestBas
     }
     
     [Fact]
-    public async Task When_Sending_MessageCard_With_ActionCard_With_A_MultiChoiceInput_And_HttpPostAction_Then_Return_200()
+    public async Task When_Sending_MsTeams_Webhook_Payload_With_ActionCard_With_A_MultiChoiceInput_And_HttpPostAction_Then_Return_200()
     {
-        var messageCard = new MessageCardBuilder()
+        var messageCard = new MsTeamsWebhookPayloadBuilder()
             .WithTitle("Card with Complex Action Card")
             .WithText("This card demonstrates a complex Action Card")
-            .AddActionCardAction("Fill Form", new List<InputBase>
+            .AddActionCardAction("Fill Form", new List<MsTeamsInput>
                 {
-                    new MultiChoiceInput
+                    new MsTeamsMultiChoiceInput
                     {
                         Id = "choice",
                         Title = "Select Options",
                         IsMultiSelect = true,
                         Choices =
                         [
-                            new Choice { Display = "Option 1", Value = "1" },
-                            new Choice { Display = "Option 2", Value = "2" },
-                            new Choice { Display = "Option 3", Value = "3" }
+                            new MsTeamsChoice { Display = "Option 1", Value = "1" },
+                            new MsTeamsChoice { Display = "Option 2", Value = "2" },
+                            new MsTeamsChoice { Display = "Option 3", Value = "3" }
                         ]
                     }
                 },
                 [
-                    new HttpPostAction
+                    new MsTeamsHttpPostAction
                     {
                         Name = "Submit",
                         Target = PipedreamUrl,
@@ -206,17 +206,17 @@ public class MicrosoftTeamsTests(HttpClientFixture fixture) : IntegrationTestBas
     }
     
     [Fact]
-    public async Task When_Sending_MessageCard_With_ActionCard_With_An_OpenUriAction_Then_Return_200()
+    public async Task When_Sending_MsTeams_Webhook_Payload_With_ActionCard_With_An_OpenUriAction_Then_Return_200()
     {
-        var messageCard = new MessageCardBuilder()
+        var messageCard = new MsTeamsWebhookPayloadBuilder()
             .WithTitle("Card with Complex Action Card")
             .WithText("This card demonstrates a complex Action Card")
             .AddActionCardAction("Fill Form", null,
             [
-                new OpenUriAction
+                new MsTeamsOpenUriAction
                 {
                     Name = "Open URI",
-                    Targets = [new Target { OperatingSystem = OperatingSystemType.Default, Uri = "https://example.com" }]
+                    Targets = [new MsTeamsTarget { MsTeamsOperatingSystem = MsTeamsOperatingSystemType.Default, Uri = "https://example.com" }]
                 }
             ])
             .Build();
@@ -226,9 +226,9 @@ public class MicrosoftTeamsTests(HttpClientFixture fixture) : IntegrationTestBas
     }
 
     [Fact]
-    public async Task When_Sending_MessageCard_With_Facts_And_StartGroup_Then_Return_200()
+    public async Task When_Sending_MsTeams_Webhook_Payload_With_Facts_And_StartGroup_Then_Return_200()
     {
-        var messageCard = new MessageCardBuilder()
+        var messageCard = new MsTeamsWebhookPayloadBuilder()
             .WithTitle("Card with Various Facts and Start Group")
             .WithSummary("Employee Information....")
             .AddSection(section => section
@@ -247,9 +247,9 @@ public class MicrosoftTeamsTests(HttpClientFixture fixture) : IntegrationTestBas
     }
 
     [Fact]
-    public async Task When_Sending_MessageCard_With_Multiple_Images_And_Actions_Then_Return_200()
+    public async Task When_Sending_MsTeams_Webhook_Payload_With_Multiple_Images_And_Actions_Then_Return_200()
     {
-        var messageCard = new MessageCardBuilder()
+        var messageCard = new MsTeamsWebhookPayloadBuilder()
             .WithTitle("Product Showcase")
             .WithText("Check out our latest products!")
             .AddSection(section => section
@@ -257,7 +257,7 @@ public class MicrosoftTeamsTests(HttpClientFixture fixture) : IntegrationTestBas
                 .AddImage(image => image.WithImageUrl(TestImageCloudUrl).WithTitle("Product 2"))
                 .AddImage(image => image.WithImageUrl(TestImageCloudUrl).WithTitle("Product 3")))
             .AddOpenUriAction("View Catalog", "https://example.com/catalog")
-            .AddHttpPostAction("Request Info", "https://example.com/api/info", "{\"request\":\"info\"}", "application/json", new List<Header>())
+            .AddHttpPostAction("Request Info", "https://example.com/api/info", "{\"request\":\"info\"}", "application/json", new List<MsTeamsHeader>())
             .Build();
 
         var response = await SendWebhookPayloadAsync(PlatformTypes.MicrosoftTeams, messageCard);

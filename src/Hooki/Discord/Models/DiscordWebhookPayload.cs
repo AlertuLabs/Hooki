@@ -19,9 +19,9 @@ public class DiscordWebhookPayload
 
     [JsonPropertyName("tts")] public bool? Tts { get; set; }
 
-    [JsonPropertyName("embeds")] public List<Embed>? Embeds { get; set; }
+    [JsonPropertyName("embeds")] public List<DiscordEmbed>? Embeds { get; set; }
 
-    [JsonPropertyName("allowed_mentions")] public AllowedMention? AllowedMentions { get; set; }
+    [JsonPropertyName("allowed_mentions")] public DiscordAllowedMention? AllowedMentions { get; set; }
 
     /// <summary>
     /// We're not supporting message components at the moment.
@@ -35,11 +35,11 @@ public class DiscordWebhookPayload
     /// You can either use DiscordWebhookPayload.MultipartContent or you can implement the MultipartContent yourself
     /// Please refer to the discord documentation for more details: https://discord.com/developers/docs/reference#uploading-files
     /// </summary>
-    [JsonIgnore] public List<FileContent>? Files { get; set; }
+    [JsonIgnore] public List<DiscordFileContent>? Files { get; set; }
 
     [JsonPropertyName("payload_json")] public string? PayloadJson { get; set; }
 
-    [JsonPropertyName("attachments")] public List<Attachment>? Attachments { get; set; }
+    [JsonPropertyName("attachments")] public List<DiscordAttachment>? Attachments { get; set; }
 
     [JsonPropertyName("flags")] public int? Flags { get; set; }
 
@@ -54,7 +54,7 @@ public class DiscordWebhookPayload
     /// <summary>
     /// Not supported at the moment. Please check our roadmap
     /// </summary>
-    [JsonPropertyName("poll")] public PollCreateRequest? Poll { get; set; }
+    [JsonPropertyName("poll")] public DiscordPollCreateRequest? Poll { get; set; }
     
     private MultipartFormDataContent? _cachedMultipartContent;
     private bool _isMultipartContentDirty = true;

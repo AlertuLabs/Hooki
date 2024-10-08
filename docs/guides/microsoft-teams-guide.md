@@ -23,7 +23,7 @@ The main object you'll be working with is `MessageCard`. Here's a basic example 
 ```csharp
 using Hooki.MicrosoftTeams.Models;
 
-var messageCard = new MessageCard
+var messageCard = new MsTeamsWebhookPayload
 {
     Type = "MessageCard",
     Context = "https://schema.org/extensions",
@@ -41,7 +41,7 @@ Sections allow you to group related information. Here's how to add a section:
 ```csharp
 using Hooki.MicrosoftTeams.BuildingBlocks;
 
-var section = new Section
+var section = new MsTeamsSection
 {
     ActivityTitle = "**Section Title**",
     ActivitySubtitle = "Section Subtitle",
@@ -49,7 +49,7 @@ var section = new Section
     ActivityImage = "https://example.com/image.png"
 };
 
-messageCard.Sections = new List<Section> { section };
+messageCard.Sections = new List<MsTeamsSection> { section };
 ```
 
 **Note:** Don't include more than 10 sections in a single card.
@@ -61,10 +61,10 @@ Facts are key-value pairs that can be added to a section:
 ```csharp
 using Hooki.MicrosoftTeams.BuildingBlocks;
 
-var facts = new List<Fact>
+var facts = new List<MsTeamsFact>
 {
-    new Fact { Name = "Project:", Value = "Project Phoenix" },
-    new Fact { Name = "Status:", Value = "In Progress" }
+    new MsTeamsFact { Name = "Project:", Value = "Project Phoenix" },
+    new MsTeamsFact { Name = "Status:", Value = "In Progress" }
 };
 
 section.Facts = facts;
@@ -80,16 +80,16 @@ Actions allow users to interact with your card. There are different types of act
 using Hooki.MicrosoftTeams.Actions;
 using Hooki.MicrosoftTeams.BuildingBlocks;
 
-var openUriAction = new OpenUriAction
+var openUriAction = new MsTeamsOpenUriAction
 {
     Name = "View Details",
-    Targets = new List<Target>
+    Targets = new List<MsTeamsTarget>
     {
-        new Target { OperatingSystem = "default", Uri = "https://example.com/details" }
+        new MsTeamsTarget { OperatingSystem = "default", Uri = "https://example.com/details" }
     }
 };
 
-messageCard.PotentialActions = new List<ActionBase> { openUriAction };
+messageCard.PotentialActions = new List<MsTeamsAction> { openUriAction };
 ```
 
 ### HttpPost Action
@@ -97,7 +97,7 @@ messageCard.PotentialActions = new List<ActionBase> { openUriAction };
 ```csharp
 using Hooki.MicrosoftTeams.Actions;
 
-var httpPostAction = new HttpPostAction
+var httpPostAction = new MsTeamsHttpPostAction
 {
     Name = "Approve",
     Target = "https://example.com/api/approve",
@@ -115,21 +115,21 @@ ActionCard allows you to create a set of inputs that users can fill out:
 using Hooki.MicrosoftTeams.Actions;
 using Hooki.MicrosoftTeams.Inputs;
 
-var actionCard = new ActionCardAction
+var actionCard = new MsTeamsActionCardAction
 {
     Name = "Add Comment",
-    Inputs = new List<InputBase>
+    Inputs = new List<MsTeamsInput>
     {
-        new TextInput
+        new MsTeamsTextInput
         {
             Id = "comment",
             Title = "Enter your comment",
             IsMultiline = true
         }
     },
-    Actions = new List<ActionBase>
+    Actions = new List<MsTeamsAction>
     {
-        new HttpPostAction
+        new MsTeamsHttpPostAction
         {
             Name = "Submit",
             Target = "https://example.com/api/comment"
@@ -149,52 +149,65 @@ using Hooki.MicrosoftTeams.Models;
 using Hooki.MicrosoftTeams.BuildingBlocks;
 using Hooki.MicrosoftTeams.Actions;
 
-var messageCard = new MessageCard
+var payload = new MsTeamsWebhookPayload
 {
     ThemeColor = "0x0EA5E9", // Light blue color
     Summary = "New Metric Alert: ALERT-001",
-    Sections = new List<Section>
+    Sections = new List<MsTeamsSection>
     {
-        new Section
+        new MsTeamsSection
         {
             ActivityTitle = "**Azure Metric Alert triggered**",
             ActivitySubtitle = "**Severity - Critical | Status - Open**",
             ActivityText = "This is a test summary for the Azure Metric Alert",
             ActivityImage = "https://example.com/alert-image.png",
-            Facts = new List<Fact>
+            Facts = new List<MsTeamsFact>
             {
-                new Fact { Name = "Organization Name:", Value = "Test Organization" },
-                new Fact { Name = "Project Name:", Value = "Test Project" },
-                new Fact { Name = "Alert Group Name:", Value = "Test Alert Group" },
-                new Fact { Name = "Cloud Provider:", Value = "Azure" },
-                new Fact { Name = "Severity:", Value = "Critical" },
-                new Fact { Name = "Status:", Value = "Open" },
-                new Fact { Name = "Affected Resources:", Value = "test-redis, test-postgreSQL" },
-                new Fact { Name = "Triggered At:", Value = DateTimeOffset.UtcNow.ToString("f") },
-                new Fact { Name = "Resolved At:", Value = DateTimeOffset.UtcNow.ToString("f") }
+                new MsTeamsFact { Name = "Organization Name:", Value = "Test Organization" },
+                new MsTeamsFact { Name = "Project Name:", Value = "Test Project" },
+                new MsTeamsFact { Name = "Alert Group Name:", Value = "Test Alert Group" },
+                new MsTeamsFact { Name = "Cloud Provider:", Value = "Azure" },
+                new MsTeamsFact { Name = "Severity:", Value = "Critical" },
+                new MsTeamsFact { Name = "Status:", Value = "Open" },
+                new MsTeamsFact { Name = "Affected Resources:", Value = "test-redis, test-postgreSQL" },
+                new MsTeamsFact { Name = "Triggered At:", Value = DateTimeOffset.UtcNow.ToString("f") },
+                new MsTeamsFact { Name = "Resolved At:", Value = DateTimeOffset.UtcNow.ToString("f") }
             }
         }
     },
-    PotentialActions = new List<ActionBase>
+    PotentialActions = new List<MsTeamsAction>
     {
-        new OpenUriAction
+        new MsTeamsOpenUriAction
         {
             Name = "View in Alertu",
-            Targets = new List<Target>
+            Targets = new List<MsTeamsTarget>
             {
-                new Target { OperatingSystem = "default", Uri = "https://alertu.io" }
+                new MsTeamsTarget { OperatingSystem = "default", Uri = "https://alertu.io" }
             }
         },
-        new OpenUriAction
+        new MsTeamsOpenUriAction
         {
             Name = "View in Azure",
-            Targets = new List<Target>
+            Targets = new List<MsTeamsTarget>
             {
-                new Target { OperatingSystem = "default", Uri = "https://portal.azure.com" }
+                new MsTeamsTarget { OperatingSystem = "default", Uri = "https://portal.azure.com" }
             }
         }
     }
 };
+
+// Serialize into JSON
+var jsonString = payload.Serialize();
+```
+
+Please make sure to use the extension available on the `DiscordWebhookPayload`, `MsTeamsWebhookPayload` and `SlackWebhookPayload` classes to serialize the payload into JSON using Hooki's settings for convenience and consistency.
+
+```csharp
+// Build your payload with what you want to send
+var payload = new MsTeamsWebhookPayload();
+
+// Serialize your payload into JSON ready to send
+var jsonString = payload.Serialize();
 ```
 
 ## Markdown Styling in Teams Message Cards
@@ -214,7 +227,7 @@ Microsoft Teams supports a subset of Markdown in message cards. Here are some co
 Example usage in a message card:
 
 ```csharp
-var section = new Section
+var section = new MsTeamsSection
 {
     ActivityTitle = "**Important Update**",
     ActivitySubtitle = "*Please read carefully*",
@@ -222,10 +235,10 @@ var section = new Section
                    "1. New feature added\n" +
                    "2. Bug fixes\n\n" +
                    "For more information, visit our [website](https://example.com).",
-    Facts = new List<Fact>
+    Facts = new List<MsTeamsFact>
     {
-        new Fact { Name = "Status:", Value = "~~In Progress~~ **Completed**" },
-        new Fact { Name = "Affected Systems:", Value = "• System A\n• System B" }
+        new MsTeamsFact { Name = "Status:", Value = "~~In Progress~~ **Completed**" },
+        new MsTeamsFact { Name = "Affected Systems:", Value = "• System A\n• System B" }
     }
 };
 ```
@@ -235,8 +248,8 @@ var section = new Section
 1. The `ThemeColor` property accepts a hexadecimal color value (e.g., "0ea4e9").
 2. Use the `Summary` field for notifications or condensed views of the card.
 3. Ensure images used in the card (like `ActivityImage`) are accessible from the internet.
-4. With `OpenUriAction`, you can specify different URIs for different operating systems if needed.
-5. Use `HttpPostAction` to send data back to your server when a user interacts with the card.
+4. With `MsTeamsOpenUriAction`, you can specify different URIs for different operating systems if needed.
+5. Use `MsTeamsHttpPostAction` to send data back to your server when a user interacts with the card.
 6. Remember to handle potential actions server-side if you're using interactive elements.
 7. Limit the number of sections to 10 or fewer per card for better readability.
 8. Use Markdown formatting judiciously to maintain a clean and professional appearance.

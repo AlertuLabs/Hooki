@@ -1,6 +1,6 @@
 using System.Text;
 using Hooki.Discord.Models;
-using Hooki.Utilities;
+using Hooki.Extensions;
 using IntegrationTests.Enums;
 
 namespace IntegrationTests.Config;
@@ -63,7 +63,7 @@ public abstract class IntegrationTestBase : IClassFixture<HttpClientFixture>
     {
         var url = GetWebhookUrl(platform);
         
-        var json = JsonHelper.Serialize(payload);
+        var json = payload.Serialize();
         
         var content = new StringContent(json, Encoding.UTF8, "application/json");
         return await _httpClient.PostAsync(url, content);
@@ -83,7 +83,7 @@ public abstract class IntegrationTestBase : IClassFixture<HttpClientFixture>
         }
         
         // If we didn't receive content and the platform is not Discord then generate the POST body with the standard implementation
-        var json = JsonHelper.Serialize(payload);
+        var json = payload.Serialize();
         var payloadContent = new StringContent(json, Encoding.UTF8, "application/json");
 
         return await _httpClient.PostAsync(url, payloadContent);

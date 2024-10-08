@@ -9,16 +9,16 @@ public class DiscordWebhookPayloadBuilder
     private string? _username;
     private string? _avatarUrl;
     private bool? _tts;
-    private List<Embed>? _embeds;
-    private AllowedMention? _allowedMentions;
+    private List<DiscordEmbed>? _embeds;
+    private DiscordAllowedMention? _allowedMentions;
     private List<object>? _components;
-    private List<FileContent>? _files;
+    private List<DiscordFileContent>? _files;
     private string? _payloadJson;
-    private List<Attachment>? _attachments;
+    private List<DiscordAttachment>? _attachments;
     private int? _flags;
     private string? _threadName;
     private List<string>? _appliedTags;
-    private PollCreateRequest? _poll;
+    private DiscordPollCreateRequest? _poll;
 
     public DiscordWebhookPayloadBuilder WithContent(string content)
     {
@@ -44,18 +44,18 @@ public class DiscordWebhookPayloadBuilder
         return this;
     }
 
-    public DiscordWebhookPayloadBuilder AddEmbed(Action<EmbedBuilder> embedAction)
+    public DiscordWebhookPayloadBuilder AddEmbed(Action<DiscordEmbedBuilder> embedAction)
     {
-        var embedBuilder = new EmbedBuilder();
+        var embedBuilder = new DiscordEmbedBuilder();
         embedAction(embedBuilder);
-        _embeds ??= new List<Embed>();
+        _embeds ??= new List<DiscordEmbed>();
         _embeds.Add(embedBuilder.Build());
         return this;
     }
 
-    public DiscordWebhookPayloadBuilder WithAllowedMentions(Action<AllowedMentionBuilder> allowedMentionAction)
+    public DiscordWebhookPayloadBuilder WithAllowedMentions(Action<DiscordAllowedMentionBuilder> allowedMentionAction)
     {
-        var allowedMentionBuilder = new AllowedMentionBuilder();
+        var allowedMentionBuilder = new DiscordAllowedMentionBuilder();
         allowedMentionAction(allowedMentionBuilder);
         _allowedMentions = allowedMentionBuilder.Build();
         return this;
@@ -68,10 +68,10 @@ public class DiscordWebhookPayloadBuilder
         return this;
     }
 
-    public DiscordWebhookPayloadBuilder AddFile(FileContent file)
+    public DiscordWebhookPayloadBuilder AddFile(DiscordFileContent discordFile)
     {
-        _files ??= new List<FileContent>();
-        _files.Add(file);
+        _files ??= new List<DiscordFileContent>();
+        _files.Add(discordFile);
         return this;
     }
 
@@ -81,10 +81,10 @@ public class DiscordWebhookPayloadBuilder
         return this;
     }
 
-    public DiscordWebhookPayloadBuilder AddAttachment(Attachment attachment)
+    public DiscordWebhookPayloadBuilder AddAttachment(DiscordAttachment discordAttachment)
     {
         _attachments ??= [];
-        _attachments.Add(attachment);
+        _attachments.Add(discordAttachment);
         return this;
     }
 
@@ -107,9 +107,9 @@ public class DiscordWebhookPayloadBuilder
         return this;
     }
 
-    public DiscordWebhookPayloadBuilder WithPoll(Action<PollCreateRequestBuilder> pollAction)
+    public DiscordWebhookPayloadBuilder WithPoll(Action<DiscordPollCreateRequestBuilder> pollAction)
     {
-        var pollCreateRequestBuilder = new PollCreateRequestBuilder();
+        var pollCreateRequestBuilder = new DiscordPollCreateRequestBuilder();
         pollAction(pollCreateRequestBuilder);
 
         _poll = pollCreateRequestBuilder.Build();
