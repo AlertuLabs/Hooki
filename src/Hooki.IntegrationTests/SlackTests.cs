@@ -14,20 +14,20 @@ public class SlackTests : IntegrationTestBase
     public SlackTests(HttpClientFixture fixture) : base(fixture) { }
 
     [Fact]
-    public async void When_Sending_A_Valid_Payload_With_Context_Block_Then_Return_200()
+    public async void When_Sending_A_Valid_Slack_Webhook_Payload_With_Context_Block_Then_Return_200()
     {
         // Arrange
         var payload = new SlackWebhookPayload
         {
-            Blocks = new List<BlockBase>
+            Blocks = new List<SlackBlock>
             {
-                new ContextBlock
+                new SlackContextBlock
                 {
-                    Elements = new List<IContextBlockElement>
+                    Elements = new List<ISlackContextBlockElement>
                     {
-                        new ImageElement { ImageUrl = TestImageCloudUrl, AltText = "Image" },
-                        new TextObject
-                            { Type = TextObjectType.PlainText, Text = "This is text for a context block element" }
+                        new SlackImageElement { ImageUrl = TestImageCloudUrl, AltText = "Image" },
+                        new SlackTextObject
+                            { Type = SlackTextObjectType.PlainText, Text = "This is text for a context block element" }
                     }
                 }
             }
@@ -41,23 +41,23 @@ public class SlackTests : IntegrationTestBase
     }
     
     [Fact]
-    public async void When_Sending_A_Valid_Payload_With_Action_Block_Then_Return_200()
+    public async void When_Sending_A_Valid_Slack_Webhook_Payload_With_Action_Block_Then_Return_200()
     {
         // Arrange
         var payload = new SlackWebhookPayload
         {
-            Blocks = new List<BlockBase>
+            Blocks = new List<SlackBlock>
             {
-                new ActionBlock
+                new SlackActionBlock
                 {
-                    Elements = new List<IActionBlockElement>
+                    Elements = new List<ISlackActionBlockElement>
                     {
-                        new ButtonElement { Text = new TextObject{Type = TextObjectType.PlainText ,Text = "Button Text"}},
-                        new CheckboxElement { Options =
+                        new SlackButtonElement { SlackText = new SlackTextObject{Type = SlackTextObjectType.PlainText ,Text = "Button Text"}},
+                        new SlackCheckboxElement { Options =
                             [
-                                new OptionObject
+                                new SlackOptionObject
                                 {
-                                    Text = new TextObject { Type = TextObjectType.PlainText, Text = "Choice Text" },
+                                    SlackText = new SlackTextObject { Type = SlackTextObjectType.PlainText, Text = "Choice Text" },
                                     Value = "Choice Value"
                                 }
                             ]
@@ -75,18 +75,18 @@ public class SlackTests : IntegrationTestBase
     }
     
     [Fact]
-    public async void When_Sending_A_Valid_Payload_With_Header_Block_Then_Return_200()
+    public async void When_Sending_A_Valid_Slack_Webhook_Payload_With_Header_Block_Then_Return_200()
     {
         // Arrange
         var payload = new SlackWebhookPayload
         {
-            Blocks = new List<BlockBase>
+            Blocks = new List<SlackBlock>
             {
-                new HeaderBlock
+                new SlackHeaderBlock
                 {
-                    Text = new TextObject
+                    SlackText = new SlackTextObject
                     {
-                        Type = TextObjectType.PlainText,
+                        Type = SlackTextObjectType.PlainText,
                         Text = "Header Text"
                     }
                 }
@@ -101,20 +101,20 @@ public class SlackTests : IntegrationTestBase
     }
     
     [Fact]
-    public async void When_Sending_A_Valid_Payload_With_Image_Block_Then_Return_200()
+    public async void When_Sending_A_Valid_Slack_Webhook_Payload_With_Image_Block_Then_Return_200()
     {
         // Arrange
         var payload = new SlackWebhookPayload
         {
-            Blocks = new List<BlockBase>
+            Blocks = new List<SlackBlock>
             {
-                new ImageBlock
+                new SlackImageBlock
                 {
                    AltText = "**Test image alt text**",
                    ImageUrl = TestImageCloudUrl,
-                   Title = new TextObject
+                   Title = new SlackTextObject
                    {
-                       Type = TextObjectType.PlainText,
+                       Type = SlackTextObjectType.PlainText,
                        Text = "Test Image Title"
                    }
                 }
@@ -129,25 +129,25 @@ public class SlackTests : IntegrationTestBase
     }
     
     [Fact]
-    public async void When_Sending_A_Valid_Payload_With_Input_Block_Then_Return_200()
+    public async void When_Sending_A_Valid_Slack_Webhook_Payload_With_Input_Block_Then_Return_200()
     {
         // Arrange
         var payload = new SlackWebhookPayload
         {
-            Blocks = new List<BlockBase>
+            Blocks = new List<SlackBlock>
             {
-                new InputBlock
+                new SlackInputBlock
                 {
-                   Label = new TextObject
+                   Label = new SlackTextObject
                    {
-                       Type = TextObjectType.PlainText,
+                       Type = SlackTextObjectType.PlainText,
                        Text = "Email"
                    },
-                   Element = new EmailInputElement
+                   Element = new SlackEmailInputElement
                    {
-                       Placeholder = new TextObject
+                       Placeholder = new SlackTextObject
                        {
-                           Type = TextObjectType.PlainText,
+                           Type = SlackTextObjectType.PlainText,
                            Text = "My Email Address"
                        }
                    }
@@ -163,37 +163,37 @@ public class SlackTests : IntegrationTestBase
     }
     
     [Fact]
-    public async void When_Sending_A_Valid_Payload_With_RichText_Block_Then_Return_200()
+    public async void When_Sending_A_Valid_Slack_Webhook_Payload_With_RichText_Block_Then_Return_200()
     {
         // Arrange
         var payload = new SlackWebhookPayload
         {
-            Blocks = new List<BlockBase>
+            Blocks = new List<SlackBlock>
             {
-                new SectionBlock
+                new SlackSectionBlock
                 {
                     Fields =
                     [
-                        new TextObject { Type = TextObjectType.Markdown, Text = "*Organization Name:*\n Test Organization" },
-                        new TextObject { Type = TextObjectType.Markdown, Text = "*Project Name:*\n Test Project" },
-                        new TextObject { Type = TextObjectType.Markdown, Text = "*Cloud Provider:*\n Test Cloud Provider" },
-                        new TextObject { Type = TextObjectType.Markdown, Text = "*Resources:*\n test-redis, test-postgreSQL" }
+                        new SlackTextObject { Type = SlackTextObjectType.Markdown, Text = "*Organization Name:*\n Test Organization" },
+                        new SlackTextObject { Type = SlackTextObjectType.Markdown, Text = "*Project Name:*\n Test Project" },
+                        new SlackTextObject { Type = SlackTextObjectType.Markdown, Text = "*Cloud Provider:*\n Test Cloud Provider" },
+                        new SlackTextObject { Type = SlackTextObjectType.Markdown, Text = "*Resources:*\n test-redis, test-postgreSQL" }
                     ]
                 },
-                new SectionBlock
+                new SlackSectionBlock
                 {
                     Fields =
                     [
-                        new TextObject { Type = TextObjectType.Markdown, Text = "*Severity:*\n Critical" },
-                        new TextObject { Type = TextObjectType.Markdown, Text = "*Status:*\n Closed" },
-                        new TextObject { Type = TextObjectType.Markdown, Text = $"*Triggered At:*\n{DateTimeOffset.UtcNow.ToString()}" }
+                        new SlackTextObject { Type = SlackTextObjectType.Markdown, Text = "*Severity:*\n Critical" },
+                        new SlackTextObject { Type = SlackTextObjectType.Markdown, Text = "*Status:*\n Closed" },
+                        new SlackTextObject { Type = SlackTextObjectType.Markdown, Text = $"*Triggered At:*\n{DateTimeOffset.UtcNow.ToString()}" }
                     ]
                 },
-                new SectionBlock
+                new SlackSectionBlock
                 {
-                    Text = new TextObject
+                    Text = new SlackTextObject
                     {
-                        Type = TextObjectType.Markdown,
+                        Type = SlackTextObjectType.Markdown,
                         Text = "*Summary:*\n doodoo"
                     }
                 }
@@ -208,37 +208,37 @@ public class SlackTests : IntegrationTestBase
     }
     
     [Fact]
-    public async void When_Sending_A_Valid_Payload_With_Section_Block_Then_Return_200()
+    public async void When_Sending_A_Valid_Slack_Webhook_Payload_With_Section_Block_Then_Return_200()
     {
         // Arrange
         var payload = new SlackWebhookPayload
         {
-            Blocks = new List<BlockBase>
+            Blocks = new List<SlackBlock>
             {
-                new SectionBlock
+                new SlackSectionBlock
                 {
                     Fields =
                     [
-                        new TextObject { Type = TextObjectType.Markdown, Text = "*Organization Name:*\n Test Organization" },
-                        new TextObject { Type = TextObjectType.Markdown, Text = "*Project Name:*\n Test Project" },
-                        new TextObject { Type = TextObjectType.Markdown, Text = "*Cloud Provider:*\n Test Cloud Provider" },
-                        new TextObject { Type = TextObjectType.Markdown, Text = "*Resources:*\n test-redis, test-postgreSQL" }
+                        new SlackTextObject { Type = SlackTextObjectType.Markdown, Text = "*Organization Name:*\n Test Organization" },
+                        new SlackTextObject { Type = SlackTextObjectType.Markdown, Text = "*Project Name:*\n Test Project" },
+                        new SlackTextObject { Type = SlackTextObjectType.Markdown, Text = "*Cloud Provider:*\n Test Cloud Provider" },
+                        new SlackTextObject { Type = SlackTextObjectType.Markdown, Text = "*Resources:*\n test-redis, test-postgreSQL" }
                     ]
                 },
-                new SectionBlock
+                new SlackSectionBlock
                 {
                     Fields =
                     [
-                        new TextObject { Type = TextObjectType.Markdown, Text = "*Severity:*\n Critical" },
-                        new TextObject { Type = TextObjectType.Markdown, Text = "*Status:*\n Closed" },
-                        new TextObject { Type = TextObjectType.Markdown, Text = $"*Triggered At:*\n{DateTimeOffset.UtcNow.ToString()}" }
+                        new SlackTextObject { Type = SlackTextObjectType.Markdown, Text = "*Severity:*\n Critical" },
+                        new SlackTextObject { Type = SlackTextObjectType.Markdown, Text = "*Status:*\n Closed" },
+                        new SlackTextObject { Type = SlackTextObjectType.Markdown, Text = $"*Triggered At:*\n{DateTimeOffset.UtcNow.ToString()}" }
                     ]
                 },
-                new SectionBlock
+                new SlackSectionBlock
                 {
-                    Text = new TextObject
+                    Text = new SlackTextObject
                     {
-                        Type = TextObjectType.Markdown,
+                        Type = SlackTextObjectType.Markdown,
                         Text = "*Summary:*\n doodoo"
                     }
                 }
@@ -253,26 +253,26 @@ public class SlackTests : IntegrationTestBase
     }
     
     [Fact]
-    public async void When_Sending_A_Valid_Payload_With_Video_Block_Then_Return_200()
+    public async void When_Sending_A_Valid_Slack_Webhook_Payload_With_Video_Block_Then_Return_200()
     {
         // Arrange
         var payload = new SlackWebhookPayload
         {
-            Blocks = new List<BlockBase>
+            Blocks = new List<SlackBlock>
             {
-                new VideoBlock
+                new SlackVideoBlock
                 {
-                    Description = new TextObject
+                    Description = new SlackTextObject
                     {
-                        Type = TextObjectType.PlainText,
+                        Type = SlackTextObjectType.PlainText,
                         Text = "Test Description"
                     },
                     AltText = "Walking on a dream",
                     VideoUrl = "https://www.youtube.com/embed/8876OZV_Yy0?feature=oembed&autoplay=1",
                     ThumbnailUrl = "https://i.ytimg.com/vi/8876OZV_Yy0/hqdefault.jpg",
-                    Title = new TextObject
+                    Title = new SlackTextObject
                     {
-                        Type = TextObjectType.PlainText,
+                        Type = SlackTextObjectType.PlainText,
                         Text = "Test Video Title"
                     }
                 }
@@ -287,68 +287,67 @@ public class SlackTests : IntegrationTestBase
     }
     
     [Fact]
-    public async void When_Sending_A_Valid_Payload_With_Simple_Layout_Then_Return_200()
+    public async void When_Sending_A_Valid_Slack_Webhook_Payload_With_Simple_Layout_Then_Return_200()
     {
         // Arrange
         var payload = new SlackWebhookPayload
         {
-            Blocks = new List<BlockBase>
+            Blocks = new List<SlackBlock>
             {
-                new HeaderBlock
+                new SlackHeaderBlock
                 {
-                    Text = new TextObject
+                    SlackText = new SlackTextObject
                     {
-                        Type = TextObjectType.PlainText,
+                        Type = SlackTextObjectType.PlainText,
                         Text = "Header Text"
                     }
                 },
-                new SectionBlock
+                new SlackSectionBlock
                 {
                     Fields =
                     [
-                        new TextObject { Type = TextObjectType.Markdown, Text = $"*Organization Name:*\n Test Organization" },
-                        new TextObject { Type = TextObjectType.Markdown, Text = $"*Project Name:*\n Test Project" },
-                        new TextObject { Type = TextObjectType.Markdown, Text = $"*Cloud Provider:*\n Test Cloud Provider" },
-                        new TextObject { Type = TextObjectType.Markdown, Text = $"*Resources:*\n test-redis, test-postgreSQL" }
+                        new SlackTextObject { Type = SlackTextObjectType.Markdown, Text = $"*Organization Name:*\n Test Organization" },
+                        new SlackTextObject { Type = SlackTextObjectType.Markdown, Text = $"*Project Name:*\n Test Project" },
+                        new SlackTextObject { Type = SlackTextObjectType.Markdown, Text = $"*Cloud Provider:*\n Test Cloud Provider" },
+                        new SlackTextObject { Type = SlackTextObjectType.Markdown, Text = $"*Resources:*\n test-redis, test-postgreSQL" }
                     ]
                 },
-                new SectionBlock
+                new SlackSectionBlock
                 {
                     Fields =
                     [
-                        new TextObject { Type = TextObjectType.Markdown, Text = $"*Severity:*\n Critical" },
-                        new TextObject { Type = TextObjectType.Markdown, Text = $"*Status:*\n Closed" },
-                        new TextObject { Type = TextObjectType.Markdown, Text = $"*Triggered At:*\n{DateTimeOffset.UtcNow.ToString()}" }
+                        new SlackTextObject { Type = SlackTextObjectType.Markdown, Text = $"*Severity:*\n Critical" },
+                        new SlackTextObject { Type = SlackTextObjectType.Markdown, Text = $"*Status:*\n Closed" },
+                        new SlackTextObject { Type = SlackTextObjectType.Markdown, Text = $"*Triggered At:*\n{DateTimeOffset.UtcNow.ToString()}" }
                     ]
                 },
-                new SectionBlock
+                new SlackSectionBlock
                 {
-                    Text = new TextObject
+                    Text = new SlackTextObject
                     {
-                        Type = TextObjectType.Markdown,
+                        Type = SlackTextObjectType.Markdown,
                         Text = $"*Summary:*\n doodoo"
                     }
                 },
-                new ActionBlock
+                new SlackActionBlock
                 {
                     Elements =
                     [
-                        new ButtonElement
+                        new SlackButtonElement
                         {
-                            Text = new TextObject
+                            SlackText = new SlackTextObject
                             {
-                                Type = TextObjectType.PlainText,
+                                Type = SlackTextObjectType.PlainText,
                                 Text = "View in Alertu"
                             },
                             Url = "https://example.com",
                             Style = "primary"
                         },
-
-                        new ButtonElement
+                        new SlackButtonElement
                         {
-                            Text = new TextObject
+                            SlackText = new SlackTextObject
                             {
-                                Type = TextObjectType.PlainText,
+                                Type = SlackTextObjectType.PlainText,
                                 Text = "View in Azure"
                             },
                             Url = "https://portal.azure.com"

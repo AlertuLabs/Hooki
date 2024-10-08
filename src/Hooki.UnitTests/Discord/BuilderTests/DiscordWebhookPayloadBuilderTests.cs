@@ -17,11 +17,11 @@ public class DiscordWebhookPayloadBuilderTests
             .WithAvatarUrl("http://example.com/avatar.png")
             .WithTts(true)
             .AddEmbed(e => e.WithTitle("Test Embed"))
-            .WithAllowedMentions(am => am.AddParse(AllowedMentionTypes.Users))
+            .WithAllowedMentions(am => am.AddParse(DiscordAllowedMentionType.Users))
             .AddComponent(new { type = 1, style = 1, label = "Click me" })
-            .AddFile(new FileContent { SnowflakeId = "123", FileName = "test.txt", FileContents = new byte[] { 1, 2, 3 }, ContentType = "text/plain" })
+            .AddFile(new DiscordFileContent { SnowflakeId = "123", FileName = "test.txt", FileContents = new byte[] { 1, 2, 3 }, ContentType = "text/plain" })
             .WithPayloadJson("{\"key\":\"value\"}")
-            .AddAttachment(new Attachment { Id = "456", FileName = "attachment.png" })
+            .AddAttachment(new DiscordAttachment { Id = "456", FileName = "attachment.png" })
             .WithFlags(64)
             .WithThreadName("Test Thread")
             .AddAppliedTag("TestTag")
@@ -48,7 +48,7 @@ public class DiscordWebhookPayloadBuilderTests
         result.Poll.Should().NotBeNull();
         result.Poll?.Question.Text.Should().Be("Test Question");
         result.Poll?.Answers.Should()
-            .ContainSingle(answer => answer.AnswerId == 1 && answer.PollMedia.Text == "Test Media");
+            .ContainSingle(answer => answer.AnswerId == 1 && answer.DiscordPollMedia.Text == "Test Media");
     }
 
     [Fact]

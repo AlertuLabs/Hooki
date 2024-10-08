@@ -24,26 +24,26 @@ return new SlackWebhookPayload
         {
             Fields =
             [
-                new TextObject { Type = TextObjectTypes.Markdown, Text = $"*Organization Name:*\nTest Organization Name" },
-                new TextObject { Type = TextObjectTypes.Markdown, Text = $"*Project Name:*\nTest Project Name" },
-                new TextObject { Type = TextObjectTypes.Markdown, Text = $"*Cloud Provider:*\nAzure Name" },
-                new TextObject { Type = TextObjectTypes.Markdown, Text = $"*Resources:*\ntest-redis, test-postgreSQL" }
+                new TextObject { Type = TextObjectType.Markdown, Text = $"*Organization Name:*\nTest Organization Name" },
+                new TextObject { Type = TextObjectType.Markdown, Text = $"*Project Name:*\nTest Project Name" },
+                new TextObject { Type = TextObjectType.Markdown, Text = $"*Cloud Provider:*\nAzure Name" },
+                new TextObject { Type = TextObjectType.Markdown, Text = $"*Resources:*\ntest-redis, test-postgreSQL" }
             ]
         },
         new SectionBlock
         {
             Fields =
             [
-                new TextObject { Type = TextObjectTypes.Markdown, Text = $"*Severity:*\nCritical" },
-                new TextObject { Type = TextObjectTypes.Markdown, Text = $"*Status:*\nOpen" },
-                new TextObject { Type = TextObjectTypes.Markdown, Text = $"*Triggered At:*\n{DateTimeOffset.UtcNow.ToString("f")}" }
+                new TextObject { Type = TextObjectType.Markdown, Text = $"*Severity:*\nCritical" },
+                new TextObject { Type = TextObjectType.Markdown, Text = $"*Status:*\nOpen" },
+                new TextObject { Type = TextObjectType.Markdown, Text = $"*Triggered At:*\n{DateTimeOffset.UtcNow.ToString("f")}" }
             ]
         },
         new SectionBlock
         {
             Text = new TextObject
             {
-                Type = TextObjectTypes.Markdown,
+                Type = TextObjectType.Markdown,
                 Text = $"*Summary:*\nTesting Slack Webhook"
             }
         },
@@ -55,7 +55,7 @@ return new SlackWebhookPayload
                 {
                     Text = new TextObject
                     {
-                        Type = TextObjectTypes.PlainText,
+                        Type = TextObjectType.PlainText,
                         Text = "View in Alertu"
                     },
                     Url = appUrl,
@@ -66,7 +66,7 @@ return new SlackWebhookPayload
                 {
                     Text = new TextObject
                     {
-                        Type = TextObjectTypes.PlainText,
+                        Type = TextObjectType.PlainText,
                         Text = $"View in Azure"
                     },
                     Url = alert.CloudUrl

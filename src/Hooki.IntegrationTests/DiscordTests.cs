@@ -89,7 +89,7 @@ public class DiscordTests(HttpClientFixture fixture) : IntegrationTestBase(fixtu
     {
         // Arrange
         var payload = new DiscordWebhookPayloadBuilder()
-            .AddAttachment(new Attachment
+            .AddAttachment(new DiscordAttachment
             {
                 Id = DiscordSnowflakeId,
                 FileName = TestImageFileName,
@@ -121,7 +121,7 @@ public class DiscordTests(HttpClientFixture fixture) : IntegrationTestBase(fixtu
                 .WithImage($"attachment://{TestImageFileName}")
             )
             .WithContent("Test Content")
-            .AddAttachment(new Attachment
+            .AddAttachment(new DiscordAttachment
             {
                 Id = DiscordSnowflakeId,
                 Description = "Hooki Logo",
@@ -129,7 +129,7 @@ public class DiscordTests(HttpClientFixture fixture) : IntegrationTestBase(fixtu
                 Height = 128,
                 Width = 128
             })
-            .AddFile(new FileContent
+            .AddFile(new DiscordFileContent
             {
                 SnowflakeId = DiscordSnowflakeId,
                 FileName = TestImageFileName,
