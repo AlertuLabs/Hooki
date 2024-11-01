@@ -106,7 +106,7 @@ Hooki is a powerful .NET library designed to simplify the creation of webhook pa
     <tr>
       <td align="center">
         <a href="https://cloudcat.dev">
-          <img src="https://cloudcat.dev/img/logo.svg" width="100px;" alt="Cloudcat Logo"/>
+          <img src="https://cloudcat.dev/logo.svg" width="100px;" alt="Cloudcat Logo"/>
         </a>
       </td>
     </tr>
