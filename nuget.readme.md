@@ -46,7 +46,7 @@ Hooki is a powerful .NET library designed to simplify the creation of webhook pa
 <!-- Prerequisites -->
 ### ‼️ Prerequisites
 
-The only requirement is compatibility with .net 8.0.x
+The only requirement is compatibility with .net 8.0.x or .net 9.0.x
 
 <!-- Usage -->
 ## 👀 Usage

@@ -14,7 +14,7 @@ public class SlackTests : IntegrationTestBase
     public SlackTests(HttpClientFixture fixture) : base(fixture) { }
 
     [Fact]
-    public async void When_Sending_A_Valid_Slack_Webhook_Payload_With_Context_Block_Then_Return_200()
+    public async Task When_Sending_A_Valid_Slack_Webhook_Payload_With_Context_Block_Then_Return_200()
     {
         // Arrange
         var payload = new SlackWebhookPayload
@@ -41,7 +41,7 @@ public class SlackTests : IntegrationTestBase
     }
     
     [Fact]
-    public async void When_Sending_A_Valid_Slack_Webhook_Payload_With_Action_Block_Then_Return_200()
+    public async Task When_Sending_A_Valid_Slack_Webhook_Payload_With_Action_Block_Then_Return_200()
     {
         // Arrange
         var payload = new SlackWebhookPayload
@@ -75,7 +75,7 @@ public class SlackTests : IntegrationTestBase
     }
     
     [Fact]
-    public async void When_Sending_A_Valid_Slack_Webhook_Payload_With_Header_Block_Then_Return_200()
+    public async Task When_Sending_A_Valid_Slack_Webhook_Payload_With_Header_Block_Then_Return_200()
     {
         // Arrange
         var payload = new SlackWebhookPayload
@@ -101,7 +101,7 @@ public class SlackTests : IntegrationTestBase
     }
     
     [Fact]
-    public async void When_Sending_A_Valid_Slack_Webhook_Payload_With_Image_Block_Then_Return_200()
+    public async Task When_Sending_A_Valid_Slack_Webhook_Payload_With_Image_Block_Then_Return_200()
     {
         // Arrange
         var payload = new SlackWebhookPayload
@@ -129,7 +129,7 @@ public class SlackTests : IntegrationTestBase
     }
     
     [Fact]
-    public async void When_Sending_A_Valid_Slack_Webhook_Payload_With_Input_Block_Then_Return_200()
+    public async Task When_Sending_A_Valid_Slack_Webhook_Payload_With_Input_Block_Then_Return_200()
     {
         // Arrange
         var payload = new SlackWebhookPayload
@@ -163,7 +163,7 @@ public class SlackTests : IntegrationTestBase
     }
     
     [Fact]
-    public async void When_Sending_A_Valid_Slack_Webhook_Payload_With_RichText_Block_Then_Return_200()
+    public async Task When_Sending_A_Valid_Slack_Webhook_Payload_With_RichText_Block_Then_Return_200()
     {
         // Arrange
         var payload = new SlackWebhookPayload
@@ -208,7 +208,7 @@ public class SlackTests : IntegrationTestBase
     }
     
     [Fact]
-    public async void When_Sending_A_Valid_Slack_Webhook_Payload_With_Section_Block_Then_Return_200()
+    public async Task When_Sending_A_Valid_Slack_Webhook_Payload_With_Section_Block_Then_Return_200()
     {
         // Arrange
         var payload = new SlackWebhookPayload
@@ -253,7 +253,7 @@ public class SlackTests : IntegrationTestBase
     }
     
     [Fact]
-    public async void When_Sending_A_Valid_Slack_Webhook_Payload_With_Video_Block_Then_Return_200()
+    public async Task When_Sending_A_Valid_Slack_Webhook_Payload_With_Video_Block_Then_Return_200()
     {
         // Arrange
         var payload = new SlackWebhookPayload
@@ -287,7 +287,7 @@ public class SlackTests : IntegrationTestBase
     }
     
     [Fact]
-    public async void When_Sending_A_Valid_Slack_Webhook_Payload_With_Simple_Layout_Then_Return_200()
+    public async Task When_Sending_A_Valid_Slack_Webhook_Payload_With_Simple_Layout_Then_Return_200()
     {
         // Arrange
         var payload = new SlackWebhookPayload
