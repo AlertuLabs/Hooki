@@ -263,7 +263,7 @@ Distributed under MIT License. See LICENSE.txt for more information.
 <!-- Contact -->
 ## 🤝 Contact
 
-Adam Ferguson - [@adamthewilliam](https://twitter.com/adamthewilliam)
+[@adamthewilliam](https://twitter.com/adamthewilliam)
 
 <!-- Acknowledgments -->
 ## 💎 Acknowledgements
